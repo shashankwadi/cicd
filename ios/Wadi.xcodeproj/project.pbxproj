@@ -93,8 +93,6 @@
 		222CB4052004D17900C50CF7 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 222CB4042004D17900C50CF7 /* StoreKit.framework */; };
 		222CB4072004D19400C50CF7 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 222CB4062004D19400C50CF7 /* UserNotifications.framework */; };
 		222CB4092004E37600C50CF7 /* TuneConfiguration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 222CB4082004E37600C50CF7 /* TuneConfiguration.plist */; };
-		22332936205398D30020F3FA /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22332935205398D30020F3FA /* NotificationService.swift */; };
-		2233293A205398D30020F3FA /* NotificationService.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 22332933205398D30020F3FA /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		223D2C8E20441DDF0094E4FC /* libRCTWKWebView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 223D2C7B20441DAA0094E4FC /* libRCTWKWebView.a */; };
 		223EC8EC205BBC68003A8848 /* SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 223EC8BC205BBC67003A8848 /* SplashScreen.m */; };
 		22474FFD2042C9F700FFC42A /* NSUserDefaults+MPSecureUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 22474FD02042C9F600FFC42A /* NSUserDefaults+MPSecureUserDefaults.m */; };
@@ -315,13 +313,6 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNGooglePlaces;
 		};
-		22332938205398D30020F3FA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 22332932205398D30020F3FA;
-			remoteInfo = NotificationService;
-		};
 		223D2C7A20441DAA0094E4FC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 223D2C5D20441DA90094E4FC /* RCTWKWebView.xcodeproj */;
@@ -513,7 +504,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				2233293A205398D30020F3FA /* NotificationService.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -642,7 +632,6 @@
 		222CB4062004D19400C50CF7 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		222CB4082004E37600C50CF7 /* TuneConfiguration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = TuneConfiguration.plist; path = Wadi/TuneConfiguration.plist; sourceTree = "<group>"; };
 		222CB40A2004F0DC00C50CF7 /* Wadi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Wadi.entitlements; path = Wadi/Wadi.entitlements; sourceTree = "<group>"; };
-		22332933205398D30020F3FA /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		22332935205398D30020F3FA /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		22332937205398D30020F3FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		223D2C5D20441DA90094E4FC /* RCTWKWebView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWKWebView.xcodeproj; path = "../node_modules/react-native-wkwebview-reborn/ios/RCTWKWebView.xcodeproj"; sourceTree = "<group>"; };
@@ -802,13 +791,6 @@
 				A30BB6930E9C4B7E95A551CA /* AddressBook.framework in Frameworks */,
 				12069080B22D46D8B16E4532 /* libRNGooglePlaces.a in Frameworks */,
 				7B93203FC5A44313AFF4AE73 /* libAirMaps.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		22332930205398D30020F3FA /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1465,7 +1447,6 @@
 				13B07F961A680F5B00A75B9A /* Wadi Grocery.app */,
 				2D02E47B1E0B4A5D006451C7 /* Wadi-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* Wadi-tvOSTests.xctest */,
-				22332933205398D30020F3FA /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1541,29 +1522,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				22332939205398D30020F3FA /* PBXTargetDependency */,
 			);
 			name = Wadi;
 			productName = "Hello World";
 			productReference = 13B07F961A680F5B00A75B9A /* Wadi Grocery.app */;
 			productType = "com.apple.product-type.application";
-		};
-		22332932205398D30020F3FA /* NotificationService */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2233293B205398D30020F3FA /* Build configuration list for PBXNativeTarget "NotificationService" */;
-			buildPhases = (
-				2233292F205398D30020F3FA /* Sources */,
-				22332930205398D30020F3FA /* Frameworks */,
-				22332931205398D30020F3FA /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = NotificationService;
-			productName = NotificationService;
-			productReference = 22332933205398D30020F3FA /* NotificationService.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 		2D02E47A1E0B4A5D006451C7 /* Wadi-tvOS */ = {
 			isa = PBXNativeTarget;
@@ -1629,11 +1592,6 @@
 								enabled = 1;
 							};
 						};
-					};
-					22332932205398D30020F3FA = {
-						CreatedOnToolsVersion = 9.2;
-						DevelopmentTeam = LDD56L392F;
-						ProvisioningStyle = Manual;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1757,7 +1715,6 @@
 				13B07F861A680F5B00A75B9A /* Wadi */,
 				2D02E47A1E0B4A5D006451C7 /* Wadi-tvOS */,
 				2D02E48F1E0B4A5D006451C7 /* Wadi-tvOSTests */,
-				22332932205398D30020F3FA /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -2127,13 +2084,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		22332931205398D30020F3FA /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2D02E4791E0B4A5D006451C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2356,14 +2306,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2233292F205398D30020F3FA /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				22332936205398D30020F3FA /* NotificationService.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2D02E4771E0B4A5D006451C7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2382,11 +2324,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		22332939205398D30020F3FA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 22332932205398D30020F3FA /* NotificationService */;
-			targetProxy = 22332938205398D30020F3FA /* PBXContainerItemProxy */;
-		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2D02E47A1E0B4A5D006451C7 /* Wadi-tvOS */;
@@ -2466,7 +2403,7 @@
 				OTHER_SWIFT_FLAGS = "-DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wadi.fmcg;
 				PRODUCT_NAME = "Wadi Grocery";
-				PROVISIONING_PROFILE = "94ea19d5-f28a-4980-a055-a6cdff1ec179";
+				PROVISIONING_PROFILE = "d34e46dc-3997-4c18-a88b-f4340f29258b";
 				PROVISIONING_PROFILE_SPECIFIER = dev_grocery_mar16_provisioning;
 				SWIFT_OBJC_BRIDGING_HEADER = "Wadi-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2538,83 +2475,6 @@
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Release;
-		};
-		2233293C205398D30020F3FA /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = LDD56L392F;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = NotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wadi.fmcg.NotificationService;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "69143616-31c8-458c-8ca0-9971bc8feef7";
-				PROVISIONING_PROFILE_SPECIFIER = fmcg_app_dev_notificationservice_provisioning;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		2233293D205398D30020F3FA /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = LDD56L392F;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = NotificationService/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wadi.fmcg.NotificationService;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8183c354-e094-49a6-a816-6ba1991191df";
-				PROVISIONING_PROFILE_SPECIFIER = Wadi_fmcg_prod_notification_service;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -2844,15 +2704,6 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2233293B205398D30020F3FA /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2233293C205398D30020F3FA /* Debug */,
-				2233293D205398D30020F3FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
