@@ -1,0 +1,1970 @@
+<html><head><!--
+@license
+Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+--><meta charset="UTF-8"></head><body><div hidden="" by-vulcanize=""><dom-module id="pdp-core-details-element" assetpath="../../../shared/components/pdp-core-details-element/">
+  
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+    </style>
+  
+    <template>
+  
+      <section class="primary-section-area">
+        <header class="pdp-header">
+          
+          <template is="dom-if" if="[[ isElectronics ]]" restamp="">
+            <h1 class$="[[ _hasBrandLogo(productdetails.brand.url) ]]" itemprop="name">
+              [[ productdetails.name_desc.brand ]] [[ productdetails.name_desc.name ]]
+              <span class="subtitle">[[ productdetails.name_desc.subtitle ]]</span>
+              <template is="dom-if" if="[[ !isMobile]]" restamp="">
+                <span class="secondary-title">[[ productdetails.sku ]]</span>
+              </template>
+            </h1>
+          </template>
+  
+          
+          <template is="dom-if" if="[[ !isElectronics ]]" restamp="">
+            <h1 class$="[[ _hasBrandLogo(productdetails.brand.url) ]]" itemprop="name">
+              [[ productdetails.name_desc.brand ]]
+              <span class="subtitle">
+                <span>[[ productdetails.name_desc.name ]]</span>
+                <template is="dom-if" if="[[ productdetails.name_desc.subtitle ]]">
+                  <span>[[ productdetails.name_desc.subtitle ]]</span>
+                </template>
+              </span>
+              <template is="dom-if" if="[[ !isMobile]]" restamp="">
+                <span class="secondary-title">[[ productdetails.sku ]]</span>
+              </template>
+            </h1>
+          </template>
+  
+          
+          <template is="dom-if" if="[[ productdetails.brand.url ]]">
+            <a class="pdp-brand-logo" href$="/[[ productdetails.brand.key ]]">
+              <img src$="[[ _getBrandLogo(productdetails.brand.url) ]]" on-error="_logoError" alt$="[[ productdetails.brand.name ]]">
+            </a>
+          </template>
+        </header>
+  
+        <div class="pdp-key-details">
+          <div class="plp-price-review-row">
+            
+            <template is="dom-if" if="[[ !outofstock ]]" restamp="true">
+              
+               <template is="dom-if" if="[[ _isOnSale(selectedSku) ]]">
+                <p class="core-product-price pdp-price">
+                  
+                  <span class="selling-price">
+                    [[_getSimpleData('specialPrice', selectedSku)]] <span class="currency">[[ ctx.currency ]] </span>
+                    <span class="pre-reduction tax-info">[[ _getSimpleData('tax_info', selectedSku) ]]</span>
+                  </span>
+                  
+                  <template is="dom-if" if="[[ reviews ]]">
+                    <div on-tap="_scrollToReviews" class="reviews-badge" itemtype="http://schema.org/AggregateRating" itemscope="itemscope" itemprop="aggregateRating">
+                      <div class="stars-container">
+                        <i style$="width: [[_getStarFill(reviews.score)]]%" class="stars"></i>
+                      </div>
+        
+                      <p class="rating">
+                        
+                        <span class="reviews-count">([[totalReviews]] [[_translate('Reviews')]])</span>
+                      </p>
+                    </div>
+                  </template>
+                  </p><p class="discount-section">
+                    <span class="price-off">[[_getSimpleData('discount')]]% [[_translate('OFF')]]</span>
+                    <span class="original-price">[[_translate('Was')]] [[_getSimpleData('price', selectedSku)]] [[ ctx.currency ]].</span>
+                    <span class="you-save">[[_translate('You save')]] <span>[[ discountTotal ]] [[ ctx.currency ]]</span> </span>
+                  </p>
+                <p></p>
+              </template>
+              
+              <template is="dom-if" if="[[ !_isOnSale(selectedSku) ]]">
+                <p class="core-product-price pdp-price">
+                  <span class="selling-price">[[_getSimpleData('price', selectedSku)]] [[ ctx.currency ]]
+                    <span class="pre-reduction tax-info">[[ _getSimpleData('tax_info', selectedSku) ]]</span>
+                  </span>
+                </p>
+              </template>
+              
+              
+            </template>
+
+          </div>
+  
+        </div>
+  
+        
+        <template is="dom-if" if="[[ _getSimpleData('is_express', selectedSku) ]]">
+          <div class="wadi-express-container" on-mouseover="_showTool" on-mouseout="_hideTool">
+            <p class="wadicon-express">
+              [[ _translate('Express')]]
+            </p>
+            
+          </div>
+        </template>
+        
+  
+        
+  
+        
+        <template is="dom-if" if="[[hasVariations]]">
+          <div class="pdp-variations-wrapper">
+            
+            <template is="dom-if" if="[[ productdetails.groups.color ]]">
+              <template is="dom-if" if="[[ _isMoreThanOne(productdetails.groups.color) ]]">
+                <div class="pdp-variation-container">
+                  <p class="title">[[_translate('Colors')]]</p>
+                  <ul>
+                     <template is="dom-repeat" items="[[ productdetails.groups.color ]]" as="variation">
+                        <li>
+                          <a href$="[[ variation.link ]]" class$="thumbnail [[ _isCurrentVariation(variation.sku, productdetails.sku) ]]">
+                            <img lazy-src$="[[ _getProductImage(variation.imageKey) ]]" alt$="[[ variation.key ]]">
+                            <div class="core-product-image-preloader"><i class="wadicon-spinner wadicon-spin"></i></div>
+                          </a>
+                        </li>
+                    </template>
+                  </ul>
+                </div>
+              </template>
+            </template>
+            
+            <template is="dom-if" if="[[ productdetails.groups.size ]]">
+              <template is="dom-if" if="[[ _isMoreThanOne(productdetails.groups.size) ]]">
+                <div class="pdp-variation-container">
+                  <p class="title">[[_translate('Sizes')]]:</p>
+                  <ul>
+                    <template is="dom-repeat" items="[[productdetails.groups.size]]" as="variation">
+                      <li><a href$="[[variation.link]]" class$="[[_isCurrentVariation(variation.sku, productdetails.sku)]]">[[ variation.key ]]</a></li>
+                    </template>
+                  </ul>
+                </div>
+              </template>
+            </template>
+            
+            <template is="dom-if" if="[[ !isOneSize ]]">
+              <div class="pdp-variation-container">
+                <p class="title">[[_translate('Select Size')]]:</p>
+                <ul>
+                  <template is="dom-repeat" items="[[ productdetails.simples ]]" as="variation">
+                      <li>
+                        <div class="custom-radio-container">
+                          <label for$="size-[[ variation.size ]]" class$="custom-radio-label [[ _isVariationAvailable(variation.sku) ]]">
+                            <input type="radio" disabled$="[[ _isAvailable(variation.sku) ]]" name="product-size" checked$="[[ _isSelectedSku(variation.sku) ]]" value$="[[ variation.sku ]]" on-change="_selectSize" id$="size-[[ variation.size ]]">
+                            <span class="label-text">[[ variation.size ]]</span>
+                            <div class="check-indicator"></div>
+                            <i></i>
+                          </label>
+                        </div>
+                      </li>
+                  </template>
+                </ul>
+                <template is="dom-if" if="[[ !inCart ]]">
+                  <template is="dom-if" if="[[ !selectedSize ]]">
+                    <p class="size-warning"><i class="wadicon-alert"></i>[[_translate('Please select your size')]]</p>
+                  </template>
+                </template>
+              </div>
+            </template>
+          </div>
+        </template>
+        
+  
+        
+        <template is="dom-if" if="[[ productdetails.ribbon.desc ]]" restamp="true">
+            <div class="default-seller offer-highlight-container">
+              <p class="title offers">[[ _translate('Offers') ]]</p>
+              <p class="offers_text">[[productdetails.ribbon.desc]]</p>
+            </div>
+          </template>
+          
+  
+        
+        <template is="dom-if" if="[[ !isMobile]]" restamp="true">
+          <template is="dom-if" if="[[ productdetails.highlights.length ]]" restamp="true">
+            <div class="highlights-container">
+              <h3>[[ _translate('Highlights') ]]</h3>
+              <ul class="highlights">
+                <template is="dom-repeat" items="[[ productdetails.highlights ]]" as="highlight">
+                  <li>[[highlight]]</li>
+                </template>
+              </ul>
+            </div>
+          </template>
+        </template>
+  
+        
+        
+        
+  
+      </section>
+  
+    </template>
+  
+  </dom-module>
+  
+  <script>
+  
+    Polymer({
+      is: 'pdp-core-details-element',
+  
+      properties: {
+  
+        productdetails: {
+          type: Object,
+          value:{}
+        },
+  
+        reviews: {
+          type: Object,
+          notify: true,
+          observer: "_reviewsChanged"
+        },
+  
+        outofstock: {
+          type: Boolean,
+          value: false
+        },
+  
+        /**
+         * app context
+         */
+        ctx: {
+          type: Object
+        },
+  
+        selectedSku: {
+          type: String,
+          observer: "_selectedSkuChanged"
+        },
+  
+        inCart: {
+          type: Boolean,
+          value: false
+        },
+  
+        selectedSize: {
+          type: String,
+          value: null
+        }
+      },
+  
+      // Element Lifecycle
+      attached: function () {
+        this.isSA = this.ctx.country === 'sa' ? true : false;
+        this.isMobile = window.config.device === 'mobile' ? true : false;
+        this.isElectronics = (this.productdetails.attributes.attribute_set === 'electronics' ? true : false);
+        this.productdetails.instock_supplier = this.productdetails.instock_supplier || 0;
+        if (this.productdetails.simples[0].suppliers && this.productdetails.simples[0].suppliers.length) {
+          this.isOnSale = (this.productdetails.simples[0].suppliers[0].specialPrice ? true : false);
+        }
+        this.isOneSize = this.productdetails.simples[0].size === 'OS' ? true : false;
+  
+        // HAS VARIATIONS
+        if ((this.productdetails.groups && this.productdetails.groups.color && this._isMoreThanOne(this.productdetails.groups.color)) || (this.productdetails.groups && this.productdetails.groups.size && this._isMoreThanOne(this.productdetails.groups.size) ) || !this.isOneSize) {
+          this.hasVariations = true;
+        }
+  
+        this.selectedSku = this.selectedSku || null;
+
+        var _self = this;
+        document.addEventListener('cta-disabled-enter', function () {
+          document.querySelector('pdp-core-details-element').classList.add('warning');
+          if (_self.isMobile) { _self.fire('scroll-to-size'); }
+        });
+        document.addEventListener('cta-disabled-leave', function () {
+          document.querySelector('pdp-core-details-element').classList.remove('warning');
+        });
+      },
+  
+      _reviewsChanged: function (res) {
+        // REVIEWS WORK
+        this.numProReviews = this._getArrayTotal(this.reviews.pro_score_dist_all);
+        this.numUserReviews = this._getArrayTotal(this.reviews.user_score_dist_all);
+        this.totalReviews = this.numProReviews + this.numUserReviews;
+      },
+  
+      _selectedSkuChanged: function (sku) {
+        var el = document.querySelector("input[value='" + sku + "']");
+        if (el) {
+          el.checked = true;
+        }
+      },
+  
+      json: function (data) {
+        return JSON.stringify(data);
+      },
+  
+      _getProductImage: function (key) {
+        return "//" + this.ctx.cdn + "/product/" + key + "/1-cart.jpg";
+      },
+  
+      _scrollToReviews: function() {
+        this.fire('scroll-to-reviews');
+      },
+
+      _selectSize: function(e) {
+        this.selectedSize = e.target.value;
+        this.fire('size-selected', { sku: this.selectedSize });
+        this.fire('custom-events', {
+          "eventCategory": 'product_detail',
+          "eventAction": this.productdetails.sizes.toString() + '|' + e.target.id + '_selected',
+          "eventLabel": this.productdetails.name_desc.brand + ' ' + this.productdetails.name_desc.name + '|' + this.selectedSize,
+          "eventValue": ''
+        });
+      },
+  
+      _isSelectedSku: function (sku) {
+        return this.selectedSku === sku;
+      },
+  
+      _isAvailable: function (sku) {
+        var found = this.productdetails.simples.find(function (d) { return d.sku === sku; });
+        return !(found && found.suppliers && found.suppliers.length !== 0 && found.quantity > 0);
+      },
+  
+      _isVariationAvailable: function (sku) {
+        return this._isAvailable(sku) ? 'disabled' : '';
+      },
+  
+      // ADD CLASS TO H1 IF BRAND LOGO IS PRESENT
+      _hasBrandLogo: function(url) {
+        if (url) {
+          return 'has-logo';
+        }
+      },
+  
+      _isCurrentVariation: function(variation, current) {
+        if (variation === current) {
+          return 'active';
+        }
+      },
+  
+      _isMoreThanOne: function(array) {
+        if (array && array.length > 1 ) {
+          return true;
+        }
+      },
+  
+      _getReviewScore: function(score) {
+        return (score / 2).toFixed(1);
+      },
+  
+      _getStarFill: function(score) {
+        return (score / 10) * 100;
+      },
+  
+      _getArrayTotal: function(array) {
+        var total = 0;
+        for (var i in array) {
+            total += array[i];
+        }
+        return total;
+      },
+  
+      _getBrandLogo: function (url) {
+        return url ? '//' + this.ctx.cdn + '/brand/' + url : null;
+      },
+  
+      _logoError: function (e) {
+        e.target.parentNode.removeChild(e.target);
+      },
+  
+      _translate: function (key) {
+        return window.translate(key);
+      },
+  
+      _getSimpleData: function (prop, sku) {
+        if (!this.productdetails.visible) { return null;  }
+        
+        if (sku) {
+          var supplier = this.productdetails.simples.find(function(ele) { return ele.sku === sku; });
+          return supplier.suppliers[0][prop];
+        }
+  
+        if (this.productdetails.simples[this.productdetails.instock_supplier].suppliers[0]) {
+          return this.productdetails.simples[this.productdetails.instock_supplier].suppliers[0][prop];
+        }
+      },
+
+      _isOnSale: function (sku) {
+        var specialPrice = this._getSimpleData('specialPrice', sku);
+
+        if (specialPrice) {
+          this.discountTotal = this._getSimpleData('price', sku) - specialPrice;
+          return true;
+        }
+
+        return false;
+      },
+
+      _showTool: function (e) {
+        e.currentTarget.classList.add('active');
+      },
+  
+      _hideTool: function (e) {
+        e.currentTarget.classList.remove('active');
+      },
+
+    });
+  
+  </script>
+<dom-module id="pdp-support-details-element" assetpath="../../../shared/components/pdp-support-details-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <template>
+  
+      <section class="pdp-section-area">
+
+        
+        <template is="dom-if" if="[[isMobile]]" restamp="true">
+          <template is="dom-if" if="[[ productdetails.highlights.length ]]" restamp="true">
+            <div class="details-module">
+              <h2>[[ _translate('Overview') ]]</h2>
+              <ul class="highlights">
+                <template is="dom-repeat" items="[[ productdetails.highlights ]]" as="highlight">
+                  <li>[[highlight]]</li>
+                </template>
+              </ul>
+            </div>
+          </template>
+        </template>
+
+        <template is="dom-if" if="[[ !outofstock ]]">
+          <div class="quick-details-container">
+
+            
+            <template is="dom-if" if="[[ !productdetails.is_prepaid ]]" restamp="true">
+              <div class="support-details-module">
+                <p class="title cod">[[_translate('Cash On Delivery')]]</p>
+                <p>[[_translate('This item is eligible for cash on delivery.')]]</p>
+              </div>
+            </template>
+            <template is="dom-if" if="[[ productdetails.is_prepaid ]]" restamp="true">
+              <div class="support-details-module">
+                <p class="title prepaid">[[_translate('Prepaid Item Only')]]</p>
+                <p>[[_translate('This item can only be purchased using a debit/credit card or voucher.')]]</p>
+              </div>
+            </template>
+
+            
+            <template is="dom-if" if="[[ productdetails.gift_wrap ]]" restamp="true">
+              <div class="support-details-module gift-hide">
+                <p class="title giftwrap">[[_translate('Gift Wrap')]]</p>
+                <p>[[_translate('You can select this option during checkout.')]]</p>
+              </div>
+            </template>
+
+            
+            
+
+            
+            <div class="support-details-module">
+              <p class="title promise">[[_translate('Wadi Promise')]]</p>
+              <ul>
+                <template is="dom-if" if="[[ !ctx.groceryApp ]]">
+                  <li>[[ _translate('14 Day Free Returns') ]]</li>
+                </template>
+                <li>[[ _translate('100% Secure Payments') ]]</li>
+                <li>[[ _translate('100% Authentic') ]]</li>
+              </ul>
+            </div>
+
+          </div></template>
+        
+      </section>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'pdp-support-details-element',
+
+    properties: {
+
+      /**
+       * Application context
+       */
+      ctx: {
+        type: Object
+      },
+
+      outofstock: {
+        type: Boolean,
+        value: false
+      }
+    },
+
+    // Element Lifecycle
+    attached: function () {
+      this.isMobile = window.config.device === 'mobile' ? true : false;
+      this.isAE = this.ctx.country === 'ae' ? true : false;
+    },
+
+    _translate: function (key) {
+      return window.translate(key);
+    }
+  });
+
+</script>
+<dom-module id="product-specs-feature-element" assetpath="../../../shared/components/product-specs-feature-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <template>
+    <content></content>
+    <div class="site-width-container">
+      <h2 hidden$="[[isMobile]]">[[ _translate('Full Specifications') ]]</h2>
+      <h3 collapse="#collapse-specs" on-click="_toggle" hidden$="[[!isMobile]]">[[ _translate('View Full Specifications') ]]</h3>
+      <iron-collapse id="collapse-specs" opened="[[!isMobile]]">
+        <div class="content-holder">
+          <template is="dom-repeat" items="[[_toArray(attributesmap.groups)]]">
+            <table>
+              <thead>
+              <tr><th colspan="2">[[ item.value.label ]]</th></tr>
+              </thead>
+              <tbody>
+              <template is="dom-repeat" items="[[_toArray(item.value.attributes)]]" as="attrName">
+                <tr>
+                  <td>[[ attrName.value.label ]]</td>
+                  <td>[[ attrName.value.value ]]</td>
+                </tr>
+              </template>
+              </tbody>
+            </table>
+          </template>
+        </div>
+      </iron-collapse>
+    </div>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'product-specs-feature-element',
+
+    properties: {
+
+      /**
+       * Product Specification and feature json object to be displayed
+       */
+      attributesmap: {
+        type: Object
+      },
+
+      /**
+       * Options supported by Product Specification and feature element
+       */
+      options: {
+        type: Object
+      },
+
+      /**
+       * Application context
+       */
+      ctx: {
+        type: Object
+      }
+    },
+
+    attached: function () {
+      this.isMobile = window.config.device === 'mobile' ? true : false;
+    },
+
+    _toArray: function(attributesmap) {
+      return Object.keys(attributesmap).map(function(key) {
+        return {
+          label: key,
+          value: attributesmap[key]
+        };
+      });
+    },
+    
+    _toggle: function (event) {
+      var node = event.currentTarget.getAttribute('collapse');
+      this.querySelector(node).toggle();
+      event.currentTarget.classList.toggle('opened');
+    },
+
+    _translate: function (key) {
+      return window.translate(key);
+    }
+  });
+
+</script>
+<dom-module id="multiseller-element" assetpath="../../../shared/components/multiseller-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <template>
+
+    <div class="site-width-container">
+      <h2>[[ _translate('Other Sellers') ]] ([[ otherSuppliersCount ]])</h2>
+
+      <div class="suppliers-wrapper">
+        <template is="dom-repeat" items="{{ otherSuppliers }}" as="supplier" index-as="index">
+          <div class="supplier-container">
+            <div class="supplier-details-row">
+              <p class="supplier-name">[[supplier.supplier_name]]</p>
+              <span class="supplier-rating-badge">[[supplier.vendor_rating]] / 5</span>
+            </div>
+            <div class="supplier-additional-info">
+              <p class="shipping">[[ supplier.delivery_info ]]</p>
+              <template is="dom-if" if="{{ supplier.warranty_period }}" restamp="true">
+                <p class="warranty">[[supplier.warranty_period]]</p>
+              </template>
+
+              
+              <template is="dom-if" if="[[ !supplier.is_prepaid ]]" restamp="true">
+                  <p class="title cod">[[_translate('This item is eligible for cash on delivery.')]]</p>
+              </template>
+              <template is="dom-if" if="[[ supplier.is_prepaid ]]" restamp="true">
+                  <p>[[_translate('This item can only be purchased using a debit/credit card or voucher.')]]</p>
+              </template>
+
+              
+              <template is="dom-if" if="[[ supplier.is_express ]]">
+                <div class="wadi-express-container">
+                  <p class="wadicon-express">
+                    [[ _translate('Express')]]
+                  </p>
+                </div>
+              </template>
+              
+
+            </div>
+            <div class="supplier-cta-container">
+              <cart-button-element item$="[[ _getAddToCart(supplier, index) ]]" selected-sku$="[[ supplier.sku ]]" in-cart$="[[ _isInCart(supplier, supplier.sku) ]]" ctx$="[[ ctx ]]" options="{&quot;className&quot;: &quot;core-block-cta&quot;, &quot;showPrice&quot;: true}"></cart-button-element>
+            </div>
+          </div>
+        </template>
+      </div>
+
+    </div>
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'multiseller-element',
+
+    // listeners: {
+    //   'tap': 'add'
+    // },
+
+    properties: {
+
+      /**
+       * Options supported by element
+       */
+      options: {
+        type: Object,
+        value: {
+          title: "Other Sellers"
+        }
+      },
+
+      productdetails: {
+        type: Object,
+        value:{}
+      },
+
+      ctx: {
+        type: Object
+      },
+
+      supplierdata: {
+        type: Object,
+        observer: '_updateSupplier'
+      },
+
+      selectedSku: {
+        type: String
+      },
+
+      /**
+       * Product already in cart or not
+       */
+      inCart: {
+        type: Boolean,
+        value: false
+      }
+    },
+
+    attached: function () {
+      this._updateSupplier();
+    },
+
+    _getSupplierPrice: function (index) {
+      return this.otherSuppliers[index].specialPrice || this.otherSuppliers[index].price;
+    },
+
+    _getAddToCart: function (supplier, index) {
+      let json = {
+        'sku': null,
+        'vendor': null,
+        'price': null,
+        'simple': null,
+        'name': null,
+        'brand': null,
+        'category': null,
+        'visible': null,
+        'imageUrl': null,
+        "isOOS" : false,
+      };
+
+      json.sku = this.otherSuppliers[index].sku;
+      json.simple = this.supplierdata;
+      json.vendor = this.otherSuppliers[index].vendor_code;
+      json.price = this._getSupplierPrice(index);
+      json.isOOS = this.otherSuppliers[index].availableQty < 1;
+
+      json.name = this.productdetails.name;
+      json.brand = (this.productdetails.brand) ? this.productdetails.brand.name : null;
+      json.category = this.productdetails.category && this.productdetails.category.replace(/-/g, '/');
+      json.visible = this.productdetails.visible;
+
+      return json;
+    },
+
+    _isInCart: function(supplier, sku) {
+      var found = this.inCartSku.find(function (item) {
+        return item === sku;
+      });
+
+      return (found && found.length > 0) ? true : false;
+    },
+
+    _updateSupplier: function () {
+      if (this.supplierdata.suppliers.length > 1) {
+        this.otherSuppliers = this.supplierdata.suppliers.slice(0) || [];
+        this.otherSuppliers.splice(0, 1);
+        this.otherSuppliersCount = this.otherSuppliers.length;
+
+        // LOWEST PRICE OF OTHER SUPPLIERS
+        this.lowestSuppliersPrice = this.otherSuppliers[0].specialPrice ? this.otherSuppliers[0].specialPrice : this.otherSuppliers[0].price;
+        if (this.otherSuppliers.length > 1) {
+          var currentPrice;
+          for(i = 1; i < this.otherSuppliers.length; i++) {
+            currentPrice = this.otherSuppliers[i].specialPrice ? this.otherSuppliers[i].specialPrice : this.otherSuppliers[i].price;
+            if (currentPrice < this.lowestSuppliersPrice) {
+              this.lowestSuppliersPrice = currentPrice;
+            }
+          }
+        }
+      } else {
+        this.set('otherSuppliers', []);
+        this.set('otherSuppliersCount', 0);
+      }
+    },
+
+    _translate: function (key) {
+      return window.translate(key);
+    }
+  });
+
+</script>
+<dom-module id="product-reviews-element" assetpath="../../../shared/components/product-reviews-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <template>
+
+    <template is="dom-if" if="[[ reviews ]]">
+
+    <section class="pdp-section-area site-width-container">
+
+      
+      <div class="details-module summary-container">
+
+        <h2 hidden$="[[isMobile]]">[[_translate('Reviews')]]</h2>
+
+        
+        <div class="rating-container">
+          <p class="rating">[[_getReviewScore(reviews.score)]]</p>
+          <div class="additional-details-container">
+            <div class="stars-container large"><i style$="width: [[_getStarFill(reviews.score)]]%" class="stars"></i></div>
+            <p class="counter">[[ _translate('Based on') ]] [[totalReviews]] [[_translate('Reviews')]]*</p>
+          </div>
+
+          
+          <template is="dom-if" if="[[!isMobile]]">
+            <div class="overview-container">
+              <template is="dom-if" if="[[reviews.product_pros.length]]">
+                <p class="pros">
+                  <template is="dom-repeat" items="[[reviews.product_pros]]" as="pro">
+                    <span>
+                      [[pro]]
+                      <template is="dom-if" if="[[_isNotLastItem(index, reviews.product_pros.length)]]">
+                        <span>,&nbsp;</span>
+                      </template>
+                    </span>
+                  </template>
+                </p>
+              </template>
+              <template is="dom-if" if="[[reviews.product_cons.length]]">
+                <p class="cons">
+                  <template is="dom-repeat" items="[[reviews.product_cons]]" as="con">
+                    <span>
+                      [[con]]
+                      <template is="dom-if" if="[[_isNotLastItem(index, reviews.product_cons.length)]]">
+                        <span>,&nbsp;</span>
+                      </template>
+                    </span>
+                  </template>
+                </p>
+              </template>
+            </div>
+          </template>
+          
+        </div>
+        
+
+        
+        <div class="graph-wrapper">
+          <div class="graph-container">
+            <p class="title">[[ _translate('Expert Reviews') ]] ([[numProReviews]])*</p>
+            <table>
+              <template is="dom-repeat" items="[[pro_score_dist_all_reversed]]" as="score">
+                <tr>
+                  <td class="value-title">[[_getScoreHeading(reviews.pro_score_dist_all.length, index)]]</td>
+                  <td class="value-holder">
+                    <div class="value-container"><span style$="width: [[_getReviewGraphFill(score, numProReviews)]]%" class="value"></span></div>
+                  </td>
+                  <td class="count">[[score]]</td>
+                </tr>
+              </template>
+            </table>
+          </div>
+          <div class="graph-container">
+            <p class="title">[[ _translate('User Reviews') ]] ([[numUserReviews]])*</p>
+            <table>
+              <template is="dom-repeat" items="[[user_score_dist_all_reversed]]" as="score">
+                <tr>
+                  <td class="value-title">[[_getScoreHeading(reviews.user_score_dist_all.length, index)]]</td>
+                  <td class="value-holder">
+                    <div class="value-container"><span style$="width: [[_getReviewGraphFill(score, numUserReviews)]]%" class="value"></span></div>
+                  </td>
+                  <td class="count">[[score]]</td>
+                </tr>
+              </template>
+            </table>
+          </div>
+        </div>
+        
+
+        
+        <template is="dom-if" if="[[isMobile]]">
+          <div class="overview-container">
+            <template is="dom-if" if="[[reviews.product_pros.length]]">
+              <p class="pros">
+                <template is="dom-repeat" items="[[reviews.product_pros]]" as="pro">
+                  <span>
+                    [[pro]]
+                    <template is="dom-if" if="[[_isNotLastItem(index, reviews.product_pros.length)]]">
+                      <span>,&nbsp;</span>
+                    </template>
+                  </span>
+                </template>
+              </p>
+            </template>
+            <template is="dom-if" if="[[reviews.product_cons.length]]">
+              <p class="cons">
+                <template is="dom-repeat" items="[[reviews.product_cons]]" as="con">
+                  <span>
+                    [[con]]
+                    <template is="dom-if" if="[[_isNotLastItem(index, reviews.product_cons.length)]]">
+                      <span>,&nbsp;</span>
+                    </template>
+                  </span>
+                </template>
+              </p>
+            </template>
+            <p class="disclaimer">* [[ _translate('_PDPReviewsDisclaimer') ]]</p>
+          </div>
+        </template>
+        
+
+        
+        <template is="dom-if" if="[[!isMobile]]">
+          <p class="disclaimer" hidden$="[[isMobile]]">* [[ _translate('_PDPReviewsDisclaimer') ]]</p>
+        </template>
+
+      </div>
+      
+
+
+      
+      <div class="reviews-container">
+
+        <template is="dom-if" if="[[!isMobile]]">
+          <nav class="pdp-details-nav-container">
+            <div class="site-width-container">
+              <ul>
+                <li><a class="active review-trigger" collapse="#collapse-pro-reviews" on-tap="_loadExpertReviews">[[ _translate('Expert Reviews') ]] ([[reviews.pro_review_count]])</a></li>
+                <li><a class="review-trigger" collapse="#collapse-user-reviews" on-tap="_loadUserReviews">[[ _translate('User Reviews') ]] ([[reviews.user_review_count]])</a></li>
+              </ul>
+            </div>
+          </nav>
+        </template>
+
+
+        
+        <h3 hidden$="[[!isMobile]]" collapse="#collapse-pro-reviews" on-click="_loadExpertReviews">[[ _translate('Expert Reviews') ]] ([[reviews.pro_review_count]])</h3>
+        <iron-collapse id="collapse-pro-reviews" class="in-view" opened="[[!isMobile]]">
+          <div class="content-holder">
+            <template is="dom-repeat" items="[[ expertreviews ]]" as="review">
+              <div class="review-container">
+                <div class="reviewer-details">
+                  <div class="key-details-container">
+                    <p class$="source country [[review.country]]">[[review.source]]</p>
+                    <p class="date">[[review.date]]</p>
+                  </div>
+                  <div class="additional-details-container">
+                    <template is="dom-if" if="[[review.score]]">
+                      <div class="stars-container"><i style$="width: [[_getStarFill(review.score)]]%" class="stars"></i></div>
+                    </template>
+                  </div>
+                </div>
+                <div class="review-details">
+                  <p class="extract"><span>[[review.extract]]</span></p>
+                  <template is="dom-if" if="[[review.pros]]">
+                    <p class="pros">[[review.pros]]</p>
+                  </template>
+                  <template is="dom-if" if="[[review.cons]]">
+                    <p class="cons">[[review.cons]]</p>
+                  </template>
+                </div>
+              </div>
+            </template>
+            <div class="loader-container" hidden$="[[ expertreviews ]]">
+              [[ _translate('Loading') ]] <i class="wadicon-spinner wadicon-spin"></i>
+            </div>
+            <template is="dom-if" if="[[ expertreviews ]]">
+              <div class="cta-container">
+                <button class="core-block-cta core-block-cta-support" on-click="_loadMoreExpertReviews">[[ _translate('Load More Reviews') ]]</button>
+                
+              </div>
+            </template>
+          </div>
+        </iron-collapse>
+        
+
+        
+        <h3 hidden$="[[!isMobile]]" collapse="#collapse-user-reviews" on-click="_loadUserReviews">[[ _translate('User Reviews') ]] ([[reviews.user_review_count]])</h3>
+        <iron-collapse id="collapse-user-reviews" opened="[[!isMobile]]">
+          <div class="content-holder">
+            <template is="dom-repeat" items="[[userreviews]]" as="review">
+              <div class="review-container">
+                <div class="reviewer-details">
+                  <div class="key-details-container">
+                    <p class$="source country [[review.country]]">[[review.source]]</p>
+                    <p class="date">[[review.date]]</p>
+                  </div>
+                  <div class="additional-details-container">
+                    <template is="dom-if" if="[[review.score]]">
+                      <div class="stars-container"><i style$="width: [[_getStarFill(review.score)]]%" class="stars"></i></div>
+                    </template>
+                  </div>
+                </div>
+                <div class="review-details">
+                  <p class="extract"><span>[[review.extract]]</span></p>
+                  <template is="dom-if" if="[[review.pros]]">
+                    <p class="pros">[[review.pros]]</p>
+                  </template>
+                  <template is="dom-if" if="[[review.cons]]">
+                    <p class="cons">[[review.cons]]</p>
+                  </template>
+                </div>
+              </div>
+            </template>
+            <div class="loader-container" hidden$="[[ userreviews ]]">
+              [[ _translate('Loading') ]] <i class="wadicon-spinner wadicon-spin"></i>
+            </div>
+            <template is="dom-if" if="[[ userreviews ]]">
+              <div class="cta-container">
+                <button class="core-block-cta core-block-cta-support" on-click="_loadMoreUserReviews">[[ _translate('Load More Reviews') ]]</button>
+                
+              </div>
+            </template>
+          </div>
+        </iron-collapse>
+        
+      </div>
+      
+    </section>
+    </template>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'product-reviews-element',
+
+    properties: {
+      reviews: {
+        type: Object,
+        observer: "_reviewsChanged"
+      },
+
+      expertreviews: {
+        type: Object,
+        notify: true,
+        value: function() {
+            return [];
+        }
+      },
+
+      userreviews: {
+        type: Object,
+        notify: true,
+        value: function() {
+            return [];
+        }
+      }
+    },
+
+    attached: function () {
+      this.isMobile = window.config.device === 'mobile' ? true : false;
+    },
+
+    _reviewsChanged: function () {
+      if (this.reviews.pro_score_dist_all) {
+        this.numProReviews = this._getArrayTotal(this.reviews.pro_score_dist_all);
+        this.numUserReviews = this._getArrayTotal(this.reviews.user_score_dist_all);
+        this.totalReviews = this.numProReviews + this.numUserReviews;
+        this.pro_score_dist_all_reversed = this.reviews.pro_score_dist_all.slice().reverse();
+        this.user_score_dist_all_reversed = this.reviews.user_score_dist_all.slice().reverse();
+
+        // LOAD EXPERT REVIEWS INITIALLY ON DESKTOP
+        if (!this.isMobile && !this.expertreviews) {
+          this.fire('load-expert-reviews');
+        }
+      }
+    },
+
+    _loadExpertReviews: function (event) {
+      if(this.isMobile){
+        this._toggle(event);
+      }
+      else {
+        [].forEach.call(this.getElementsByClassName('review-trigger'), function(el) { el.classList.remove('active'); });
+        event.currentTarget.classList.add('active');
+        document.getElementById('collapse-user-reviews').classList.remove('in-view');
+        document.getElementById('collapse-pro-reviews').classList.add('in-view');
+      }
+
+      if (!this.expertreviews) {
+        this.fire('load-expert-reviews');
+      }
+    },
+
+    _loadMoreExpertReviews: function (src) {
+      this.fire('load-expert-reviews', { list: this.expertreviews });
+    },
+
+    _loadUserReviews: function (event) {
+      if(this.isMobile){
+        this._toggle(event);
+      }
+      else {
+        [].forEach.call(this.getElementsByClassName('review-trigger'), function(el) { el.classList.remove('active'); });
+        event.currentTarget.classList.add('active');
+        document.getElementById('collapse-pro-reviews').classList.remove('in-view');
+        document.getElementById('collapse-user-reviews').classList.add('in-view');
+      }
+      if (!this.userreviews) {
+        this.fire('load-user-reviews');
+      }
+    },
+
+    _loadMoreUserReviews: function (src) {
+      this.fire('load-user-reviews', { list: this.userreviews });
+    },
+
+    _getScoreHeading: function (length, index) {
+      return ((length - 1) - index).toString() + '-' + (length - index).toString();
+    },
+
+    _getReviewGraphFill: function (score, totalScores) {
+      return (score / totalScores) * 100;
+    },
+
+    _getReviewScore: function (score) {
+      return (score / 2).toFixed(1);
+    },
+
+    _getStarFill: function (score) {
+      return (score / 10) * 100;
+    },
+
+    _getArrayTotal: function (array) {
+      var total = 0;
+      for (var i in array) {
+          total += array[i];
+      }
+      return total;
+    },
+
+    _isNotLastItem: function (index, length) {
+      if (index !== length - 1) {
+        return true;
+      }
+    },
+
+    _toggle: function (event) {
+      var node = event.currentTarget.getAttribute('collapse');
+      this.querySelector(node).toggle();
+      event.currentTarget.classList.toggle('opened');
+    },
+
+    _translate: function (key) {
+      return window.translate(key);
+    }
+  });
+
+</script>
+<script>/*
+=================================
+img-touch-canvas - v0.1
+http://github.com/rombdn/img-touch-canvas
+
+(c) 2013 Romain BEAUDON
+This code may be freely distributed under the MIT License
+=================================
+*/
+
+
+(function() {
+    var root = this; //global object
+
+    var ImgTouchCanvas = function(options) {
+        if( !options || !options.canvas || !options.path) {
+            throw 'ImgZoom constructor: missing arguments canvas or path';
+        }
+
+        this.canvas         = options.canvas;
+        this.canvas.width   = this.canvas.clientWidth;
+        this.canvas.height  = this.canvas.clientHeight;
+        this.context        = this.canvas.getContext('2d');
+
+        this.desktop = options.desktop || false; //non touch events
+        
+        this.position = {
+            x: 0,
+            y: 0
+        };
+        this.scale = {
+            x: 0.5,
+            y: 0.5
+        };
+        this.imgTexture = new Image();
+        this.imgTexture.src = options.path;
+
+        this.lastZoomScale = null;
+        this.lastX = null;
+        this.lastY = null;
+
+        this.mdown = false; //desktop drag
+
+        this.init = false;
+        this.checkRequestAnimationFrame();
+        requestAnimationFrame(this.animate.bind(this));
+
+        this.setEventListeners();
+    };
+
+
+    ImgTouchCanvas.prototype = {
+        animate: function() {
+            //set scale such as image cover all the canvas
+            if(!this.init) {
+                if(this.imgTexture.width) {
+                    var scaleRatio = null;
+                    if(this.canvas.clientWidth > this.canvas.clientHeight) {
+                        scaleRatio = this.canvas.clientWidth / this.imgTexture.width;
+                    }
+                    else {
+                        scaleRatio = this.canvas.clientHeight / this.imgTexture.height;
+                    }
+
+                    this.scale.x = scaleRatio;
+                    this.scale.y = scaleRatio;
+                    this.init = true;
+                }
+            }
+
+            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+            this.context.drawImage(
+                this.imgTexture, 
+                this.position.x, this.position.y, 
+                this.scale.x * this.imgTexture.width, 
+                this.scale.y * this.imgTexture.height);
+
+            requestAnimationFrame(this.animate.bind(this));
+        },
+
+
+        gesturePinchZoom: function(event) {
+            var zoom = false;
+
+            if( event.targetTouches.length >= 2 ) {
+                var p1 = event.targetTouches[0];
+                var p2 = event.targetTouches[1];
+                var zoomScale = Math.sqrt(Math.pow(p2.pageX - p1.pageX, 2) + Math.pow(p2.pageY - p1.pageY, 2)); //euclidian distance
+
+                if( this.lastZoomScale ) {
+                    zoom = zoomScale - this.lastZoomScale;
+                }
+
+                this.lastZoomScale = zoomScale;
+            }    
+
+            return zoom;
+        },
+
+        doZoom: function(zoom) {
+            if(!zoom) return;
+
+            //new scale
+            var currentScale = this.scale.x;
+            var newScale = this.scale.x + zoom/100;
+            
+
+            //some helpers
+            var deltaScale = newScale - currentScale;
+            var currentWidth    = (this.imgTexture.width * this.scale.x);
+            var currentHeight   = (this.imgTexture.height * this.scale.y);
+            var deltaWidth  = this.imgTexture.width*deltaScale;
+            var deltaHeight = this.imgTexture.height*deltaScale;
+
+
+            //by default scale doesnt change position and only add/remove pixel to right and bottom
+            //so we must move the image to the left to keep the image centered
+            //ex: coefX and coefY = 0.5 when image is centered <=> move image to the left 0.5x pixels added to the right
+            var canvasmiddleX = this.canvas.clientWidth / 2;
+            var canvasmiddleY = this.canvas.clientHeight / 2;
+            var xonmap = (-this.position.x) + canvasmiddleX;
+            var yonmap = (-this.position.y) + canvasmiddleY;
+            var coefX = -xonmap / (currentWidth);
+            var coefY = -yonmap / (currentHeight);
+            var newPosX = this.position.x + deltaWidth*coefX;
+            var newPosY = this.position.y + deltaHeight*coefY;
+
+            //edges cases
+            var newWidth = currentWidth + deltaWidth;
+            var newHeight = currentHeight + deltaHeight;
+            
+            if( newWidth < this.canvas.clientWidth ) return;
+            if( newPosX > 0 ) { newPosX = 0; }
+            if( newPosX + newWidth < this.canvas.clientWidth ) { newPosX = this.canvas.clientWidth - newWidth;}
+            
+            if( newHeight < this.canvas.clientHeight ) return;
+            if( newPosY > 0 ) { newPosY = 0; }
+            if( newPosY + newHeight < this.canvas.clientHeight ) { newPosY = this.canvas.clientHeight - newHeight; }
+
+
+            //finally affectations
+            this.scale.x    = newScale;
+            this.scale.y    = newScale;
+            this.position.x = newPosX;
+            this.position.y = newPosY;
+        },
+
+        doMove: function(relativeX, relativeY) {
+            if(this.lastX && this.lastY) {
+              var deltaX = relativeX - this.lastX;
+              var deltaY = relativeY - this.lastY;
+              var currentWidth = (this.imgTexture.width * this.scale.x);
+              var currentHeight = (this.imgTexture.height * this.scale.y);
+
+              this.position.x += deltaX;
+              this.position.y += deltaY;
+
+
+              //edge cases
+              if( this.position.x > 0 ) {
+                this.position.x = 0;
+              }
+              else if( this.position.x + currentWidth < this.canvas.clientWidth ) {
+                this.position.x = this.canvas.clientWidth - currentWidth;
+              }
+              if( this.position.y > 0 ) {
+                this.position.y = 0;
+              }
+              else if( this.position.y + currentHeight < this.canvas.clientHeight ) {
+                this.position.y = this.canvas.clientHeight - currentHeight;
+              }
+            }
+
+            this.lastX = relativeX;
+            this.lastY = relativeY;
+        },
+
+        setEventListeners: function() {
+            // touch
+            this.canvas.addEventListener('touchstart', function(e) {
+                this.lastX          = null;
+                this.lastY          = null;
+                this.lastZoomScale  = null;
+            }.bind(this));
+
+            this.canvas.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+                
+                if(e.targetTouches.length == 2) { //pinch
+                    this.doZoom(this.gesturePinchZoom(e));
+                }
+                else if(e.targetTouches.length == 1) {
+                    var relativeX = e.targetTouches[0].pageX - this.canvas.getBoundingClientRect().left;
+                    var relativeY = e.targetTouches[0].pageY - this.canvas.getBoundingClientRect().top;                
+                    this.doMove(relativeX, relativeY);
+                }
+            }.bind(this));
+
+            if(this.desktop) {
+                // keyboard+mouse
+                window.addEventListener('keyup', function(e) {
+                    if(e.keyCode == 187 || e.keyCode == 61) { //+
+                        this.doZoom(5);
+                    }
+                    else if(e.keyCode == 54) {//-
+                        this.doZoom(-5);
+                    }
+                }.bind(this));
+
+                window.addEventListener('mousedown', function(e) {
+                    this.mdown = true;
+                    this.lastX = null;
+                    this.lastY = null;
+                }.bind(this));
+
+                window.addEventListener('mouseup', function(e) {
+                    this.mdown = false;
+                }.bind(this));
+
+                window.addEventListener('mousemove', function(e) {
+                    var relativeX = e.pageX - this.canvas.getBoundingClientRect().left;
+                    var relativeY = e.pageY - this.canvas.getBoundingClientRect().top;
+
+                    if(e.target == this.canvas && this.mdown) {
+                        this.doMove(relativeX, relativeY);
+                    }
+
+                    if(relativeX <= 0 || relativeX >= this.canvas.clientWidth || relativeY <= 0 || relativeY >= this.canvas.clientHeight) {
+                        this.mdown = false;
+                    }
+                }.bind(this));
+            }
+        },
+
+        checkRequestAnimationFrame: function() {
+            var lastTime = 0;
+            var vendors = ['ms', 'moz', 'webkit', 'o'];
+            for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+                window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+                window.cancelAnimationFrame = 
+                  window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+            }
+
+            if (!window.requestAnimationFrame) {
+                window.requestAnimationFrame = function(callback, element) {
+                    var currTime = new Date().getTime();
+                    var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+                    var id = window.setTimeout(function() { callback(currTime + timeToCall); }, 
+                      timeToCall);
+                    lastTime = currTime + timeToCall;
+                    return id;
+                };
+            }
+
+            if (!window.cancelAnimationFrame) {
+                window.cancelAnimationFrame = function(id) {
+                    clearTimeout(id);
+                };
+            }
+        }
+    };
+
+    root.ImgTouchCanvas = ImgTouchCanvas;
+}).call(this);
+</script>
+<dom-module id="pdp-carousel-element" assetpath="../../../shared/components/pdp-carousel-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+    #zoomPanel,
+    #zoomPanelMobile {
+      visibility: hidden;
+    }
+    [hidden] {
+      display: none!important;
+    }
+
+  </style>
+
+  <template>
+
+    
+    <div id="zoomPanelMobile" on-tap="_hideZoom" hidden$="[[!isMobile]]">
+        <canvas id="mycanvas" style="width: 100%; height: 100%"></canvas>
+    </div>
+
+    
+    <div id="zoomPanel" hidden$="[[isMobile]]">
+      <img id="zoomedImage" on-load="_zoomImageLoaded">
+      <div class="core-product-image-preloader"><i class="wadicon-spinner wadicon-spin"></i></div>
+    </div>
+
+    
+    <div class="product-gallery-main">
+      <div class="swiper-container js_frame">
+        <div class="swiper-wrapper js_slides">
+          <template is="dom-repeat" items="[[ banners.assets ]]" as="banner" index-as="i">
+            <div class="swiper-slide js_slide">
+              
+              <div class="image-wrapper">
+                <div class="image-container">
+                  <img lazy-src$="https:[[ banner.zoomUrl ]]" index$="[[ i ]]" id="zoomTrigger" on-mousemove="_onMouseMoveZoom" on-mouseout="_hideZoom" on-mouseenter="_showZoom" hidden$="[[isMobile]]">
+                  <img lazy-src$="https:[[ banner.imageUrl ]]" index$="[[ i ]]" class="mobile" id="zoomTrigger" on-tap="_showZoom" hidden$="[[!isMobile]]">
+                  <div class="swiper-lazy-preloader"></div>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+
+      
+      <template is="dom-if" if="[[outOfStock]]">
+        <p class="core-product-badge out-of-stock"><span>[[ _translate('Out Of Stock') ]]</span></p>
+      </template>
+
+      
+      <template is="dom-if" if="[[!outOfStock]]" restamp="">
+        
+        <template is="dom-repeat" items="[[ product.badges ]]" as="badge">
+          <p class$="core-product-badge promo-badge [[badge]]">[[badge]]</p>
+        </template>
+        
+        <template is="dom-if" if="[[ productTag.name ]]" restamp="">
+          <p class="product-tag">[[productTag.name]]</p>
+        </template>
+
+        
+        <template is="dom-if" if="[[ isFlashSale ]]" restamp="">
+          <template is="dom-if" if="[[ !productTag.name ]]" restamp="">
+            <p class="product-tag attention">[[ _translate('Flash Sale') ]]</p>
+          </template>
+          <timer-element end="[[ productFlash.endAt ]]" total-qty="[[ productFlash.totQty ]]" available-qty="[[ productFlash.availableQty ]]"></timer-element>
+        </template>
+
+        
+       
+
+      </template>
+      <ul class="swiper-pagination js_dots" hidden$="[[options.paginationHide]]"></ul>
+      <div class="swiper-button-prev" hidden$="[[options.hidePrevNext]]"></div>
+      <div class="swiper-button-next" hidden$="[[options.hidePrevNext]]"></div>
+    </div>
+    
+
+    <span class="zoomimage" hidden$="[[isMobile]]">[[ _translate('Roll over image to zoom in') ]]</span>
+
+    
+    <div class="product-gallery-thumbnails-container" hidden$="[[isMobile]]">
+      <div class="product-gallery-thumbnails swiper-container js_frame">
+        <div class="swiper-wrapper js_slides">
+          <template is="dom-repeat" items="[[ banners.assets ]]" as="banner" index-as="i">
+            <div class="swiper-slide js_slide">
+              <div class="thumbnail-container">
+                <img src$="https://[[ banner.imageUrl ]]" on-tap="_moveToSlide" index$="[[i]]">
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="swiper-button-prev js_prev prev" id="thumbnails-prev"></div>
+      <div class="swiper-button-next js_next next" id="thumbnails-next"></div>
+    </div>
+    
+
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'pdp-carousel-element',
+
+    properties: {
+
+      /**
+       * Product's images array that needs to be displayed to UI
+       */
+      banners: {
+        type: Object
+      },
+
+      /**
+       * Product name
+       */
+      productName: {
+        type: String
+      },
+
+      /**
+       * Product SKU
+       */
+      productSku: {
+        type: String
+      },
+
+      /**
+       * Options supported by banner element
+       */
+      options: {
+        type: Object,
+        
+        value: {
+          hidePrevNext: true,
+          paginationHide: true,
+          title: true,
+          hideIndexer: false,
+          sliderOptions: {
+            type: Object
+          }
+        }
+      },
+
+      /**
+       * application context
+       */
+      ctx: {
+        type: Object
+      }
+    },
+
+    ready: function () {
+      this.internals = {};
+      this.internals.swiperOptions = {
+        rewind        : false,
+        slidesToScroll: 1
+      };
+    },
+
+    attached: function () {
+      this.isMobile = window.config.device === 'mobile' ? true : false;
+
+      // Merge default option with element input options
+      Object.assign(this.internals.swiperOptions, this.options);
+      if (this.banners.assets.length > 1) {
+        this.swiperInstance = window.swiper(this.querySelector('.product-gallery-main'), this.internals.swiperOptions);
+      
+        var _self = this;
+        this.addEventListener('while.swiper.sliding', function () { _self.fire('lazy-load-images'); }, { passive: true });
+
+        var gaData = {
+          "eventCategory": 'product_detail',
+          "eventAction": 'swipe_image',
+          "eventLabel": 0,
+          "eventValue": ''
+        };
+        _self.addEventListener('after.swiper.slide', function (slide) {
+          Object.assign(gaData, { "eventLabel": slide.detail.currentSlide });
+          _self.fire('swiper-swiped', { slide: slide, gaData: gaData });
+        }, { passive: true });
+      }
+
+      // THUMBNAILS CAROUSEL
+      this.swiperInstanceThumbs = window.swiper(this.querySelector('.product-gallery-thumbnails-container'), {
+        slidesToScroll: 3
+      });
+
+      if (!this.isMobile) {
+        document.getElementsByClassName('thumbnail-container')[0].classList.add('active');
+      }
+
+      this.isFlashSale = (typeof this.productFlash !== "undefined" ? true : false);
+    },
+
+    json: function (data) {
+      return JSON.stringify(data);
+    },
+
+    _moveToSlide: function (e) {
+      [].forEach.call(this.getElementsByClassName('thumbnail-container'), function(el) { el.classList.remove('active'); });
+      e.target.parentNode.classList.add('active');
+      this.swiperInstance.slideTo(parseInt(e.currentTarget.attributes['index'].value));
+    },
+
+    _translate: function (key) {
+       return window.translate(key);
+	  },
+
+    _hasDiscount: function (price, special) {
+      return price > special;
+    },
+
+    // PRODUCT IMAGE ZOOM
+    _getZoomImage: function (img) {
+      return img.replace('product.jpg', 'zoom.jpg');
+    },
+
+    _zoomImageLoaded: function () {
+      this.$.zoomedImage.style.left = (-0.5 * this.$.zoomedImage.width) + (0.5 * this.$.zoomPanel.offsetWidth) + 'px';
+      this.$.zoomedImage.style.top = (-0.5 * this.$.zoomedImage.height) + (0.5 * this.$.zoomPanel.offsetHeight) + 'px';
+      this.$.zoomedImage.classList.add('loaded');
+    },
+
+    // DESKTOP
+     _onMouseMoveZoom: function (e) {
+      var x = this.querySelector('#zoomTrigger').width / 2;
+      var y = this.querySelector('#zoomTrigger').height / 2;
+
+      var ratioX = ((x - e.offsetX) / this.querySelector('#zoomTrigger').width) * this.$.zoomedImage.width;
+      var ratioY = ((y - e.offsetY) / this.querySelector('#zoomTrigger').height) * this.$.zoomedImage.height;
+
+      var isXin = this.checkIsXIn(
+        this.$.zoomedImage.offsetLeft + ratioX, //a1x
+        this.$.zoomedImage.offsetLeft + ratioX + this.$.zoomedImage.width, //a2x
+        0, //b1x
+        this.$.zoomPanel.offsetWidth //b2x
+      );
+      var isYin = this.checkIsYIn(
+        this.$.zoomedImage.offsetTop + ratioY, //a1y
+        this.$.zoomedImage.offsetTop + ratioY + this.$.zoomedImage.height, //a2y
+        0, //b1y
+        this.$.zoomPanel.offsetHeight //b2y
+      );
+      if (!isXin) {
+        if (this.$.zoomedImage.offsetLeft + ratioX + this.$.zoomedImage.width - this.$.zoomPanel.offsetWidth > 0) {
+            ratioX = this.$.zoomedImage.width / 2 - this.$.zoomPanel.offsetWidth / 2;
+        } else {
+            ratioX = -(this.$.zoomedImage.width / 2 - this.$.zoomPanel.offsetWidth / 2);
+        }
+      }
+      if (!isYin) {
+        if (this.$.zoomedImage.offsetTop + ratioY + this.$.zoomedImage.height - this.$.zoomPanel.offsetHeight > 0) {
+            ratioY = this.$.zoomedImage.height / 2 - this.$.zoomPanel.offsetHeight / 2;
+        } else {
+            ratioY = -(this.$.zoomedImage.height / 2 - this.$.zoomPanel.offsetHeight / 2);
+        }
+      }
+      this.transform('translate(' + ratioX + 'px,' + ratioY + 'px)', this.$.zoomedImage);
+    },
+
+    _showZoom: function (e) {
+      if (this.isMobile) {
+        var gesturableImg = new ImgTouchCanvas({
+          canvas: document.getElementById('mycanvas'),
+          path: e.target.src.replace('product.jpg', 'zoom.jpg')
+        });
+        this.$.zoomPanelMobile.style.visibility = 'visible';
+      }
+      else {
+        this.$.zoomedImage.src = e.target.src.replace('product.jpg', 'zoom.jpg');
+        this.$.zoomPanel.style.visibility = 'visible';
+      }
+      this.fire('custom-events', {
+        "eventCategory": 'product_detail',
+        "eventAction": 'zoom_click',
+        "eventLabel": this.productName.brand + ' ' + this.productName.name + '|' + (this.productSku || ''),
+        "eventValue": ''
+      });
+    },
+
+    _hideZoom: function () {
+      if (this.isMobile) {
+        this.$.zoomPanelMobile.style.visibility = 'hidden';
+      }
+      else {
+        this.$.zoomPanel.style.visibility = 'hidden';
+        this.$.zoomedImage.src = '';
+        this.$.zoomedImage.classList.remove('loaded');
+      }
+    },
+
+    checkIsXIn: function (a1x, a2x, b1x, b2x) {
+      return a1x <= b1x && b2x <= a2x;
+    },
+
+    checkIsYIn: function (a1y, a2y, b1y, b2y) {
+      return a1y <= b1y && b2y <= a2y;
+    }
+  });
+
+</script>
+<dom-module id="pdp-seller-info-element" assetpath="../../../shared/components/pdp-seller-info-element/">
+  
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+      }
+    </style>
+  
+    <template>
+      <template is="dom-if" if="[[ !outofstock ]]">
+        <div class="default-seller">
+            <div class="title">
+              <span>[[ _translate('Seller') ]]:</span>
+              <span class="supplier-details-row">
+                <span class="supplier-name">[[defaultSupplier.supplier_name]]</span>
+                <span class="supplier-rating-badge">[[defaultSupplier.vendor_rating]] / 5</span>
+              </span>
+              <template is="dom-if" if="[[otherSuppliersCount]]" restamp="">
+                <p class="other-sellers-cta" on-tap="_scrollToOtherSellers"><span>[[otherSuppliersCount]] [[_translate('other sellers')]]</span></p>
+              </template>
+            </div>
+            <div class="supplier-additional-info">
+              <template is="dom-if" if="[[ defaultSupplier.warranty_period ]]">
+                <p class="warranty">[[ defaultSupplier.warranty_period ]]</p>
+              </template>
+              <div class="delivery-promise-container">
+                <p class="shipping">
+                  [[ _getDeliveryPromise(showChangeCity, selectedSku, supplierdata) ]]
+                </p>
+                <template is="dom-if" if="[[!showChangeCity]]">
+                  <p class="change-city-link">
+                    <button class="link-button" on-tap="_changeCity">[[ _translate('Change City') ]]</button>
+                  </p>
+                </template>
+                <template is="dom-if" if="[[showChangeCity]]">
+                  <form class="select-city-form">
+                    <div class="input-field">
+                      
+                      <div class="input-container">
+                        <input-suggest-element suggest-name="city" data-list="[[ citiesList ]]" data-selected="{{ pdpCity }}" view-value="{{ selectedCityValue }}"></input-suggest-element>
+                      </div>
+                    </div>
+                  </form>
+                </template>
+              </div>
+              
+              
+            </div>
+        </div>
+      </template>
+    </template>
+  
+  </dom-module>
+  
+  <script>
+  
+    Polymer({
+      is: 'pdp-seller-info-element',
+  
+      properties: {
+  
+        outofstock: {
+          type: Boolean,
+          value: false
+        },
+  
+        /**
+         * app context
+         */
+        ctx: {
+          type: Object
+        },
+  
+        selectedSku: {
+          type: String,
+          observer: "_selectedSkuChanged"
+        },
+  
+        supplierdata: {
+          type: Object,
+          observer: "_supplierChanged"
+        },
+  
+        selectedSize: {
+          type: String,
+          value: null
+        },
+  
+        citiesList: {
+          type: Array,
+          value: []
+        },
+  
+        pdpCity: {
+          type: String,
+          value: '',
+          observer: '_citiesObserver'
+        },
+  
+        showChangeCity: {
+          type: Boolean,
+          value: false
+        },
+  
+        selectedCityValue: {
+          type: String,
+          value: ''
+        }
+      },
+  
+      // Element Lifecycle
+      attached: function () {
+        this.isSA = this.ctx.country === 'sa' ? true : false;
+        this.isMobile = window.config.device === 'mobile' ? true : false;
+        // this.isElectronics = (this.productdetails.attributes.attribute_set === 'electronics' ? true : false);
+        // this.isOnSale = false;
+        // if (this.productdetails.simples[0].suppliers && this.productdetails.simples[0].suppliers.length) {
+        //   this.isOnSale = (this.productdetails.simples[0].suppliers[0].specialPrice ? true : false);
+        // }
+        // this.isOneSize = this.productdetails.simples[0].size === 'OS' ? true : false;
+        // if (this.isOnSale) {
+        //   this.discountTotal = this.productdetails.simples[0].suppliers[0].price - this.productdetails.simples[0].suppliers[0].specialPrice;
+        // }
+  
+        // HAS VARIATIONS
+        // if ((this.productdetails.groups && this.productdetails.groups.color && this._isMoreThanOne(this.productdetails.groups.color)) || (this.productdetails.groups && this.productdetails.groups.size && this._isMoreThanOne(this.productdetails.groups.size) ) || !this.isOneSize) {
+        //   this.hasVariations = true;
+        // }
+      },
+  
+      _selectedSkuChanged: function (sku) {
+        var el = document.querySelector("input[value='" + sku + "']");
+        if (el) {
+          el.checked = true;
+        }
+      },
+  
+      _supplierChanged: function () {
+        // MULTISELLER
+        this.defaultSupplier = (this.supplierdata.suppliers || this.supplierdata.suppliers.length) ? this.supplierdata.suppliers[0] : undefined;
+        if (this.supplierdata.suppliers.length > 1) {
+          this.otherSuppliers = this.supplierdata.suppliers.slice(0) || [];
+          this.otherSuppliers.splice(0, 1);
+          this.otherSuppliersCount = this.otherSuppliers.length;
+  
+          // LOWEST PRICE OF OTHER SUPPLIERS
+          this.lowestSuppliersPrice = this.otherSuppliers[0].specialPrice || this.otherSuppliers[0].price;
+          if (this.otherSuppliers.length > 1) {
+            var currentPrice;
+            for(i = 1; i < this.otherSuppliers.length; i++) {
+              currentPrice = this.otherSuppliers[i].specialPrice || this.otherSuppliers[i].price;
+              if (currentPrice < this.lowestSuppliersPrice) {
+                this.lowestSuppliersPrice = currentPrice;
+              }
+            }
+          }
+        } else {
+          this.otherSuppliers = [];
+          this.otherSuppliersCount = this.otherSuppliers.length;
+        }
+      },
+  
+      json: function (data) {
+        return JSON.stringify(data);
+      },
+  
+      _getProductImage: function (key) {
+        return "//" + this.ctx.cdn + "/product/" + key + "/1-cart.jpg";
+      },
+  
+      _scrollToOtherSellers: function() {
+        this.fire('scroll-to-other-sellers');
+      },      
+  
+      _selectSize: function(e) {
+        this.selectedSize = e.target.value;
+        this.fire('size-selected', { sku: this.selectedSize });
+        this.fire('custom-events', {
+          "eventCategory": 'product_detail',
+          "eventAction": e.target.id || '',
+          "eventLabel": this.selectedSize || '',
+          "eventValue": ''
+        });
+      },
+  
+      _getDeliveryPromise: function(showChangeCity, sku, supplierdata) {
+        var promiseText = ((supplierdata && supplierdata.suppliers
+          .find(function(item) {
+            return item.sku === sku;
+          })
+        ));
+  
+        return promiseText && promiseText.delivery_info;
+      },
+  
+      _changeCity: function() {
+        this.showChangeCity = !this.showChangeCity;
+      },
+  
+      _citiesObserver: function(newVal, oldVal) {
+        if (this.pdpCity) {
+          var _self = this;
+          var currentSupplier = ((this.supplierdata && this.supplierdata.suppliers
+            .find(function(item) {
+              return item.sku === _self.selectedSku;
+            })
+          ));
+  
+          if (currentSupplier) {
+            this.fire('change-city', { destination: this.pdpCity, sku_simple: this.selectedSku, vendor_code: currentSupplier.vendor_code });
+            this.fire('custom-events', {
+              "eventCategory": 'product_detail',
+              "eventAction": 'change_city',
+              "eventLabel": this.pdpCity || '',
+              "eventValue": ''
+            });
+          }
+        }
+      },
+  
+      _translate: function (key) {
+        return window.translate(key);
+      }
+    });
+  
+  </script></div></body></html>

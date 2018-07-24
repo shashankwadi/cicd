@@ -1,0 +1,57 @@
+
+<template>
+  <section class="au-animate" id="page-settings">
+    <div class="block-title">${ 'My Settings' | t }</div>
+    <div class="list links-list">
+      <ul>
+        <li class="login">
+          <div class="container">
+            <signup-element user.two-way="user.info" options='{ "title": "Login" }'
+              logout.trigger="user.logout()"
+              login.trigger="loginUser($event)"
+              guest-login.trigger="guestLogin($event)"
+              password-reset-request.trigger="passwordResetRequest($event)"
+              password-reset.trigger="setPassword($event)"
+              otp-verify.trigger="otpVerify($event)"
+              otp-request.trigger="otpRequest($event)"
+              phone-config.one-way="config.countries[config.locale.country].phone"
+              primary-phone.two-way="user.primaryPhone"
+              customer-exist.trigger="checkUserExistence($event)"
+              social-login.trigger="socialLogin($event)"
+              skip-phone-verification.trigger="skipPhoneVerification($event)"
+              ctx.bind="common.ctx"
+            ></signup-element>
+          </div>
+        </li>
+        <!-- <li if.bind="user.info.isLoggedIn">
+          <a href="https://my.wadi.com" target="_blank">${ 'Welcome' | t } ${ user.info.firstname }<i class="wadicon-back-active"></i></a>
+        </li> -->
+        <li if.bind="user.info.isLoggedIn">
+          <a click.trigger="openURL('https://my.wadi.com/wallet', 'Wallet')">${ 'Wallet' | t }<i class="wadicon-back-active"></i></a>
+        </li>
+        <li>
+          <a click.trigger="openURL('https://track.wadi.com', 'Track Order')">${ 'Track Order' | t }<i class="wadicon-back-active"></i></a>
+        </li>
+        <li if.bind="user.info.isLoggedIn">
+          <a click.trigger="logoutUser()">${ 'Logout' | t }<i class="wadicon-back-active"></i></a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="block-title">${ 'App Settings' | t}</div>
+    <div class="list links-list">
+      <ul>
+        <li>
+          <a click.trigger="rateTheApp()">${ 'Rate the App' | t }<i class="wadicon-back-active"></i></a>
+        </li>
+        <li>
+          <a click.trigger="sendFeedback()">${ 'Send Feedback' | t }<i class="wadicon-back-active"></i></a>
+        </li>
+        <li>
+          <a click.trigger="changeLanguageCountry()">${ 'Language' | t } / ${ 'Country' | t }<i class="wadicon-back-active"></i></a>
+        </li>
+      </ul>
+      <div class="appversion">${ 'App version' | t } ${ config.appVersion }</div>
+    </div>
+  </section>
+</template>

@@ -1,0 +1,1659 @@
+<html><head><meta charset="UTF-8">
+
+</head><body><div hidden="" by-vulcanize=""><dom-module id="legacy-login-element" assetpath="../../../shared/components/legacy-login-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <template>
+
+    <validation-email></validation-email>
+    <validation-password></validation-password>
+
+    
+    <div hidden$="[[ !user.email ]]">
+      <div class="checkout-area">
+          <div class="step-overview">
+            <p>[[ _translate('Email') ]]: <span class="value">[[ user.email ]]</span></p>
+            <button on-tap="_clearEnteredEmail">[[ _translate('Change') ]]</button>
+          </div>
+          <template is="dom-if" if="[[user.firstname]]">
+            <div class="checkout-highlight-memo">
+              <p>[[ _translate('Welcome back') ]]<span> [[user.firstname]]!</span></p>
+            </div>
+          </template>
+          <a class="core-block-cta core-block-cta-lg cta-full-width" href="/checkout/shipping">[[ _translate('Continue to shipping') ]]</a>
+      </div>
+    </div>
+    
+
+    
+    <div hidden$="[[ user.email ]]">
+      
+      <div class="checkout-area">
+          
+            <p class="title" hidden$="[[!isMobile]]">[[ _translate('Sign In or Continue As Guest') ]]:</p>
+            <form id="guestForm" is="iron-form" method="GET" novalidate="" on-submit="_continueAsGuest">
+              <div class="input-field">
+                <div class="input-container with-clear">
+                  <input id="checkout-email" class$="validity-[[ validEmail ]]" is="iron-input" bind-value="{{ loginEmail }}" type="email" placeholder="[[ _translate('Email') ]]">
+                  <template is="dom-if" if="[[ loginEmail.length ]]" restamp="true">
+                    <a on-tap="_clearEmailField" class="field-clear"><i class="wadicon-cancel"></i></a>
+                  </template>
+                  <p class="input-helper-message" hidden$="[[ validEmail ]]"><i class="wadicon-alert"></i>[[ _translate('Please enter a valid email address') ]]</p>
+                </div>
+              </div>
+              <div class="input-field">
+                <div class="input-container">
+                  <div class="proceed-option">
+                    <div class="custom-checkbox-container">
+                      <label class="custom-checkbox-label" for="skip-login">
+                        <input type="checkbox" id="skip-login" collapse="#havePassword" on-change="_toggleSignInForm">
+                        <span class="label-text">[[ _translate('I already have an account with Wadi') ]]</span>
+                        <div class="check-indicator"></div>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="core-block-cta core-block-cta-lg cta-full-width" hidden$="[[ !isContinueAsGuest ]]" disabled$="[[ !loginEmail.length ]]" type="submit">[[ _translate('Continue As Guest') ]]<paper-ripple></paper-ripple></button>
+            </form>
+          
+
+          
+          <iron-collapse id="havePassword">
+            <form id="loginForm" is="iron-form" method="GET" novalidate="" on-submit="_onSubmit">
+              <div class="input-field">
+                <div class="input-container with-clear">
+                  <input class$="validity-{{validPassword}}" is="iron-input" bind-value="{{ loginPassword }}" on-input="_clearPasswordValidation" type="password" placeholder="[[ _translate('Password') ]]">
+                  <template is="dom-if" if="[[ loginPassword.length ]]" restamp="true">
+                    <a on-tap="_clearPasswordField" class="field-clear"><i class="wadicon-cancel"></i></a>
+                  </template>
+                  <p class="input-helper-message" hidden$="[[validPassword]]"><i class="wadicon-alert"></i>[[_translate('Please enter your password')]]</p>
+                </div>
+              </div>
+              <button class="core-block-cta core-block-cta-lg cta-full-width" disabled$="[[ !loginPassword.length ]]" type="submit">[[ _translate('Sign In') ]]<paper-ripple></paper-ripple></button>
+            </form>
+            <div class="helper-options">
+              <forget-password-element email="[[ loginEmail ]]"></forget-password-element>
+            </div>
+          </iron-collapse>
+          
+
+      </div>
+      
+
+    </div>
+    
+
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+
+    is: 'legacy-login-element',
+
+    properties: {
+
+      /**
+       * Products array that needs to be displayed to UI
+       */
+      user: {
+        type: Object,
+        value: function () {
+          return { };
+        }
+      },
+
+      /**
+       * Model to pass username and password
+       */
+      userCreds: {
+        type: Object
+      }
+    },
+
+    attached: function () {
+      this.validatorEmail = new Polymer.IronMeta({type: 'validator'}).byKey('validation-email');
+      this.validatorPassword = new Polymer.IronMeta({type: 'validator'}).byKey('validation-password');
+      this.validEmail = true;
+      this.validPassword = true;
+      this.isContinueAsGuest = true;
+      this.isMobile = window.config.device === 'mobile' ? true : false;
+
+      guestForm.addEventListener('iron-form-presubmit', function (event) {
+        event.preventDefault();
+      });
+
+      loginForm.addEventListener('iron-form-presubmit', function (event) {
+        event.preventDefault();
+      });
+    },
+
+    _onSubmit: function(event) {
+      this.validEmail = this.validatorEmail.validate(this.loginEmail);
+      this.validPassword = this.validatorPassword.validate(this.loginPassword);
+      if (this.validEmail && this.validPassword) {
+        this.set("userCreds.email", this.loginEmail);
+        this.set("userCreds.password", this.loginPassword);
+        this.fire('login');
+      }
+    },
+
+    _clearEnteredEmail: function() {
+      this.set('loginEmail', '');
+      this.set('user.email', null);
+      this.fire('logout');
+    },
+
+    _clearPasswordValidation: function() {
+      this.validPassword = true;
+    },
+
+    _toggleSignInForm: function (event) {
+      this.querySelector(event.currentTarget.getAttribute('collapse')).toggle();
+      this.set('isContinueAsGuest', !this.isContinueAsGuest);
+    },
+
+    _continueAsGuest: function () {
+      this.validEmail = this.validatorEmail.validate(this.loginEmail);
+      if (this.validEmail) {
+        this.fire('guest-login', { email: this.loginEmail });
+      }
+    },
+
+    _clearEmailField: function () {
+      this.set('loginEmail', '');
+      this.set('validEmail', true);
+    },
+
+    _clearPasswordField: function () {
+      this.set('loginPassword', '');
+    },
+
+    _getDomain: function () {
+      return window.location.host.split('.')[1];
+    },
+
+    _translate: function (key) {
+      return window.translate(key);
+    }
+  });
+
+</script>
+<dom-module id="new-address-element" assetpath="../../../shared/components/new-address-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <template>
+    <validation-form-fields></validation-form-fields>
+    <validation-phone-number phone-config="[[ phoneConfig ]]"></validation-phone-number>
+    
+    <template is="dom-if" if="[[!options.opensIndependently]]" restamp="true">
+      <div class="return-trigger-container">
+        <a on-tap="_goBack">[[ _translate('Back To Address Book') ]]</a>
+      </div>
+    </template>
+    
+    <form is="iron-form" id="newAddressForm" method="GET" on-submit="_moveToSummary" novalidate="">
+      <template is="dom-if" if="[[options.title]]" restamp="true">
+        <p class="title">[[ _translate(options.title) ]]</p>
+      </template>
+      <div class="input-field">
+        <template is="dom-if" if="[[ isBilling ]]" restamp="true">
+          <label hidden$="">[[ _translate('Cardholders Name') ]] *</label>
+        </template>
+        <template is="dom-if" if="[[ !isBilling ]]">
+          <label>[[ _translate('Recipients Name') ]] *</label>
+        </template>
+        <div class="input-container with-clear">
+          <input class$="validity-[[ validname ]]" type="text" is="iron-input" name="name" bind-value="{{ newAddress.name }}" data-bindvalue="newAddress.name" tabindex="1" autocomplete="name">
+          <template is="dom-if" if="[[ newAddress.name.length ]]" restamp="true">
+            <a on-tap="_clearInputField" class="field-clear"><i class="wadicon-cancel"></i></a>
+          </template>
+          <p class="input-helper-message" hidden$="[[ validname ]]"><i class="wadicon-alert"></i>[[ _translate('Please enter your name') ]]</p>
+        </div>
+      </div>
+      <template is="dom-if" if="[[ !isBilling ]]" restamp="true">
+        <div class="input-field">
+          <label>[[ _translate('Address Type') ]] *</label>
+          <div class="input-container radio-options-container">
+            <div class="custom-radio-container">
+              <label class="custom-radio-label" for="addressTypeHome">
+                <input type="radio" id="addressTypeHome" name="addressType" value="Home" on-change="_setAddressType" checked="">
+                <span class="label-text">[[ _translate('_addressTypeHome') ]]</span>
+                <div class="check-indicator"></div>
+              </label>
+            </div>
+            <div class="custom-radio-container">
+              <label class="custom-radio-label" for="addressTypeOffice">
+                <input type="radio" id="addressTypeOffice" value="Office" on-change="_setAddressType" name="addressType">
+                <span class="label-text">[[ _translate('Office') ]]</span>
+                <div class="check-indicator"></div>
+              </label>
+            </div>
+            <div class="custom-radio-container">
+              <label class="custom-radio-label" for="addressTypeOther">
+                <input type="radio" id="addressTypeOther" value="Other" on-change="_setAddressType" name="addressType">
+                <span class="label-text">[[ _translate('Other') ]]</span>
+                <div class="check-indicator"></div>
+             </label>
+            </div>
+          </div>
+        </div>
+      </template>
+      <div class="input-field">
+        <label>[[ _translate('City') ]] *</label>
+        <div class="input-container">
+          <input-suggest-element class$="validity-[[ validcity ]]" suggest-name="city" data-list="[[ citiesList ]]" data-selected="{{ newAddress.city }}" tabindex="2"></input-suggest-element>
+          <p class="input-helper-message" hidden$="[[ validcity ]]"><i class="wadicon-alert"></i>[[ _translate('Please enter your city') ]]</p>
+        </div>
+      </div>
+      <div class="input-field">
+        <label>[[ _translate('Area') ]] *</label>
+        <div class="input-container">
+          <input-suggest-element class$="validity-[[ validarea ]]" custom-input="true" suggest-name="area" data-list="[[ filteredAreas ]]" data-selected="{{ newAddress.area }}" tabindex="3"></input-suggest-element>
+          <p class="input-helper-message" hidden$="[[ validarea ]]"><i class="wadicon-alert"></i>[[ _translate('Please enter your area') ]]</p>
+        </div>
+      </div>
+      <div class="input-field">
+        <label><template is="dom-if" if="[[!isSA]]">[[ _translate('Address') ]] *</template> <template is="dom-if" if="[[isSA]]"><span>[[ _translate('_addressLabelHelper') ]] *</span></template></label>
+        <div class="input-container with-clear">
+          <input type="text" is="iron-input" class$="validity-[[ validbuilding_street_no ]]" placeholder="[[ _getCountryTranslation('_addressFieldPlaceholder', ctx.country) ]]" name="building_street_no" bind-value="{{ newAddress.building_street_no }}" data-bindvalue="newAddress.building_street_no" tabindex="4" autocomplete="address-line1">
+          <template is="dom-if" if="[[ newAddress.building_street_no.length ]]" restamp="true">
+            <a on-tap="_clearInputField" class="field-clear"><i class="wadicon-cancel"></i></a>
+          </template>
+          <p class="input-helper-message" hidden$="[[ validbuilding_street_no ]]"><i class="wadicon-alert"></i>[[ _translate('Please enter your address') ]]</p>
+        </div>
+      </div>
+      <div hidden$="[[ isBilling ]]" class="input-field">
+        <label>[[ _translate('NearestLandmark') ]] <span class="support">([[ _translate('optional') ]])</span></label>
+        <div class="input-container">
+          <textarea placeholder="[[ _getCountryTranslation('_landmarkFieldPlaceholder', ctx.country) ]]" value="{{ newAddress.landmark::input }}" tabindex="5" name="landmark"></textarea>
+        </div>
+      </div>
+
+      
+      
+      
+
+      <template is="dom-if" if="[[ !isBilling ]]" restamp="true">
+        <template is="dom-if" if="[[ primaryPhone ]]" restamp="true">
+          <div class="phone-number-wrapper">
+            <phone-verification-element phone-config="[[ phoneConfig ]]" type="[[ options.type ]]" otp-verified="{{ phoneVerified }}" phone-number="{{ newAddress.phone }}" skip-phone-verification="{{ skipPhoneVerification }}" ctx="[[ ctx ]]" user="[[user]]" primary-phone="{{ primaryPhone }}">
+            </phone-verification-element>
+            <div class="input-field">
+              <label>[[ _translate('Alternative Phone Number') ]] <span class="support">([[ _translate('optional') ]])</span></label>
+              <div class$="input-container with-clear checkout-contact-number [[ ctx.country ]]">
+                <input type="text" is="iron-input" name="alternate_phone" bind-value="{{ alternatePhone }}" data-bindvalue="alternatePhone" prevent-invalid-input="" allowed-pattern="\d" tabindex="6">
+                <template is="dom-if" if="[[ newAddress.alternate_phone.length ]]" restamp="true">
+                  <a on-tap="_clearInputField" class="field-clear"><i class="wadicon-cancel"></i></a>
+                </template>
+              </div>
+            </div>
+          </div>
+        </template>
+      </template>
+
+      <p class="required-fields-message">* [[ _translate('Required fields') ]]</p>
+
+      <template is="dom-if" if="[[ !isBilling ]]" restamp="true">
+        <div class="cta-container">
+          <button class="core-block-cta core-block-cta-lg cta-full-width" type="submit" disabled$="[[!canContinue]]">[[ _translate('Continue To Payment') ]]<paper-ripple></paper-ripple></button>
+        </div>
+      </template>
+
+    </form>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'new-address-element',
+
+    properties: {
+
+      /**
+      * new address
+      **/
+      newAddress: {
+        type: Object,
+        value: function () {
+          return {};
+        },
+        notify: true
+      },
+
+      /**
+      * User's primary phone number
+      **/
+      primaryPhone: {
+        type: String,
+        notify: true
+      },
+
+      /**
+      * List of serviceable cities
+      **/
+      citiesList: {
+        type: Array,
+        value:function() {
+          return [];
+        }
+      },
+
+      areasList: {
+        type: Array,
+        value: function () {
+          return [];
+        }
+      },
+
+      /**
+      * can continue to payment
+      **/
+
+      canContinue: {
+        type: Boolean,
+        notify: true
+      },
+
+      /**
+      * phone number verified
+      **/
+
+      phoneVerified: {
+        type: Boolean
+      },
+
+      /**
+       * Application context
+       */
+      ctx: {
+        type: Object
+      },
+
+      options: {
+        type: Object
+      },
+
+      alternatePhone: {
+        type: String,
+        observer: '_alternatePhoneObserver'
+      }
+    },
+
+    observers: ['_addressFormValidator(phoneVerified, skipPhoneVerification, newAddress.*)'],
+
+    // Element Lifecycle
+    attached: function () {
+
+      var _self = this;
+      this.isBilling = this.options.type === 'billing' ? true : false;
+      this.isMobile = window.config.device === 'mobile' ? true : false;
+      this.isSA = this.ctx.country === 'sa' ? true : false;
+
+      var addressProperties = ['name', 'city', 'area', 'building_street_no', 'phone'];
+
+      if (this.isBilling) {
+        var addressProperties = ['name', 'city', 'area', 'building_street_no'];
+      }
+
+      for (var prop = 0; prop < addressProperties.length; prop++) {
+        this.set('valid' + addressProperties[prop], true);
+      }
+      this.phoneVerified = false;
+      this.filteredAreas = [];
+      this.skipPhoneVerification = false;
+      this.isTypeShipping = this.options.type === 'shipping' ? true : false;
+      this.validatorTextField = new Polymer.IronMeta({type: 'validator'}).byKey('validation-form-fields');
+      this.validatorPhone = new Polymer.IronMeta({ type: 'validator' }).byKey('validation-phone-number');
+      this.editPhoneNumber = false;
+
+      this.set('newAddress.country', this.ctx.country);
+      this.set('newAddress.isNew', true);
+
+      newAddressForm.addEventListener('iron-form-presubmit', function (event) {
+        event.preventDefault();
+      });
+
+      this.addEventListener('input-suggest-selected', function () {
+        _self._inputSuggestUpdateAreas(_self);
+      });
+
+      newAddressForm.addEventListener('focusout', function (event) {
+        var ele = event.target;
+        if (ele && ele.getAttribute('name')) {
+          _self.set('valid' + ele.getAttribute('name'), _self.validatorTextField.validate(_self.get('newAddress.' + ele.getAttribute('name'))));
+          var name = ele.getAttribute('name');
+          if (['name', 'building_street_no', 'alternate_phone', 'landmark', 'area'].indexOf(name) !== -1 && ele.value && ele.value !== '') {
+            this.fire('custom-events', {
+              "eventCategory": 'checkout3',
+              "eventAction": 'Add' + name,
+              "eventLabel": ele.value,
+              "eventValue": ''
+            });
+          }
+        }
+      }, true);
+
+      newAddressForm.addEventListener('keyup', function (event) {
+        var ele = event.target;
+        if ((event.which || event.keyCode) === 9) {
+          var isSuggestInput = ele.className.indexOf('input-suggest-element') >= 0 || ele.tagName === 'INPUT-SUGGEST-ELEMENT';
+          if (isSuggestInput) {
+            ele.showControls = true;
+            if (ele.querySelector('input')) {
+              ele.querySelector('input').focus();
+            }
+          }
+        }
+      });
+
+      if (this.querySelectorAll("input")) {
+        this.querySelectorAll("input")[0].focus();
+      }
+
+    },
+
+    _clearInputField: function (event) {
+      this.set(event.currentTarget.previousElementSibling.getAttribute( 'data-bindvalue' ), '');
+    },
+
+    _togglePhoneVerification: function () {
+      this.editPhoneNumber = !this.editPhoneNumber;
+      this.querySelector("phone-verification-element")._clearPhoneNumber();
+    },
+
+    _inputSuggestUpdateAreas: function(_self) {
+      _self.set('filteredAreas', _self.areasList.filter(function(val) {
+        if (val.city_en.toLowerCase() == _self.newAddress.city.toLowerCase()) {
+          return  val;
+        }
+      }));
+      _self.set('filteredAreas', _self.filteredAreas.map(function(val) {
+        if (_self.ctx.lang === 'ar') {
+          if (_self.newAddress.city.toLowerCase() == val.city_en.toLowerCase()) {
+            return ({ value: val.area_name_en , label: val.area_name_ar });
+          }
+        }
+        if (_self.newAddress.city.toLowerCase() == val.city_en.toLowerCase()) {
+          return ({ value: val.area_name_en , label: val.area_name_en });
+        }
+      }));
+    },
+
+    _addressFormValidator: function (phoneVerified, skipPhoneVerification, newAddress) {
+      if (this.validatorTextField) {
+        if (newAddress && (newAddress.path === 'newAddress.city')) {
+          this.set('newAddress.area', null);
+          if(this.newAddress.city) {
+            this.fire('custom-events', {
+              "eventCategory": 'checkout3',
+              "eventAction": 'AddCity',
+              "eventLabel": this.newAddress.city,
+              "eventValue": ''
+            });
+          }
+        }
+        if (newAddress && this.validatorTextField.validate(this.get(newAddress.path)) && newAddress.path.split('.')[1] !== 'phone') {
+          this.set('valid' + newAddress.path.split('.')[1], this.validatorTextField.validate(this.get(newAddress.path)));
+        } else if (newAddress && newAddress.path.split('.')[1] === 'phone' && this.validatorPhone.validate(this.get(newAddress.path))) {
+          this.set('validphone', this.validatorPhone.validate(this.get(newAddress.path)));
+        }
+        var addressProperties = ['name', 'city', 'area', 'building_street_no', 'phone'];
+      
+        if (this.isBilling) {
+          var addressProperties = ['name', 'city', 'area', 'building_street_no'];
+        }
+      
+        var addressPropertiesLength = addressProperties.length;
+        for (var prop = 0; prop < addressProperties.length; prop++) {
+          if (this.validatorTextField.validate(this.get('newAddress.' + addressProperties[prop]))) { addressPropertiesLength--; }
+          this.canContinue = false;
+          if (addressPropertiesLength < 1 && (this.phoneVerified || this.isBilling || this.skipPhoneVerification)) {
+            this.canContinue = true;
+          }
+        }
+        if (this.newAddress && this.newAddress.city) {
+          this._inputSuggestUpdateAreas(this);
+        }
+      }
+    },
+
+    _goBack: function () {
+      this.fire('go-back');
+    },
+
+    _moveToSummary: function () {
+      if (this.canContinue) {
+        this.fire('move-to-summary');
+      }
+    },
+
+    _getCountryTranslation: function(str, country) {
+      return this._translate(str + country.toUpperCase());
+    },
+
+    _alternatePhoneObserver: function() {
+      if (this.validatorPhone) {
+        var alternatePhone = this.validatorPhone.phoneNumberWithCountry(this.alternatePhone);
+        this.newAddress.alternate_phone = alternatePhone.number;
+      }
+    },
+
+    _setAddressType: function(event) {
+      this.set('newAddress.addressType', event.currentTarget.value);
+      this.fire('custom-events', {
+        "eventCategory": 'checkout3',
+        "eventAction": 'AddAdressType',
+        "eventLabel": event.currentTarget.value || '',
+        "eventValue": ''
+      });
+    },
+
+    _translate: function (key) {
+      return window.translate(key);
+    }
+  });
+
+</script>
+<dom-module id="gifting-element" assetpath="../../../shared/components/gifting-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <template>
+    <div class="gift-wrap-option-container">
+      <div class="checkout-info-memo">
+        <div class="custom-checkbox-container gift-wrap-option">
+          <label class="custom-checkbox-label" for="giftwrap">
+            <input type="checkbox" id="giftwrap" collapse="#giftMessage" on-change="_toggle">
+            <span class="label-text">
+              <i class="wadicon-gift"></i>
+              [[ _translate('Need gift wrap? Add that finishing touch for just')]] <strong>[[ _giftingAmount(giftingAmount) ]] [[ ctx.currency ]]</strong>
+            </span>
+            <div class="check-indicator"></div>
+          </label>
+        </div>
+        <iron-collapse id="giftMessage">
+          <div class="input-container gift-message">
+            <textarea maxlength="200" value="{{ giftingMessage::input }}" placeholder="[[ _translate('Include a personalized gift message') ]]"></textarea>
+            <p class="gift-message-counter">[[ _translate('Characters remaining')]]: <strong>{{giftingMessageCharRemaining}}</strong></p>
+          </div>
+        </iron-collapse>
+      </div>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'gifting-element',
+
+    properties: {
+      /*
+      *   gifting option
+      */
+      giftOption:{
+        value: function(){
+          return { };
+        }
+      },
+
+      /*
+      *  gifting message
+      */
+      giftingMessage:{
+        value: function() {
+          return { };
+        },
+        observer: '_giftMessageLimit'
+      },
+
+      /**
+       * gifting amount
+       */
+      giftingAmount: {
+        type: String
+      },
+
+      /**
+       *  app context
+       */
+       ctx: {
+         type:Object
+       }
+    },
+
+    // Element Lifecycle
+    attached: function () {
+      this.giftingMessageCharRemaining = 200;
+      if (this.giftOption === 't') {
+        var tempMessage = this.giftingMessage;
+        this.querySelector('input[type=checkbox]').checked = true;
+        this.set("giftingMessage", tempMessage);
+        this.querySelector('#giftMessage').setAttribute("opened", true);
+      }
+    },
+
+    _giftMessageLimit: function(){
+      this.giftingMessageCharRemaining =  200 - this.giftingMessage.length;
+    },
+
+    _toggle: function() {
+      this.querySelector('#giftMessage').toggle();
+      this.set("giftOption", this.giftOption === 'f' ? 't' : 'f');
+      if (this.giftOption === 'f') {
+        this.set("giftingMessage", '');
+      }
+      
+      this.fire('gifting-toggle', { giftOption: this.giftOption });
+      this.fire('custom-events', {
+        "eventCategory": 'checkout3',
+        "eventAction": 'gift_wrap',
+        "eventLabel": this.giftOption === 't' ? 'check' : 'uncheck',
+        "eventValue": ''
+      });
+    },
+
+    _giftingAmount:function (amount) {
+      return parseInt(amount)/100;
+    },
+
+    _translate: function (key) {
+      return window.translate(key);
+    }
+  });
+
+</script>
+<dom-module id="id-document-upload-element" assetpath="../../../shared/components/id-document-upload-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <template>
+    <div class="content-holder">
+      <h3><i class="wadicon-alert"></i>[[ _translate('Upload Your ID Document') ]]</h3>
+      <p>[[ _translate('Saudi customs require us to have a valid ID for all shipments entering Saudi Arabia.') ]]</p>
+      <p>[[ _translate('For no delays in delivery please upload a scan or photo of your Saudi National ID or Iqama below.') ]]</p>
+      <div class="file-upload-area" hidden$="[[ messaging ]]">
+        <input type="file" name="file" id="fileUpload" accept=".jpg,.jpeg,.png" on-change="_documentUpload">
+        <label for="fileUpload" class="upload-label core-block-cta core-block-cta-lg">[[ _translate('Upload Your ID') ]]</label>
+        <p>[[ _translate('File Types Allowed') ]]: <strong>.jpg</strong>, <strong>.jpeg</strong> [[ _translate('or') ]] <strong>.png</strong>.</p>
+        <p>[[ _translate('Size Limit') ]]: <strong>2MB</strong></p>
+        <template is="dom-if" if="[[ invalidationMessage ]]">
+          <p>[[ invalidationMessage ]]</p>
+        </template>
+      </div>
+      <template is="dom-if" if="[[ messaging ]]">
+        <marked-element markdown="[[ _errTranslate('thanksUploaded') ]]">
+          <div class="markdown-html"></div>
+        </marked-element>
+        <p>[[ _translate('status') ]]: <strong>[[ messaging ]]</strong></p>
+      </template>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'id-document-upload-element',
+
+    properties: {
+
+      options: {
+        type: Object,
+        value: {
+          allowedFileTypes: {
+            type: Array
+          },
+          allowedSize: {
+            type: Number
+          }
+        }
+      },
+
+      /**
+       * document upload status message
+       */
+      messaging: {
+        type: String,
+        observer: '_messageUpdated'
+      },
+
+      /**
+       * Application context
+       */
+      ctx: {
+        type: Object
+      }
+    },
+
+    attached: function () {
+      this.invalidationMessage = null;
+    },
+
+    _documentUpload: function (ele) {
+      this.invalidationMessage = '';
+      if (ele.target.files.length < 1) {
+        this.invalidationMessage = this._translate('No Files Selected');
+        return;
+      }
+
+      var file = ele.target.files[0];
+      var ext = file.name.match(/\.([^\.]+)$/)[1];
+      var size = file.size / 1024;
+
+      if (this.options.allowedFileTypes.indexOf(ext.toLowerCase()) >= 0 && size <= this.options.allowedSize) {
+        this.invalidationMessage = null;
+        this.fire('upload-document', { file: file });
+      } else {
+        this.invalidationMessage = this._translate('idDocumentError');
+      }
+    },
+
+    _messageUpdated: function (val) {
+      if (val) {
+        this.messaging = this._errTranslate(val);
+      }
+    },
+
+    _translate: function (key) {
+      return window.translate(key);
+    },
+
+    _errTranslate: function (key) {
+      return window.translate.messaging(key);
+    }
+  });
+
+</script>
+<script>
+  Polymer({
+    is: 'validation-form-fields',
+    behaviors: [
+      Polymer.IronValidatorBehavior
+    ],
+    validate: function(value) {
+      
+      if (typeof value == "undefined") {
+        return false;
+      }
+
+      if (typeof value == "string") {
+        return value.trim().length > 2 ? true : false;
+      }
+
+      if (isNaN(value)) {
+        return false;
+      }
+
+      if (typeof value == "number") {
+        return true;
+      }
+
+      return false;
+    }
+  });
+</script>
+<dom-module id="address-book-element" assetpath="../../../shared/components/address-book-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <template>
+    <template is="dom-if" if="[[ !loadingNewAddress ]]">
+      <header>
+        <p class="title">[[ _translate('Address Book') ]]</p>
+        <div class="cta-container">
+          <button class="new-address-trigger" on-tap="_addNewAddress">[[ _translate('Add New Address') ]]</button>
+        </div>
+      </header>
+      <ul class="address-book">
+        <template is="dom-if" if="[[ defaultAddress.name ]]">
+          <li class="default-address">
+            <div class="custom-radio-container">
+              <label class="custom-radio-label" for="address">
+                <input type="radio" id="address" name="address" on-change="_shippingAddressChanged" checked$="[[ _isSelectedAddress(defaultAddress.idCustomerAddress) ]]" data-value="[[ defaultAddress ]]">
+                <span class="label-text">
+                  <span class="name">[[ defaultAddress.name ]]</span>
+                  <span class="address">
+                    <template is="dom-if" if="[[ defaultAddress.building_street_no ]]">[[ defaultAddress.building_street_no ]], </template>
+                    <template is="dom-if" if="[[ defaultAddress.area ]]">[[ defaultAddress.area ]], </template>
+                    <template is="dom-if" if="[[ defaultAddress.landmark ]]">[[ defaultAddress.landmark ]], </template>
+                    <template is="dom-if" if="[[ defaultAddress.city ]]">[[ defaultAddress.city ]], </template>
+                    <template is="dom-if" if="[[ defaultAddress.country ]]">[[ defaultAddress.country ]]</template>
+                  </span>
+                  <span class="contact-number">[[ defaultAddress.cellPhone ]]</span>
+                </span>
+                <div class="check-indicator"></div>
+                <div class="cta-container">
+                  <button class="core-block-cta cta-full-width core-block-cta-lg" type="button" on-tap="_moveToSummary">[[ _translate('Continue To Payment') ]]<paper-ripple></paper-ripple></button>
+                </div>
+              </label>
+            </div>
+            <span class="address-tag">[[ _translate('Default Address') ]]</span>
+          </li>
+        </template>
+        <template is="dom-if" if="[[ otherAddresses.length ]]" restamp="true">
+          <template is="dom-repeat" items="[[ otherAddresses ]]" as="others">
+            <li>
+              <div class="custom-radio-container">
+                <label class="custom-radio-label" for="address-[[others.idCustomerAddress]]">
+                  <input type="radio" id="address-[[others.idCustomerAddress]]" checked$="[[ _isSelectedAddress(others.idCustomerAddress) ]]" name="address" on-change="_shippingAddressChanged" data-value="[[ others ]]">
+                  <span class="label-text">
+                    <span class="name">[[ others.name ]]</span>
+                    <span class="address">
+                      <template is="dom-if" if="[[ others.building_street_no ]]">[[ others.building_street_no ]], </template>
+                      <template is="dom-if" if="[[ others.area ]]">[[ others.area ]], </template>
+                      <template is="dom-if" if="[[ others.landmark ]]">[[ others.landmark ]], </template>
+                      <template is="dom-if" if="[[ others.city ]]">[[ others.city ]], </template>
+                      <template is="dom-if" if="[[ others.country ]]">[[ others.country ]]</template>
+                    </span>
+                    <template is="dom-if" if="[[ others.cellPhone ]]">
+                      <span class="contact-number">[[ others.cellPhone ]]</span>
+                    </template>
+                  </span>
+                  <div class="check-indicator"></div>
+                  <paper-ripple></paper-ripple>
+                  <div class="cta-container">
+                    <button class="core-block-cta cta-full-width core-block-cta-lg" type="button" on-tap="_moveToSummary">[[ _translate('Continue To Payment') ]]<paper-ripple></paper-ripple></button>
+                  </div>
+                </label>
+              </div>
+            </li>
+          </template>
+        </template>
+      </ul>
+      <div class="cta-container">
+        <button on-tap="_addNewAddress" class="new-address-trigger">[[ _translate('Add New Address') ]]<paper-ripple></paper-ripple></button>
+      </div>
+    </template>
+    <template is="dom-if" if="[[ loadingNewAddress ]]" restamp="true">
+      <new-address-element new-address="{{ shippingAddress }}" user-primary-phone$="[[ userPrimaryPhone ]]" ctx$="[[ ctx ]]" options="{&quot;title&quot;: &quot;New Shipping Address&quot;, &quot;opensIndependently&quot;: false, &quot;type&quot;: &quot;shipping&quot;}" cities-list="[[ citiesList ]]" areas-list="[[ areasList ]]" phone-config="[[ phoneConfig ]]" can-continue="{{ canContinue }}" primary-phone="[[ primaryPhone ]]"></new-address-element>
+    </template>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'address-book-element',
+
+    properties: {
+
+      /**
+      * User's default address
+      **/
+      defaultAddress: {
+        type: Object,
+        value: function () {
+          return {};
+        },
+        notify: true,
+        // observer: '_defaultAddressChanged'
+      },
+
+      /**
+      * Other address
+      **/
+      otherAddresses: {
+        type: Object,
+        value: function () {
+          return {};
+        },
+        notify: true
+      },
+
+      /**
+      * User shipping address
+      **/
+      shippingAddress: {
+        type: Object,
+        value: function () {
+          return {};
+        },
+        notify: true
+      },
+
+      /**
+      * New Address format
+      **/
+      addressFormat: {
+        type: Object,
+        value: function () {
+          return {};
+        }
+      },
+
+      /**
+      *   Selected address
+      **/
+      selectedAddressId: {
+        type: Object
+      },
+
+      /**
+      * User's primary phone number
+      **/
+      userPrimaryPhone: {
+        type: String
+      },
+
+      /*
+       * Phone configuration
+       */
+       phoneConfig: {
+         type:Object
+       },
+
+       /**
+       * can continue to payment
+       **/
+
+       canContinue: {
+         type: Boolean,
+         value: function () {
+           return {};
+         },
+         notify:true
+       },
+
+      /**
+       * Application context
+       */
+      ctx: {
+        type: Object
+      },
+
+      primaryPhone: {
+        type: String
+      }
+    },
+
+    // Element Lifecycle
+    attached: function () {
+      this.isMobile = window.config.device === 'mobile' ? true : false;
+      // this.isTypeShipping = this.options.type === 'shipping' ? true : false;
+      this.loadingNewAddress = false;
+      var _self = this;
+
+      _self.canContinue = _self.shippingAddress.idCustomerAddress ? true : false;
+
+      this.addEventListener('go-back', function () {
+        _self.loadingNewAddress = false;
+        var selectedAddress = this.querySelector('input[name=address]:checked');
+        _self.shippingAddress = (selectedAddress && selectedAddress.dataValue) ? selectedAddress.dataValue : _self.addressFormat;
+        if (selectedAddress) {
+          selectedAddress.dataValue && _self.set('canContinue', true);
+        }
+      }, { passive: true });
+
+      if (this.defaultAddress && this.defaultAddress.name && !this.shippingAddress.idCustomerAddress) {
+        this.set("shippingAddress", this.defaultAddress);
+        this.set("canContinue", true);
+      }
+    },
+
+    _isSelectedAddress: function (id) {
+      if (this.shippingAddress.idCustomerAddress === id) {
+        this.canContinue = true;
+      }
+      return this.shippingAddress.idCustomerAddress === id ? 'checked' : null;
+    },
+
+    _addNewAddress: function () {
+      this.loadingNewAddress = true;
+      this.shippingAddress = this.addressFormat;
+      this.fire('custom-events', {
+        "eventCategory": 'checkout3',
+        "eventAction": 'AddAddress',
+        "eventLabel": null,
+        "eventValue": null
+      });
+      // this.canContinue = false;
+    },
+
+    _moveToSummary: function () {
+      this.fire('move-to-summary');
+    },
+
+    _defaultAddressChanged: function () {
+      if (typeof this.defaultAddress !== 'undefined') {
+        this.set("shippingAddress", this.defaultAddress);
+      }
+    },
+
+    _shippingAddressChanged: function (event) {
+      event.preventDefault();
+
+      if (event.currentTarget.dataValue) {
+        var address = event.currentTarget.dataValue;
+          this.set("canContinue", true);
+          this.set("shippingAddress", address);
+          // this.fire('shipping-address-changed', { shippingAddress : this.shippingAddress, idShippingAddress : event.currentTarget.dataValue.idCustomerAddress });
+      }
+    },
+
+    _translate: function (key) {
+      return window.translate(key);
+    }
+  });
+
+</script>
+<dom-module id="checkout-payment-prepay-element" assetpath="../../../shared/components/checkout-payment-prepay-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+
+  <template>
+    <template is="dom-if" if="[[ _isSelectedMethod(selectedMethod) ]]" restamp="true">
+      <validation-form-fields></validation-form-fields>
+        
+      
+      <template is="dom-if" if="[[ !addingNewCard ]]" restamp="true">
+        <ul class="card-list">
+          <template is="dom-if" if="[[ savedCards.length ]]" restamp="true">
+            <template is="dom-repeat" items="[[ savedCards ]]" as="card" restamp="true">
+              <li data-id$="[[ card.idCustomerTokenization ]]" class$="disabled-[[ card.isExpired ]]" on-click="_selectedCardChanged" data-value="[[ card.idCustomerTokenization ]]">
+                <div class="custom-radio-container">
+                  <label class="custom-radio-label" for="card-[[card.idCustomerTokenization]]">
+                    <div class="card-details-container">
+                      <div class="card-logo-container">
+                        <p id="card-logo-container" class$="card-logo [[_getPaymentMethodName(card.paymentMethod) ]]"></p>
+                      </div>
+                      <div class="card-details">
+                        <p class="card-label">[[ card.cardLabel ]]</p>
+                        <p class="card-number-display">XXXX XXXX XXXX [[ card.last4 ]]</p>
+                      </div>
+                      <template is="dom-if" if="[[ card.isExpired ]]">
+                        <div class="expired-message">
+                          [[ _translate('Expired')]]
+                        </div>
+                      </template>
+                      <div class="icon-container">
+                        <span on-tap="_deleteCard" data-value="[[ card.idCustomerTokenization ]]" data-index="[[ index ]]" class="wadicon-delete">
+                        </span>
+                      </div>
+                    </div>
+                    
+                    
+                    <div class="input-row-wrapper">
+                      <div class="input-row">
+                        <div class="input-field input-column two-third heading">
+                          <div class="input-container cvv-container">
+                            <input is="iron-input" placeholder="[[ _translate('CVV') ]]" prevent-invalid-input="" allowed-pattern="[0-9]" class$="validity-[[ validcvv ]]" name="cvv" maxlength="3" bind-value="{{ token.cvv }}" type="tel" data-bindvalue="token.cvv">
+                            <p class="input-helper-message" hidden$="[[ validcvv ]]"><i class="wadicon-alert"></i>[[ _translate('Please enter the cvv number') ]]</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </label>
+                </div>
+              </li>
+            </template>
+            <li class="add-new-card">
+              <div class="btn-add-card">
+                <button on-tap="_addNewCard" type="button">[[ _translate('Add New Card') ]]</button>
+              </div>
+            </li>
+          </template>
+        </ul>
+      </template>
+      
+
+      
+      <template is="dom-if" if="[[ addingNewCard ]]" restamp="true">
+        <template is="dom-if" if="[[ savedCards.length ]]" restamp="true">
+          <div class="back-to-cards" on-click="_backToList">[[ _translate('Back') ]]</div>
+        </template>
+        <div class$="collapsible-area [[ _isSelectedMethod(selectedMethod) ]]" id="payment-prepay-container">
+          <form id="creditCardForm" is="iron-form" novalidate="">
+            <div class="input-field">
+              <label>[[ _translate('Enter Card Number') ]] *</label>
+              <div class="input-container with-clear">
+                <input is="iron-input" class$="validity-[[ validnumber ]]" prevent-invalid-input="" allowed-pattern="[0-9]" name="number" maxlength="16" type="tel" bind-value="{{ cardDetails.number }}" data-bindvalue="cardDetails.number" placeholder="9999 9999 9999 9999">
+                <template is="dom-if" if="[[ cardDetails.number.length ]]" restamp="true">
+                  <a on-tap="_clearInputField" class="field-clear"><i class="wadicon-cancel"></i></a>
+                </template>
+                <p class="input-helper-message" hidden$="[[ validnumber ]]"><i class="wadicon-alert"></i>[[ _translate('Please enter the card number') ]]</p>
+              </div>
+            </div>
+            <div class="input-row-wrapper">
+              <label>[[ _translate('Expiry Date') ]] *</label>
+              <div class="input-row">
+                <div class="input-field input-column one-half">
+                  <div class="input-container">
+                    <div class="custom-select-container">
+                      <select id="month-selector" name="expiry_month" on-change="_selectMonth" autocomplete="cc-exp-month">
+                        <option value="null" selected="">[[ _translate('Month') ]]</option>
+                        <template is="dom-repeat" items="[[ months ]]" as="expiry_month" restamp="true">
+                          <option value="[[ expiry_month ]]">[[ expiry_month ]]</option>
+                        </template>
+                      </select>
+                    </div>
+                    <p class="input-helper-message" hidden$="[[ validexpiry_month ]]"><i class="wadicon-alert"></i>[[ _translate('Please select the expiry month') ]]</p>
+                  </div>
+                </div>
+                <div class="input-field input-column one-half">
+                  <div class="input-container">
+                    <div class="custom-select-container">
+                      <select id="year-selector" name="expiry_year" on-change="_selectYear" autocomplete="cc-exp-year">
+                        <option value="null" selected="">[[ _translate('Year') ]]</option>
+                        <template is="dom-repeat" items="[[ years ]]" as="expiry_year" restamp="true">
+                          <option value="[[ expiry_year ]]">[[ expiry_year ]]</option>
+                        </template>
+                      </select>
+                    </div>
+                    <p class="input-helper-message" hidden$="[[ validexpiry_year ]]"><i class="wadicon-alert"></i>[[ _translate('Please select the expiry year') ]]</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="input-row-wrapper">
+              <div class="input-row">
+                <div class="input-field input-column one-half cvv">
+                  <label>[[ _translate('CVV') ]] *</label>
+                  <div class="input-container with-clear">
+                    <input is="iron-input" prevent-invalid-input="" allowed-pattern="[0-9]" class$="validity-[[ validccv ]]" name="ccv" maxlength="3" bind-value="{{ cardDetails.ccv }}" type="tel" data-bindvalue="cardDetails.ccv" autocomplete="cc-csc">
+                    <template is="dom-if" if="[[ cardDetails.ccv.length ]]" restamp="true">
+                      <a on-tap="_clearInputField" class="field-clear"><i class="wadicon-cancel"></i></a>
+                    </template>
+                    <p class="input-helper-message" hidden$="[[ validccv ]]"><i class="wadicon-alert"></i>[[ _translate('Please enter the cvv number') ]]</p>
+                  </div>
+                </div>
+                <div class="input-field input-column one-half card-logo-container cardlogo">
+                  <span id="card-logo-container" class="card-logo"></span>
+                </div>
+              </div>
+            </div>
+            <div class="input-field">
+              <label>[[ _translate('Name On Card') ]] *</label>
+              <div class="input-container with-clear">
+                <input is="iron-input" class$="validity-[[ validfirst_name ]]" type="text" name="first_name" bind-value="{{ cardDetails.first_name }}" data-bindvalue="cardDetails.first_name" autocomplete="cc-name">
+                <template is="dom-if" if="[[ cardDetails.first_name.length ]]" restamp="true">
+                  <a on-tap="_clearInputField" class="field-clear"><i class="wadicon-cancel"></i></a>
+                </template>
+                <p class="input-helper-message" hidden$="[[ validfirst_name ]]"><i class="wadicon-alert"></i>[[ _translate("Please enter the cardholder’s name") ]]</p>
+              </div>
+            </div>
+            
+            <iron-collapse id="billing-required">
+              <new-address-element new-address="{{ billingAddress }}" ctx$="[[ ctx ]]" options="{&quot;title&quot;: &quot;Billing Address&quot;, &quot;opensIndependently&quot;: true, &quot;type&quot;: &quot;billing&quot;}" cities-list="[[ citiesList ]]" areas-list="[[ areasList ]]" phone-config="[[ phoneConfig ]]" can-continue="{{ billingAddressValid }}"></new-address-element>
+            </iron-collapse>
+          </form>
+        </div>
+      </template>
+      
+    </template>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'checkout-payment-prepay-element',
+
+    properties: {
+
+      /**
+       * Application context
+       */
+      ctx: {
+        type: Object
+      },
+
+      cardDetails: {
+        type:Object,
+        value: function () {
+          return {};
+        }
+      },
+
+      billingAddress: {
+        type: Object,
+        value: function () {
+          return {};
+        },
+        notify:true
+      },
+
+      canPlaceOrder: {
+        type: Boolean,
+        value: function () {
+          return {};
+        },
+        notify: true
+      },
+
+      billingAddressValid: {
+        type: Boolean,
+        value: function () {
+          return {};
+        },
+        notify: true
+      },
+
+      /**
+       * Phone configuration
+       */
+      phoneConfig: {
+        type:Object
+      },
+
+      /**
+     *  year range for credit card
+     **/
+
+      yearRange: {
+        type: Object
+      },
+
+      selectedMethod: {
+        type: String
+      },
+
+      /**
+       * Saved cards array
+       **/
+      savedCards: {
+        type: Object,
+        value: [],
+        observer: '_savedCardsObserver',
+        notify: true
+      },
+
+      addingNewCard: {
+        type: Boolean,
+        value: false,
+        observer: '_addingNewCardObserver'
+      },
+
+      token: {
+        type: Object,
+        value: {}
+      }
+    },
+
+    observers: ['_canPlaceOrderValidator(billingAddressValid, cardDetails.*, billingRequired, token.*)'],
+
+    // Element Lifecycle
+    attached: function () {
+      var _self = this;
+      var cardProperties = ['first_name', 'number', 'expiry_month', 'expiry_year', 'ccv'];
+
+      this.years = [];
+      this.months = [];
+      this._getYearMonthRange();
+      this.validatorTextField = new Polymer.IronMeta({type: 'validator'}).byKey('validation-form-fields');
+      this.billingRequired = false;
+      this.validcvv = true;
+
+      for (var prop = 0; prop < cardProperties.length; prop++) {
+        this.set('valid' + cardProperties[prop], true);
+      }
+
+      this.addEventListener('focusout', function (event) {
+        if (event.target && event.target.getAttribute('name') && this.validatorTextField && (cardProperties.indexOf(event.target.getAttribute('name')) !== -1)) {
+          this.set('valid' + event.target.getAttribute('name'), this.validatorTextField.validate(this.get('cardDetails.' + event.target.getAttribute('name'))));
+        }
+        if (event.target && event.target.getAttribute('name') === 'number') {
+
+          _self.debounce('focusout', function() {
+            _self.fire('post-order-review');
+          }, 250);
+        }
+        if (event.target && event.target.getAttribute('name') && this.validatorTextField && event.target.getAttribute('name') === 'cvv') {
+          this.set('valid' + event.target.getAttribute('name'), this.validatorTextField.validate(this.get('token.' + event.target.getAttribute('name'))));
+        }
+      }, { passive: true });
+
+      this.addEventListener("dom-change", function (e) {
+        _self._checkDefaultCard();
+
+        // TODO - why do we need this
+        // if (this.querySelectorAll("input") && this.querySelectorAll("input")[0]) {
+        //   this.querySelectorAll("input")[0].focus();
+        // }
+      });
+
+      _self._checkDefaultCard();
+
+      // if (this.querySelectorAll("input") && this.querySelectorAll("input")[0]) {
+      //   this.querySelectorAll("input")[0].focus();
+      // }
+
+      this._isSelectedMethod(this.selectedMethod);
+    },
+
+    _clearInputField: function (event) {
+      this.set(event.currentTarget.previousElementSibling.getAttribute( 'data-bindvalue' ), '');
+    },
+
+    _luhnChk: function (luhn) {
+
+      var len = luhn.length,
+          mul = 0,
+          prodArr = [
+              [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+              [0, 2, 4, 6, 8, 1, 3, 5, 7, 9]
+          ],
+          sum = 0;
+
+      while (len--) {
+          sum += prodArr[mul][parseInt(luhn.charAt(len), 10)];
+          mul ^= 1;
+      }
+
+      return sum % 10 === 0 && sum > 0;
+    },
+
+    /**
+     * Verifies the card number is valid or not using
+     * @param number {string} - creditcard number
+     * @returns {boolean}
+     */
+    _verifyCard: function (number) {
+        return number ? luhnChk(number): false;
+    },
+
+  /**
+   * returns the credit card issuer name
+   * for now, only master card and visa card supported
+   * @param number {string} - creditcard number
+   * @returns {string|undefined}
+   */
+    _getCardType: function (number) {
+      var classList = this.querySelector('#card-logo-container').classList.remove('mastercard', 'visa');
+        return (/^5[1-5]/.test(number)) ? this.querySelector('.card-logo').classList.add('mastercard')
+            : (/^4/.test(number)) ? this.querySelector('.card-logo').classList.add('visa')
+            : null;
+    },
+
+    _canPlaceOrderValidator: function(billingAddressValid, cardDetails, billingRequired){
+      if (this.selectedMethod === 'cc' && this.addingNewCard) {
+        if (cardDetails && cardDetails.path === 'cardDetails.number') {
+          this._getCardType(cardDetails.value);
+        }
+        if (this.validatorTextField) {
+          if (cardDetails && cardDetails.path && this.validatorTextField.validate(this.get(cardDetails.path))) {
+            this.set('valid' + cardDetails.path.split('.')[1], this.validatorTextField.validate(this.get(cardDetails.path)));
+          }
+          var cardProperties = ['first_name', 'number', 'expiry_month', 'expiry_year', 'ccv'];
+          var cardPropertiesLength = cardProperties.length;
+          for (var prop = 0; prop < cardProperties.length; prop++) {
+            this.validatorTextField.validate(this.get('cardDetails.' + cardProperties[prop])) && cardPropertiesLength--;
+            this.set('canPlaceOrder', false);
+            if (cardPropertiesLength < 1 && (this.billingAddressValid || !this.billingRequired)) {
+              this.set('canPlaceOrder', true);
+            }
+          }
+        }
+      } else if (!this.addingNewCard && this.selectedMethod === 'cc' && this.validatorTextField) {
+        if (this.token.cvv && this.validatorTextField.validate(this.token.cvv)) {
+          this.set('canPlaceOrder', true);
+          this.set("validcvv", true);
+        } else {
+          this.set('canPlaceOrder', false);
+        }
+      }
+    },
+
+    _getYearMonthRange: function () {
+      var dateYear = new Date().getFullYear();
+      for (var i = 0; i < this.yearRange; i++) {
+        this.push('years', dateYear+i);
+      }
+      for (var i = 1; i <= 12; i++) {
+        this.push('months', (i.toString().length > 1) ? i.toString() : "0" + i.toString());
+      }
+    },
+
+    _selectYear: function (event) {
+      this.set("cardDetails.expiry_year", parseInt(event.target.value));
+    },
+
+    _selectMonth: function (event) {
+      this.set("cardDetails.expiry_month", parseInt(event.target.value));
+    },
+
+    _toggleBillingAddress: function (event) {
+      this.set('billingRequired', !this.billingRequired);
+      this.querySelector(event.currentTarget.getAttribute('collapse')).toggle();
+    },
+
+    _isSelectedMethod: function(selectedMethod) {
+      if (selectedMethod !== 'cc') {
+        this.token.id = null;
+        this.token.cvv = null;
+        // this.addingNewCard = false;
+        this.set('addingNewCard', false);
+        this.validcvv = true;
+        this._resetDropdown();
+      }
+
+      return (selectedMethod === 'cc') ? true : false;
+    },
+    
+    _savedCardsObserver: function (newVal, oldVal) {
+      if (this.savedCards && this.savedCards.length > 0) {
+        this.set("addingNewCard", false);
+      } else {
+        this.set("addingNewCard", true);
+      }
+    },
+
+    _getPaymentMethodName: function (methodName) {
+      return methodName.toLowerCase();
+    },
+
+    _addNewCard: function () {
+      this.set("addingNewCard", true);
+    },
+
+    _addingNewCardObserver: function (newVal, oldVal) {
+      if (this.addingNewCard) {
+        if(this.token) {
+           this.set('token.id', null);
+        }
+      } else {
+        if(this.cardDetails) {
+          this.set('cardDetails.number', null);
+        }
+      }
+    },
+
+    _selectedCardChanged: function (event) {
+      event.preventDefault();
+
+      if (event.currentTarget.dataValue) {
+        if (this.querySelectorAll('.card-list > li.disabled-false') 
+          && this.querySelectorAll('.card-list > li.disabled-false').length > 0 
+          && this.querySelector('.card-list > li.disabled-false[data-id="' + event.currentTarget.dataValue + '"]')) {
+          var list = this.querySelectorAll('.card-list > li.disabled-false');
+
+          for(var i = 0; i < list.length; i++) {
+            this.querySelectorAll('.card-list > li.disabled-false')[i].classList.remove('active');
+          }
+
+          this.querySelector('.card-list > li.disabled-false[data-id="' + event.currentTarget.dataValue + '"]').classList.add('active');
+
+          if (event.currentTarget.dataValue !== this.token.id) {
+            this.set("token.cvv", '');
+            this.set("validcvv", true);
+          }
+          
+          this.token.id = event.currentTarget.dataValue;
+        }
+
+      }
+    },
+
+    _deleteCard: function (event) {
+      this.splice('savedCards', event.target.dataIndex, 1);
+      if (this.savedCards.length < 1) {
+        this.set('addingNewCard', true);
+      }
+      this.fire('delete-saved-card', { id: event.target.dataValue });
+    },
+
+    _saveCardToggle: function () {
+      this.cardDetails.save_card = !this.cardDetails.save_card;
+    },
+
+    _checkDefaultCard: function () {
+      if (this.querySelector('.card-list > li.disabled-false')) {
+          var list = this.querySelectorAll('.card-list > li.disabled-false');
+          var inputChecked = false;
+          for (var i = 0; i < list.length; i++) {
+            if (list[i].checked) {
+              inputChecked = true;
+              break;
+            }
+          }
+  
+          if (!inputChecked) {
+            this.querySelector('.card-list > li.disabled-false').classList.add('active');
+            this.querySelector('.card-list > li.disabled-false input').checked = true;
+            this.token.id = list[0].getAttribute('data-id');
+          }
+        }
+    },
+
+    _backToList: function () {
+      // this.addingNewCard = false;
+      this.set('addingNewCard', false);
+    },
+
+    _resetDropdown: function() {
+      var yearSelector = this.querySelector("#year-selector");
+      var monthSelector = this.querySelector("#month-selector");
+
+      if (yearSelector) {
+        yearSelector.selectedIndex = 0;
+      }
+
+      if (monthSelector) {
+        monthSelector.selectedIndex = 0;
+      }
+    },
+
+    _translate: function (key) {
+      return window.translate(key);
+    }
+  });
+
+</script>
+<dom-module id="checkout-payment-cod-element" assetpath="../../../shared/components/checkout-payment-cod-element/">
+
+  <style>
+    :host {
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+
+  <template>
+    <template is="dom-if" if="[[ _isSelectedMethod(selectedMethod) ]]" restamp="true">
+      <template is="dom-if" if="[[ _showCodMessage(codCharges) ]]">
+        <div class$="collapsible-area [[ _isSelectedMethod(selectedMethod) ]]" id="payment-cod-container">
+          <div class="checkout-payment-cod-container">
+            <p>[[ _translate('_codFeeMessage01') ]] <strong>[[ _calculate(codCharges) ]] [[ ctx.currency ]]</strong> [[ _translate('_codFeeMessage02') ]]</p>
+            <p><span id="payment-prepay" on-tap="_changePaymentMethod">[[ _translate('Save') ]] <strong>[[_calculate(codCharges) ]] [[ ctx.currency ]]</strong> [[ _translate('by using debit/credit card instead') ]]</span></p>
+        </div>
+      </div></template>  
+    </template>
+  </template>
+
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'checkout-payment-cod-element',
+
+    properties: {
+      codCharges: {
+        type: Number
+      },
+
+      ctx: {
+        type:Object
+      },
+
+      selectedMethod: {
+        type: String
+      },
+
+      canPlaceOrder: {
+        type: Boolean,
+      }
+    },
+
+
+    // Element Lifecycle
+    attached: function() {
+      this._isSelectedMethod(this.selectedMethod);
+    },
+
+    _showCodMessage: function(codCharges) {
+      if (codCharges === 0) {
+        return false;
+      }
+      return true;
+    },
+
+    _isSelectedMethod: function(selectedMethod) {
+      this.canPlaceOrder = (selectedMethod === 'cod');
+      return (selectedMethod === 'cod') ? true : false;
+    },
+
+    _calculate: function(val) {
+      return val/100;
+    },
+
+    _changePaymentMethod: function() {
+      this.fire('payment-method-prepay');
+    },
+
+    _translate: function(key) {
+      return window.translate(key);
+    }
+  });
+
+</script>
+</div></body></html>

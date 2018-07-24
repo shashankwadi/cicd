@@ -1,0 +1,1822 @@
+{
+  "totalCount": "",
+  "showWelcomeText": true,
+  "welcomeText": "Hello abc How are you today?",
+  "widgets": [
+    {
+      "type": "banner_widget",
+      "id": "auto_scroll_banner",
+      "pagingEnabled": true,
+      "widthRatioToScreen": 1,
+      "imageWidth": 731,
+      "imageHeight": 260,
+      "isSelfScrolling": true,
+      "marginLeft": 5,
+      "marginRight": 5,
+      "scrollTime": 5000,
+      "showPageControll": true,
+      "headerData": {
+        "headerTitle": "",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "name": "Banner One",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/deskbig_27_sa_en.jpg",
+          "action": "deeplinkUrl"
+        },
+        {
+          "name": "Banner Two",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/28_7watches_en.jpg",
+          "action": "deeplinkUrl"
+        },
+        {
+          "name": "Banner Three",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/flashsale_26july_en.jpg",
+          "action": "deeplinkUrl"
+        },
+        {
+          "name": "Banner Four",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/personalappliances_1july_en.jpg",
+          "action": "deeplinkUrl"
+        },
+        {
+          "name": "Banner Three",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/flashsale_26july_en.jpg",
+          "action": "deeplinkUrl"
+        },
+        {
+          "name": "Banner Four",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/personalappliances_1july_en.jpg",
+          "action": "deeplinkUrl"
+        }
+      ]
+    },
+    {
+      "type": "horizontal_mix_widget",
+      "widgetId": "all_categories",
+      "padding": 5,
+      "spacing": 3,
+      "data": [
+        [
+          {
+            "imageUrl": "https://rukminim1.flixcart.com/flap/750/292/image/934c1d.jpg?q=90",
+            "action": "deeplinkUrl",
+            "width": 165,
+            "height": 60
+          }
+        ],
+        [
+          {
+            "title": "",
+            "imageUrl": "https://s1.postimg.org/tb36f6nj3/icons8-_Ring_Side_View-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "",
+            "imageUrl": "https://s1.postimg.org/aacb8hly7/icons8-_Perfume_Bottle_Filled-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "",
+            "imageUrl": "https://s1.postimg.org/5ae6v5fxb/icons8-_Hijab-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "",
+            "imageUrl": "https://s2.postimg.org/r4zlu6p1l/icons8-_Arab-100_1.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "",
+            "imageUrl": "https://s1.postimg.org/lzbheujcv/icons8-_Women_Shoe_Diagonal_View_Filled-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "",
+            "imageUrl": "https://s1.postimg.org/dp2mhguzz/icons8-_Laptop_Filled-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "banner_widget",
+      "id": "car_banner",
+      "pagingEnabled": true,
+      "widthRatioToScreen": 1,
+      "imageWidth": 375,
+      "imageHeight": 77,
+      "isSelfScrolling": "",
+      "marginLeft": 5,
+      "marginRight": 5,
+      "bottomPaddingToSuperview": "",
+      "scrollTime": "",
+      "showPageControll": "",
+      "pageControlColor": "",
+      "isViewallHidden": "",
+      "isTimerHidden": "",
+      "viewAllfetchUrl": "",
+      "headerData": {
+        "headerTitle": "",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "name": "Banner Four",
+          "iconName": "https://sdprd.s3.amazonaws.com/content/server/images/22869/684117/28865400/672X139_v1.jpeg"
+        }
+      ],
+      "headerTitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "headerSubtitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "Footertitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      }
+    },
+    {
+      "type": "horizontal_mix_widget",
+      "widgetId": "testit",
+      "padding": 5,
+      "spacing": 10,
+      "data": [
+        [
+          {
+            "imageUrl": "https://www.cyndyporter.com/wp-content/uploads/2016/02/banners.jpg",
+            "action": "deeplinkUrl",
+            "width": 1030,
+            "height": 500
+          }
+        ],
+        [
+          {
+            "title": "trendy",
+            "imageUrl": "https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Ffthtsi-assets-production%2Fez%2Fimages%2F2%2F9%2F5%2F4%2F54592-1-eng-GB%2Fsquare_c187ba59-ab1c-4342-9381-6e296bc3b23f.jpg?width=125&height=125&dpr=2&format=jpg&source=htsi",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          },
+          {
+            "title": "classy",
+            "imageUrl": "https://3.imimg.com/data3/GM/HD/MY-4518709/western-wear-for-women-250x250.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          },
+          {
+            "title": "old School",
+            "imageUrl": "https://images.sassique.com/womens-style-inspiration-light-coats-puffer-coats-orange-prints-thumb-2183039",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          },
+          {
+            "title": "Funky",
+            "imageUrl": "https://cdn.laredoute.com/products/250by250/f/7/c/f7cd8b186892706edaad4b865ad9f913.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "New in Fashion & LifeStyle",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "vertical_mix_widget",
+      "widgetId": "Spring's Collection!!",
+      "padding": 5,
+      "spacing": 10,
+      "data": [
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://media.giphy.com/media/zHS6gDDe7rUVW/giphy.gif",
+            "action": "deeplinkUrl",
+            "width": 500,
+            "height": 1010
+          }
+        ],
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/70/9e/7c/709e7c8789f2c02e066db575e36471a9--viva-luxury-leather-pants.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 750
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://cdn.laredoute.com/products/250by250/f/7/c/f7cd8b186892706edaad4b865ad9f913.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "banner_widget",
+      "id": "3",
+      "pagingEnabled": true,
+      "widthRatioToScreen": 1,
+      "imageWidth": 375,
+      "imageHeight": 154,
+      "isSelfScrolling": "",
+      "marginLeft": 0,
+      "marginRight": 0,
+      "bottomPaddingToSuperview": "",
+      "scrollTime": "",
+      "showPageControll": "",
+      "pageControlColor": false,
+      "isViewallHidden": "",
+      "isTimerHidden": "",
+      "viewAllfetchUrl": "",
+      "headerData": {
+        "headerTitle": "",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "name": "Banner One",
+          "iconName": "https://n1.sdlcdn.com/imgs/f/x/y/hsbcappcard-4bb41.jpg"
+        }
+      ],
+      "headerTitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "headerSubtitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "Footertitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      }
+    },
+    {
+      "type": "banner_widget",
+      "id": "men_fashion_banner_fullwidth",
+      "pagingEnabled": true,
+      "widthRatioToScreen": 1,
+      "imageWidth": 375,
+      "imageHeight": 278,
+      "isSelfScrolling": "",
+      "marginLeft": 5,
+      "marginRight": 5,
+      "bottomPaddingToSuperview": "",
+      "scrollTime": "",
+      "showPageControll": "",
+      "pageControlColor": "",
+      "isViewallHidden": "",
+      "isTimerHidden": "",
+      "viewAllfetchUrl": "",
+      "headerData": {
+        "headerTitle": "",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "name": "Banner Four",
+          "iconName": "https://rukminim1.flixcart.com/flap/718/534/image/45ac1e.jpg?q=90"
+        }
+      ],
+      "headerTitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "headerSubtitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "Footertitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      }
+    },
+    {
+      "type": "vertical_mix_widget",
+      "widgetId": "5",
+      "padding": 5,
+      "spacing": 10,
+      "data": [
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://rukminim1.flixcart.com/merch/352/536/images/1481809819752.jpg?q=90",
+            "action": "deeplinkUrl",
+            "width": 352,
+            "height": 536
+          }
+        ],
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://rukminim1.flixcart.com/merch/350/534/images/1496400133995.jpg?q=90",
+            "action": "deeplinkUrl",
+            "width": 352,
+            "height": 536
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "Footwears",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "vertical_mix_widget",
+      "widgetId": "5",
+      "padding": 10,
+      "spacing": 2,
+      "data": [
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/cc/34/17/cc34172c32ca286ab3a623a5d0fc8dea--herringbone-vest-jcrew.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 300
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/ca/e3/3e/cae33ea779fa8172b2d3c63aecbdf074--mens-shawl-collar-cardigan-sweater-cardigan.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 300
+          }
+        ],
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://media.giphy.com/media/qsAQiIBQmHdkI/giphy.gif",
+            "action": "deeplinkUrl",
+            "width": 500,
+            "height": 600
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "Men's Shirt",
+        "subTitle": "Under 499SAR",
+        "viewAllTitle": "BUY NOW",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "horizontal_mix_widget",
+      "widgetId": "all_categories",
+      "padding": 10,
+      "spacing": 2,
+      "data": [
+        [
+          {
+            "title": "Mobiles",
+            "imageUrl": "https://s2.postimg.org/xpcmt3ejd/icons8-_Earbud_Headphones_Filled-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "Home",
+            "imageUrl": "https://s1.postimg.org/phdvo568v/icons8-_Sofa_Filled-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "Sandals",
+            "imageUrl": "https://s1.postimg.org/lzbheujcv/icons8-_Women_Shoe_Diagonal_View_Filled-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "Laptops",
+            "imageUrl": "https://s1.postimg.org/dp2mhguzz/icons8-_Laptop_Filled-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "women's Fashion",
+            "imageUrl": "https://s1.postimg.org/5ae6v5fxb/icons8-_Hijab-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "Men's Fashion",
+            "imageUrl": "https://s2.postimg.org/r4zlu6p1l/icons8-_Arab-100_1.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          }
+        ],
+        [
+          {
+            "title": "jewelery",
+            "imageUrl": "https://s1.postimg.org/tb36f6nj3/icons8-_Ring_Side_View-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "Fragances",
+            "imageUrl": "https://s1.postimg.org/aacb8hly7/icons8-_Perfume_Bottle_Filled-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "women's Fashion",
+            "imageUrl": "https://s1.postimg.org/5ae6v5fxb/icons8-_Hijab-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "Men's Fashion",
+            "imageUrl": "https://s2.postimg.org/r4zlu6p1l/icons8-_Arab-100_1.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "Sandals",
+            "imageUrl": "https://s1.postimg.org/lzbheujcv/icons8-_Women_Shoe_Diagonal_View_Filled-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          },
+          {
+            "title": "Laptops",
+            "imageUrl": "https://s1.postimg.org/dp2mhguzz/icons8-_Laptop_Filled-100.png",
+            "action": "deeplinkUrl",
+            "width": 25,
+            "height": 25
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "Shop By Categories",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "horizontal_mix_widget",
+      "widgetId": "5",
+      "padding": 10,
+      "spacing": 2,
+      "data": [
+        [
+          {
+            "title": "iphone red \n starting from 289AED",
+            "imageUrl": "https://b.wadicdn.com/product/sa/48/1253/1-product.jpg",
+            "width": 277,
+            "height": 400
+          },
+          {
+            "title": "iphone black \n 100SAR Cashback",
+            "imageUrl": "https://b.wadicdn.com/product/94/1632/1-product.jpg",
+            "action": "deeplinkUrl",
+            "width": 277,
+            "height": 400
+          }
+        ],
+        [
+          {
+            "title": "One Plus 5 \n Upto 20% Cashback",
+            "imageUrl": "https://b.wadicdn.com/product/sa/53/9814/1-product.jpg",
+            "action": "deeplinkUrl",
+            "width": 277,
+            "height": 400
+          },
+          {
+            "title": "Galaxy S8 128 GB",
+            "imageUrl": "https://b.wadicdn.com/product/sa/87/1253/1-product.jpg",
+            "action": "deeplinkUrl",
+            "width": 277,
+            "height": 400
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "Recommended Mobiles!",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "vertical_mix_widget",
+      "widgetId": "5",
+      "padding": 10,
+      "spacing": 2,
+      "data": [
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51qBVza%2BoQL.jpg",
+            "action": "deeplinkUrl",
+            "width": 500,
+            "height": 502
+          }
+        ],
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/55/bf/94/55bf94250084c228a37ba73a82a29551.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/fa/82/79/fa8279d4c11024b8bb7d3be8ff928dc6--sports-green.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "Under 99SAR",
+        "SubTitle": "",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "horizontal_mix_widget",
+      "widgetId": "5",
+      "padding": 10,
+      "spacing": 2,
+      "data": [
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/fc/24/7b/fc247b948650420b2c410568d7791c19.jpg",
+            "action": "deeplinkUrl",
+            "width": 1002,
+            "height": 500
+          }
+        ],
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s1.postimg.org/sp73oeuv3/Screen_Shot_2017-07-31_at_10.47.24_AM.png",
+            "action": "deeplinkUrl",
+            "width": 200,
+            "height": 60
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s2.postimg.org/gj83yp1t5/Screen_Shot_2017-07-31_at_10.47.31_AM.png",
+            "action": "deeplinkUrl",
+            "width": 200,
+            "height": 60
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s2.postimg.org/gj83yp1t5/Screen_Shot_2017-07-31_at_10.47.31_AM.png",
+            "action": "deeplinkUrl",
+            "width": 200,
+            "height": 60
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s2.postimg.org/gj83yp1t5/Screen_Shot_2017-07-31_at_10.47.31_AM.png",
+            "action": "deeplinkUrl",
+            "width": 200,
+            "height": 60
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s2.postimg.org/gj83yp1t5/Screen_Shot_2017-07-31_at_10.47.31_AM.png",
+            "action": "deeplinkUrl",
+            "width": 200,
+            "height": 60
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "New in Fashion & LifeStyle",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "horizontal_mix_widget",
+      "widgetId": "10",
+      "padding": 10,
+      "spacing": 2,
+      "data": [
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s-media-cache-ak0.pinimg.com/originals/fc/24/7b/fc247b948650420b2c410568d7791c19.jpg",
+            "action": "deeplinkUrl",
+            "width": 1002,
+            "height": 500
+          }
+        ],
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "",
+            "action": "deeplinkUrl",
+            "width": 200,
+            "height": 0
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "",
+            "action": "deeplinkUrl",
+            "width": 200,
+            "height": 60
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "",
+            "action": "deeplinkUrl",
+            "width": 200,
+            "height": 60
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "",
+            "action": "deeplinkUrl",
+            "width": 200,
+            "height": 60
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "",
+            "action": "deeplinkUrl",
+            "width": 200,
+            "height": 60
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "New in Fashion & LifeStyle",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "horizontal_mix_widget",
+      "widgetId": "6",
+      "padding": 1,
+      "spacing": 2,
+      "data": [
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://rukminim1.flixcart.com/image/500/500/cycle/y/h/c/s365bbdbd01-hero-18-blade-original-imaemsqkxnqg4wz2.jpeg",
+            "action": "deeplinkUrl",
+            "width": 1002,
+            "height": 668
+          }
+        ],
+        [
+          {
+            "title": "Banner OneBanner OneBanner OneBanner OneBanner OneBanner OneBanner OneBanner One",
+            "imageUrl": "https://rukminim1.flixcart.com/image/500/500/cycle/y/h/c/s365bbdbd01-hero-18-blade-original-imaemsqkxnqg4wz2.jpeg",
+            "action": "deeplinkUrl",
+            "width": 500,
+            "height": 334
+          },
+          {
+            "title": "Banner OneBanner OneBanner OneBanner OneBanner OneBanner OneBanner OneBanner OneBanner One",
+            "imageUrl": "https://rukminim1.flixcart.com/image/500/500/cycle/y/h/c/s365bbdbd01-hero-18-blade-original-imaemsqkxnqg4wz2.jpeg",
+            "action": "deeplinkUrl",
+            "width": 500,
+            "height": 334
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "Shop for man",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "product_carousel_widget",
+      "topSpace": 5,
+      "widgetId": "7",
+      "data": [
+        {
+          "type": "product",
+          "unitType": "1/2/3/4/5",
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "",
+          "addToCart": true,
+          "progressBar": "",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "23",
+          "price": "1200",
+          "specialPrice": "1500",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/27/9621/2-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        },
+        {
+          "type": "product",
+          "unitType": "1/2/3/4/5",
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "BES GUARANTEE",
+          "addToCart": true,
+          "progressBar": "20",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "",
+          "price": "1800",
+          "specialPrice": "1500",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/27/9621/2-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        },
+        {
+          "type": "product",
+          "unitType": "1/2/3/4/5",
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "BEST PRICE GUARANTEE",
+          "addToCart": true,
+          "progressBar": "20",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "23",
+          "price": "1800",
+          "specialPrice": "1500",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/27/9621/2-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        },
+        {
+          "type": "product",
+          "unitType": "1/2/3/4/5",
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "BEST PRICE GUARANTEE",
+          "addToCart": true,
+          "progressBar": "",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "80",
+          "price": "1800",
+          "specialPrice": "2222",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/27/9621/2-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        },
+        {
+          "type": "product",
+          "unitType": "1/2/3/4/5",
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "BEST PRICE GUARANTEE",
+          "addToCart": true,
+          "progressBar": "20",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "23",
+          "price": "1800",
+          "specialPrice": "1500",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/27/9621/2-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        },
+        {
+          "type": "product",
+          "unitType": "1/2/3/4/5",
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "BEST PRICE GUARANTEE",
+          "addToCart": true,
+          "progressBar": "75",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "23",
+          "price": "1800",
+          "specialPrice": "1500",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/27/9621/2-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        },
+        {
+          "type": "product",
+          "unitType": "1/2/3/4/5",
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "BEST PRICE GUARANTEE",
+          "addToCart": true,
+          "progressBar": "45",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "23",
+          "price": "1800",
+          "specialPrice": "1500",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/27/9621/2-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        }
+      ],
+      "headerData": {
+        "headerTitle": "Product Carousel",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "product_list_widget",
+      "topSpace": 5,
+      "widgetId": "7",
+      "data": [
+        {
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "BEST PRICE GUARANTEE",
+          "addToCart": true,
+          "progressBar": "20",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "",
+          "price": "",
+          "specialPrice": "",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/27/9621/2-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        },
+        {
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "BEST PRICE GUARANTEE",
+          "addToCart": true,
+          "progressBar": "20",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "",
+          "price": "",
+          "specialPrice": "",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/27/9621/2-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        },
+        {
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "BEST PRICE GUARANTEE",
+          "addToCart": true,
+          "progressBar": "20",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "",
+          "price": "",
+          "specialPrice": "",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/27/9621/2-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        },
+        {
+          "sku": "AP771SM15AZO",
+          "brand": "Apple",
+          "title": "Apple iPhone 7 128 GB 2017 Jet Black With Cover",
+          "subTitle": "",
+          "stockQty": "",
+          "color": "",
+          "size": [],
+          "offerBadge": "BEST PRICE GUARANTEE",
+          "addToCart": true,
+          "progressBar": "20",
+          "expiryTime": "epochTime",
+          "startTime": "",
+          "starRating": "",
+          "discount": "20",
+          "price": "",
+          "specialPrice": "",
+          "dealPrice": "",
+          "imageUrl": "https://b.wadicdn.com/product/33/0053/1-product.jpg",
+          "action": "deeplinkUrl",
+          "is_promoted": true
+        }
+      ],
+      "headerData": {
+        "headerTitle": "Recommended Items",
+        "viewAllTitle": "2",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "offers_grid",
+      "topSpace": 5,
+      "widgetId": "7",
+      "data": [
+        {
+          "title": "Snacks & Backey ",
+          "imageUrl": "https://b.wadicdn.com/cms/phoenix/janhome/snack.jpg",
+          "action": "deeplinkUrl",
+          "subtitle": [
+            {
+              "text": "Minimum",
+              "fontSize": "",
+              "isBold": false,
+              "isItalics": true,
+              "background": "",
+              "titleColor": "#0DA39A"
+            },
+            {
+              "text": "30% off",
+              "fontSize": "",
+              "isBold": false,
+              "isItalics": true,
+              "background": "",
+              "titleColor": ""
+            }
+          ]
+        },
+        {
+          "title": "Beverages",
+          "imageUrl": "https://b.wadicdn.com/cms/phoenix/janhome/Beverage.jpg",
+          "action": "deeplinkUrl",
+          "subtitle": [
+            {
+              "text": "Starting from",
+              "fontSize": "",
+              "isBold": false,
+              "isItalics": false,
+              "background": "",
+              "titleColor": ""
+            },
+            {
+              "text": "9 SAR",
+              "fontSize": "",
+              "isBold": true,
+              "isItalics": false,
+              "backgroundColor": "",
+              "titleColor": ""
+            }
+          ]
+        },
+        {
+          "title": "Cleaning and Laundary",
+          "imageUrl": "https://b.wadicdn.com/cms/phoenix/janhome/Cleaning.jpg",
+          "action": "deeplinkUrl",
+          "subtitle": [
+            {
+              "text": "Detergent, Softner & more",
+              "fontSize": "",
+              "isBold": false,
+              "isItalics": false,
+              "backgroundColor": "",
+              "titleColor": "#0DA39A"
+            },
+            {
+              "text": "",
+              "fontSize": "",
+              "isBold": true,
+              "isItalics": false,
+              "backgroundColor": "",
+              "titleColor": ""
+            }
+          ]
+        },
+        {
+          "title": "Personal Appliance",
+          "imageUrl": "https://b.wadicdn.com/cms/phoenix/janhome/personalcare.jpg",
+          "action": "deeplinkUrl",
+          "subtitle": [
+            {
+              "text": "25% OFF",
+              "fontSize": "",
+              "isBold": true,
+              "isItalics": false,
+              "backgroundColor": "#ffd832",
+              "titleColor": ""
+            }
+          ]
+        }
+      ],
+      "headerData": {
+        "headerTitle": "Offers grid",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "tabs_text_widget",
+      "style": {
+        "tabBackgroundColor": "purple",
+        "backgroundColor": "white",
+        "selectedBackgroundColor": "green",
+        "bottomBorderColor": "white",
+        "selectedBottomBorderColor": "red",
+        "height": 40,
+        "width": 100,
+        "fontColor": "black",
+        "selectedFontColor": "white"
+      },
+      "data": [
+        {
+          "action": "deeplink",
+          "title": "Men",
+          "subtitle": "Shirts",
+          "iconUrl": "https://cdn4.iconfinder.com/data/icons/clothes-and-accessories-men-and-women/1024/full-shirt-256.png",
+          "isSelected": false
+        },
+        {
+          "action": "deeplink",
+          "title": "Women",
+          "subtitle": "Top",
+          "iconUrl": "https://cdn4.iconfinder.com/data/icons/clothes-and-accessories-men-and-women/1024/full-shirt-256.png",
+          "isSelected": true
+        },
+        {
+          "action": "deeplink",
+          "title": "Kids",
+          "subtitle": "Shorts",
+          "iconUrl": "",
+          "isSelected": false
+        },
+        {
+          "action": "deeplink",
+          "title": "Girls",
+          "subtitle": "",
+          "iconUrl": "",
+          "isSelected": false
+        },
+        {
+          "action": "deeplink",
+          "title": "",
+          "subtitle": "Jeans",
+          "iconUrl": "https://cdn4.iconfinder.com/data/icons/clothes-and-accessories-men-and-women/1024/full-shirt-256.png",
+          "isSelected": false
+        },
+        {
+          "action": "deeplink",
+          "title": "Babies",
+          "subtitle": "Diaper",
+          "iconUrl": "https://b.wadicdn.com/product/02/7172/1-zoom.jpg",
+          "isSelected": false
+        }
+      ]
+    },
+    {
+      "type": "banner_widget",
+      "id": "1",
+      "pagingEnabled": false,
+      "widthRatioToScreen": 1,
+      "imageWidth": 399,
+      "imageHeight": 142,
+      "isSelfScrolling": "",
+      "marginLeft": 0,
+      "marginRight": 0,
+      "bottomPaddingToSuperview": "",
+      "scrollTime": "",
+      "showPageControll": "",
+      "pageControlColor": false,
+      "isViewallHidden": "",
+      "isTimerHidden": "",
+      "viewAllfetchUrl": "",
+      "data": [
+        {
+          "name": "Banner One",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/dk_samsung_sports_S8_sa_en.jpg"
+        }
+      ],
+      "headerTitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "headerSubtitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "headerData": {
+        "headerTitle": "Exclusive Offers!",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      },
+      "Footertitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      }
+    },
+    {
+      "type": "vertical_mix_widget",
+      "widgetId": "5",
+      "padding": 10,
+      "spacing": 2,
+      "data": [
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/c0/ed/f0/c0edf014e15a6e270776b1e5b21ebcc2.jpg",
+            "action": "deeplinkUrl",
+            "width": 500,
+            "height": 1006
+          }
+        ],
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Ffthtsi-assets-production%2Fez%2Fimages%2F2%2F9%2F5%2F4%2F54592-1-eng-GB%2Fsquare_c187ba59-ab1c-4342-9381-6e296bc3b23f.jpg?width=125&height=125&dpr=2&format=jpg&source=htsi",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://3.imimg.com/data3/GM/HD/MY-4518709/western-wear-for-women-250x250.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://images.sassique.com/womens-style-inspiration-light-coats-puffer-coats-orange-prints-thumb-2183039",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://cdn.laredoute.com/products/250by250/f/7/c/f7cd8b186892706edaad4b865ad9f913.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "New in  Men Fashion & LifeStyle",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "vertical_mix_widget",
+      "widgetId": "1X1 banner",
+      "padding": 0,
+      "spacing": 2,
+      "data": [
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/15/0e/a5/150ea5e5c6c0961991cfc053cc2fc65d--black-tights-black-booties.jpg",
+            "action": "deeplinkUrl",
+            "width": 500,
+            "height": 1006
+          }
+        ],
+        [
+          {
+            "title": "Banner One",
+            "imageUrl": "https://www.ft.com/__origami/service/image/v2/images/raw/http%3A%2F%2Fs3-eu-west-1.amazonaws.com%2Ffthtsi-assets-production%2Fez%2Fimages%2F2%2F9%2F5%2F4%2F54592-1-eng-GB%2Fsquare_c187ba59-ab1c-4342-9381-6e296bc3b23f.jpg?width=125&height=125&dpr=2&format=jpg&source=htsi",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://3.imimg.com/data3/GM/HD/MY-4518709/western-wear-for-women-250x250.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://images.sassique.com/womens-style-inspiration-light-coats-puffer-coats-orange-prints-thumb-2183039",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          },
+          {
+            "title": "Banner One",
+            "imageUrl": "https://cdn.laredoute.com/products/250by250/f/7/c/f7cd8b186892706edaad4b865ad9f913.jpg",
+            "action": "deeplinkUrl",
+            "width": 250,
+            "height": 250
+          }
+        ]
+      ],
+      "headerData": {
+        "headerTitle": "Trendy Footwears",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "product_Carousel",
+      "id": "",
+      "title": "Exclusive Offers on Smartphones",
+      "Color": "#000000",
+      "limit": "16",
+      "isViewallHidden": "",
+      "viewAllfetchUrl": "",
+      "isSelfScrolling": "",
+      "scrollDirection": "horizontal/vertical",
+      "scrollTime": "",
+      "productPerRow": "",
+      "isCheckoutEnabled": "",
+      "checkoutAmount": "",
+      "headerData": {
+        "headerTitle": "Exclusive Offers!",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "iconName": "https://b.wadicdn.com/product/02/7172/1-zoom.jpg",
+          "fetchUrl": "",
+          "productName": "iPhone for shashank",
+          "originalPrice": "50,000 SAR",
+          "sellingPrice": "25,000",
+          "percentOff": "50%"
+        },
+        {
+          "iconName": "https://b.wadicdn.com/product/68/396/1-product.jpg",
+          "fetchUrl": "",
+          "productName": "watch for Shashank",
+          "originalPrice": "15,000 SAR",
+          "sellingPrice": "",
+          "percentOff": ""
+        },
+        {
+          "iconName": "https://b.wadicdn.com/product/96/1443/6-product.jpg",
+          "fetchUrl": "",
+          "productName": "sleeper for shashank",
+          "originalPrice": "2000 SAR",
+          "sellingPrice": "100",
+          "percentOff": "50%"
+        }
+      ]
+    },
+    {
+      "type": "banner_widget",
+      "id": "2",
+      "pagingEnabled": false,
+      "widthRatioToScreen": 0.5,
+      "imageWidth": 400,
+      "imageHeight": 400,
+      "isSelfScrolling": "",
+      "marginLeft": 5,
+      "marginRight": 5,
+      "bottomPaddingToSuperview": "",
+      "scrollTime": "",
+      "showPageControll": "",
+      "pageControlColor": false,
+      "isViewallHidden": "",
+      "isTimerHidden": "",
+      "viewAllfetchUrl": "",
+      "headerData": {
+        "headerTitle": "Exclusive Offers!",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "name": "Banner One",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/personalappliances_1july_en.jpg"
+        },
+        {
+          "name": "Banner Two",
+          "iconName": "https://s-media-cache-ak0.pinimg.com/originals/fd/d4/df/fdd4df76b8e98c92c7d60549892030a9.jpg"
+        },
+        {
+          "name": "Banner Three",
+          "iconName": "https://tilemill-project.github.io/tilemill/assets/pages/comp-op/ex_1_1.png"
+        },
+        {
+          "name": "Banner Four",
+          "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+        }
+      ],
+      "headerTitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "headerSubtitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "Footertitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      }
+    },
+    {
+      "type": "banner_widget",
+      "id": "4",
+      "pagingEnabled": false,
+      "widthRatioToScreen": 0.9,
+      "imageWidth": 400,
+      "imageHeight": 200,
+      "isSelfScrolling": "",
+      "marginLeft": 5,
+      "marginRight": 5,
+      "bottomPaddingToSuperview": "",
+      "scrollTime": "",
+      "showPageControll": "",
+      "pageControlColor": "",
+      "isViewallHidden": "",
+      "isTimerHidden": "",
+      "viewAllfetchUrl": "",
+      "headerData": {
+        "headerTitle": "",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "name": "Banner One",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/oneplus5launch_en.jpg"
+        },
+        {
+          "name": "Banner Two",
+          "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+        },
+        {
+          "name": "Banner Three",
+          "iconName": "https://tilemill-project.github.io/tilemill/assets/pages/comp-op/ex_1_1.png"
+        },
+        {
+          "name": "Banner Four",
+          "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+        }
+      ],
+      "headerTitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "headerSubtitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "Footertitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      }
+    },
+    {
+      "type": "banner_widget",
+      "id": "5",
+      "pagingEnabled": false,
+      "widthRatioToScreen": 1,
+      "imageWidth": 375,
+      "imageHeight": 146,
+      "isSelfScrolling": "",
+      "marginLeft": 0,
+      "marginRight": 0,
+      "bottomPaddingToSuperview": "",
+      "scrollTime": "",
+      "showPageControll": "",
+      "pageControlColor": "",
+      "isViewallHidden": "",
+      "isTimerHidden": "",
+      "viewAllfetchUrl": "",
+      "headerData": {
+        "headerTitle": "",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "name": "Banner Three",
+          "iconName": "https://rukminim1.flixcart.com/flap/750/292/image/934c1d.jpg?q=90"
+        }
+      ],
+      "headerTitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "headerSubtitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "Footertitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      }
+    },
+    {
+      "type": "banner_widget",
+      "id": "7",
+      "pagingEnabled": false,
+      "widthRatioToScreen": 0.4,
+      "imageWidth": 400,
+      "imageHeight": 200,
+      "isSelfScrolling": "",
+      "marginLeft": 10,
+      "marginRight": 0,
+      "bottomPaddingToSuperview": "",
+      "scrollTime": "",
+      "showPageControll": "",
+      "pageControlColor": "",
+      "isViewallHidden": "",
+      "isTimerHidden": "",
+      "viewAllfetchUrl": "",
+      "headerData": {
+        "headerTitle": "",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "name": "Banner One",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/oneplus5launch_en.jpg"
+        },
+        {
+          "name": "Banner Two",
+          "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+        },
+        {
+          "name": "Banner Three",
+          "iconName": "https://tilemill-project.github.io/tilemill/assets/pages/comp-op/ex_1_1.png"
+        },
+        {
+          "name": "Banner Four",
+          "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+        }
+      ],
+      "headerTitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "headerSubtitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "Footertitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      }
+    },
+    {
+      "type": "track_order_widget",
+      "style": {
+        "backgroundColor": "#EAEAEA",
+        "selectedBackgroundColor": "#1AB4B1",
+        "fontColor": "#9C9C9C",
+        "selectedFontColor": "#FFFFFF"
+      },
+      "data": [
+        {
+          "action": "deeplink",
+          "title": "jeans",
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/f9/40/8b/f9408bd4aa89f95448732ebe59180f71--golf-stores-golf-shop.jpg",
+          "statusData": [
+            "Confirmed",
+            "Shipped",
+            "Delivered"
+          ],
+          "currentStatus": 2
+        },
+        {
+          "action": "deeplink",
+          "title": "shirt",
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/f9/40/8b/f9408bd4aa89f95448732ebe59180f71--golf-stores-golf-shop.jpg",
+          "statusData": [
+            "Confirmed",
+            "Shipped",
+            "Delivered"
+          ],
+          "currentStatus": 1
+        },
+        {
+          "action": "deeplink",
+          "title": "shoes",
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/c2/db/93/c2db93eef10041008256f9718301365f--hockey-shoes-adidas-response.jpg",
+          "statusData": [
+            "Confirmed",
+            "Shipped",
+            "Delivered"
+          ],
+          "currentStatus": 3
+        }
+      ],
+      "headerData": {
+        "headerTitle": "Track your orders",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "cart_widget",
+      "style": {
+        "backgroundColor": "#EAEAEA",
+        "selectedBackgroundColor": "#1AB4B1",
+        "fontColor": "#9C9C9C",
+        "selectedFontColor": "#FFFFFF"
+      },
+      "data": [
+        {
+          "action": "deeplink",
+          "title": "jeans",
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/f9/40/8b/f9408bd4aa89f95448732ebe59180f71--golf-stores-golf-shop.jpg",
+          "price": 1299,
+          "specialPrice": 1199,
+          "discount": 30,
+          "discountBackgroundColor": "#1AB4B1"
+        },
+        {
+          "action": "deeplink",
+          "title": "shirt",
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/f9/40/8b/f9408bd4aa89f95448732ebe59180f71--golf-stores-golf-shop.jpg",
+          "price": 1299,
+          "specialPrice": 1199,
+          "discount": 30,
+          "discountBackgroundColor": "#1AB4B1"
+        },
+        {
+          "action": "deeplink",
+          "title": "shoes",
+          "imageUrl": "https://s-media-cache-ak0.pinimg.com/736x/c2/db/93/c2db93eef10041008256f9718301365f--hockey-shoes-adidas-response.jpg",
+          "price": 1299,
+          "specialPrice": 1199,
+          "discount": 30,
+          "discountBackgroundColor": "#1AB4B1"
+        }
+      ],
+      "headerData": {
+        "headerTitle": "Items in your cart",
+        "viewAllTitle": "",
+        "viewAllfetchUrl": "http://"
+      }
+    },
+    {
+      "type": "richHtml_Widget",
+      "headerData": {
+        "headerTitle": "Rich html widget",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": "<div> <h1 id=\"mcetoc_1bn0tf5dm0\" style='text-alig:center;'><span style=\"color: #ff0000;\">10% Instant Discount</span></h1><h2 id=\"mcetoc_1bn0tg5781\" style=\"text-align: center;\">Using AXIS Bank</h2><h2 id=\"mcetoc_1bn0tgpl02\" style=\"text-align: center;\"><span style=\"color: #0000ff;\"><em>Credit &amp; Debit Card</em></span></h2></div>"
+    },
+    {
+      "type": "text_widget",
+      "headerData": {
+        "headerTitle": "Text widget",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "title": "This is a dummy text.",
+          "fontSize": 16,
+          "titleColor": "#ffd832",
+          "isBold": true,
+          "isItalics": false
+        },
+        {
+          "title": "This is a dummy text.",
+          "fontSize": 10,
+          "titleColor": "#ffd832",
+          "isBold": false,
+          "isItalics": true
+        },
+        {
+          "title": "This is a dummy text.",
+          "fontSize": 12,
+          "titleColor": "",
+          "isBold": false,
+          "isItalics": true
+        },
+        {
+          "title": "This is a dummy text.",
+          "fontSize": 10,
+          "titleColor": "#ffd832",
+          "isBold": false,
+          "isItalics": true
+        },
+        {
+          "title": "This is a dummy text.",
+          "fontSize": 10,
+          "titleColor": "#ffd832",
+          "isBold": true,
+          "isItalics": true
+        }
+      ]
+    },
+    {
+      "type": "banner_widget",
+      "id": "8",
+      "pagingEnabled": false,
+      "widthRatioToScreen": 0.9,
+      "imageWidth": 400,
+      "imageHeight": 200,
+      "isSelfScrolling": "",
+      "marginLeft": 5,
+      "marginRight": 5,
+      "bottomPaddingToSuperview": "",
+      "scrollTime": "",
+      "showPageControll": "",
+      "pageControlColor": "",
+      "isViewallHidden": "",
+      "isTimerHidden": "",
+      "viewAllfetchUrl": "",
+      "headerData": {
+        "headerTitle": "Exclusive Offers!",
+        "viewAllTitle": "View All",
+        "viewAllfetchUrl": "http://"
+      },
+      "data": [
+        {
+          "name": "Banner One",
+          "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/oneplus5launch_en.jpg"
+        },
+        {
+          "name": "Banner Two",
+          "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+        },
+        {
+          "name": "Banner Three",
+          "iconName": "https://tilemill-project.github.io/tilemill/assets/pages/comp-op/ex_1_1.png"
+        },
+        {
+          "name": "Banner Four",
+          "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+        }
+      ],
+      "headerTitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "headerSubtitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      },
+      "Footertitle": {
+        "title": "",
+        "alignment": "",
+        "fontSize": "",
+        "color": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,493 @@
+{
+    "totalCount": "",
+    "spacesBetweenWidgets": "",
+    "Widgets": [
+        {
+            "type": "banne_widget",
+            "id": "1",
+            "pagingEnabled": false,
+            "widthRatioToScreen": 1.0,
+            "imageWidth": 399,
+            "imageHeight": 142,
+            "isSelfScrolling": "",
+            "marginLeft": 0,
+            "marginRight": 0,
+            "bottomPaddingToSuperview": "",
+            "scrollTime": "",
+            "showPageControll": "",
+            "pageControlColor": false,
+            "isViewallHidden": "",
+            "isTimerHidden": "",
+            "viewAllfetchUrl": "",
+            "data": [
+                {
+                    "name": "Banner One",
+                    "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/dk_samsung_sports_S8_sa_en.jpg"
+                }
+            ],
+            "headerTitle": {
+                "title": "this one is getting rendered",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "headerSubtitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "headerData": {
+                "headerTitle": "Exclusive Offers!",
+                "viewAllTitle": "View All",
+                "viewAllfetchUrl": "http://"
+            },
+            "Footertitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            }
+        },
+        {
+			"type": "product_Carousel",
+			"id": "",
+			"title": "Exclusive Offers on Smartphones",
+			"Color": "#000000",
+			"limit": "16",
+			"isViewallHidden": "",
+			"viewAllfetchUrl": "",
+			"isSelfScrolling": "",
+			"scrollDirection": "horizontal/vertical",
+			"scrollTime": "",
+			"productPerRow": "",
+			"isCheckoutEnabled": "",
+            "checkoutAmount": "",
+             "headerData": {
+                "headerTitle": "Exclusive Offers!",
+                "viewAllTitle": "View All",
+                "viewAllfetchUrl": "http://"
+            },
+			"data": [{
+				"iconName": "https://b.wadicdn.com/product/02/7172/1-zoom.jpg",
+				"fetchUrl": "",
+				"productName": "iPhone for shashank",
+				"originalPrice": "50,000 SAR",
+				"sellingPrice": "25,000",
+				"percentOff": "50%"
+			}, {
+				"iconName": "https://b.wadicdn.com/product/68/396/1-product.jpg",
+				"fetchUrl": "",
+				"productName": "watch for Shashank",
+				"originalPrice": "15,000 SAR",
+				"sellingPrice": "",
+				"percentOff": ""
+			},
+            {
+				"iconName": "https://b.wadicdn.com/product/96/1443/6-product.jpg",
+				"fetchUrl": "",
+				"productName": "sleeper for shashank",
+				"originalPrice": "2000 SAR",
+				"sellingPrice": "100",
+				"percentOff": "50%"
+			}]
+		},
+        {
+            "type": "banne_widget",
+            "id": "2",
+            "pagingEnabled": false,
+            "widthRatioToScreen": 0.50,
+            "imageWidth": 400,
+            "imageHeight": 400,
+            "isSelfScrolling": "",
+            "marginLeft": 5,
+            "marginRight": 5,
+            "bottomPaddingToSuperview": "",
+            "scrollTime": "",
+            "showPageControll": "",
+            "pageControlColor": false,
+            "isViewallHidden": "",
+            "isTimerHidden": "",
+            "viewAllfetchUrl": "",
+            "headerData": {
+                "headerTitle": "Exclusive Offers!",
+                "viewAllTitle": "View All",
+                "viewAllfetchUrl": "http://"
+            },
+            "data": [
+                {
+                    "name": "Banner One",
+                    "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/personalappliances_1july_en.jpg"
+                },
+                {
+                    "name": "Banner Two",
+                    "iconName": "https://s-media-cache-ak0.pinimg.com/originals/fd/d4/df/fdd4df76b8e98c92c7d60549892030a9.jpg"
+                },
+                {
+                    "name": "Banner Three",
+                    "iconName": "https://tilemill-project.github.io/tilemill/assets/pages/comp-op/ex_1_1.png"
+                },
+                {
+                    "name": "Banner Four",
+                    "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+                }
+            ],
+            "headerTitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "headerSubtitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "Footertitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            }
+        },
+        {
+            "type": "banne_widget",
+            "id": "3",
+            "pagingEnabled": true,
+            "widthRatioToScreen": 1.0,
+            "imageWidth": 600,
+            "imageHeight": 300,
+            "isSelfScrolling": "",
+            "marginLeft": 0,
+            "marginRight": 0,
+            "bottomPaddingToSuperview": "",
+            "scrollTime": "",
+            "showPageControll": "",
+            "pageControlColor": false,
+            "isViewallHidden": "",
+            "isTimerHidden": "",
+            "viewAllfetchUrl": "",
+            "headerData": {
+                "headerTitle": "",
+                "viewAllTitle": "",
+                "viewAllfetchUrl": "http://"
+            },
+            "data": [
+                {
+                    "name": "Banner One",
+                    "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/dk_samsung_sports_S8_sa_en.jpg"
+                },
+                {
+                    "name": "Banner One",
+                    "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/personalappliances_1july_en.jpg"
+                },
+                {
+                    "name": "Banner Four",
+                    "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+                }
+            ],
+            "headerTitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "headerSubtitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "Footertitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            }
+        },
+        {
+            "type": "banne_widget",
+            "id": "4",
+            "pagingEnabled": false,
+            "widthRatioToScreen": 0.90,
+            "imageWidth": 400,
+            "imageHeight": 200,
+            "isSelfScrolling": "",
+            "marginLeft": 5,
+            "marginRight": 5,
+            "bottomPaddingToSuperview": "",
+            "scrollTime": "",
+            "showPageControll": "",
+            "pageControlColor": "",
+            "isViewallHidden": "",
+            "isTimerHidden": "",
+            "viewAllfetchUrl": "",
+            "headerData": {
+                "headerTitle": "",
+                "viewAllTitle": "",
+                "viewAllfetchUrl": "http://"
+            },
+            "data": [
+                {
+                    "name": "Banner One",
+                    "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/oneplus5launch_en.jpg"
+                },
+                {
+                    "name": "Banner Two",
+                    "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+                },
+                {
+                    "name": "Banner Three",
+                    "iconName": "https://tilemill-project.github.io/tilemill/assets/pages/comp-op/ex_1_1.png"
+                },
+                {
+                    "name": "Banner Four",
+                    "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+                }
+            ],
+            "headerTitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "headerSubtitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "Footertitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            }
+        },
+        {
+            "type": "banne_widget",
+            "id": "5",
+            "pagingEnabled": false,
+            "widthRatioToScreen": 1.0,
+            "imageWidth": 200,
+            "imageHeight": 25,
+            "isSelfScrolling": "",
+            "marginLeft": 0,
+            "marginRight": 0,
+            "bottomPaddingToSuperview": "",
+            "scrollTime": "",
+            "showPageControll": "",
+            "pageControlColor": "",
+            "isViewallHidden": "",
+            "isTimerHidden": "",
+            "viewAllfetchUrl": "",
+            "headerData": {
+                "headerTitle": "",
+                "viewAllTitle": "",
+                "viewAllfetchUrl": "http://"
+            },
+            "data": [
+                {
+                    "name": "Banner Three",
+                    "iconName": "https://tilemill-project.github.io/tilemill/assets/pages/comp-op/ex_1_1.png"
+                }
+            ],
+            "headerTitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "headerSubtitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "Footertitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            }
+        },
+        {
+            "type": "banne_widget",
+            "id": "6",
+            "pagingEnabled": true,
+            "widthRatioToScreen": 1.0,
+            "imageWidth": 50,
+            "imageHeight": 50,
+            "isSelfScrolling": "",
+            "marginLeft": 5,
+            "marginRight": 5,
+            "bottomPaddingToSuperview": "",
+            "scrollTime": "",
+            "showPageControll": "",
+            "pageControlColor": "",
+            "isViewallHidden": "",
+            "isTimerHidden": "",
+            "viewAllfetchUrl": "",
+            "headerData": {
+                "headerTitle": "",
+                "viewAllTitle": "",
+                "viewAllfetchUrl": "http://"
+            },
+            "data": [
+                {
+                    "name": "Banner Four",
+                    "iconName": "https://media.licdn.com/mpr/mpr/shrink_200_200/AAEAAQAAAAAAAAgAAAAAJDA1NWEwNzNmLWY1NzYtNDU3OC05MThjLTQ3ZTdkNDJlMDFiMA.png"
+                },
+                {
+                    "name": "Banner One",
+                    "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/oneplus5launch_en.jpg"
+                },
+                {
+                    "name": "Banner Two",
+                    "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+                },
+                {
+                    "name": "Banner Three",
+                    "iconName": "https://tilemill-project.github.io/tilemill/assets/pages/comp-op/ex_1_1.png"
+                }
+            ],
+            "headerTitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "headerSubtitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "Footertitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            }
+        },
+        {
+            "type": "banne_widget",
+            "id": "7",
+            "pagingEnabled": false,
+            "widthRatioToScreen": 0.40,
+            "imageWidth": 400,
+            "imageHeight": 200,
+            "isSelfScrolling": "",
+            "marginLeft": 10,
+            "marginRight": 0,
+            "bottomPaddingToSuperview": "",
+            "scrollTime": "",
+            "showPageControll": "",
+            "pageControlColor": "",
+            "isViewallHidden": "",
+            "isTimerHidden": "",
+            "viewAllfetchUrl": "",
+            "headerData": {
+                "headerTitle": "",
+                "viewAllTitle": "",
+                "viewAllfetchUrl": "http://"
+            },
+            "data": [
+                {
+                    "name": "Banner One",
+                    "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/oneplus5launch_en.jpg"
+                },
+                {
+                    "name": "Banner Two",
+                    "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+                },
+                {
+                    "name": "Banner Three",
+                    "iconName": "https://tilemill-project.github.io/tilemill/assets/pages/comp-op/ex_1_1.png"
+                },
+                {
+                    "name": "Banner Four",
+                    "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+                }
+            ],
+            "headerTitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "headerSubtitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "Footertitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            }
+        },
+        {
+            "type": "banne_widget",
+            "id": "8",
+            "pagingEnabled": false,
+            "widthRatioToScreen": 0.90,
+            "imageWidth": 400,
+            "imageHeight": 200,
+            "isSelfScrolling": "",
+            "marginLeft": 5,
+            "marginRight": 5,
+            "bottomPaddingToSuperview": "",
+            "scrollTime": "",
+            "showPageControll": "",
+            "pageControlColor": "",
+            "isViewallHidden": "",
+            "isTimerHidden": "",
+            "viewAllfetchUrl": "",
+            "headerData": {
+                "headerTitle": "Exclusive Offers!",
+                "viewAllTitle": "View All",
+                "viewAllfetchUrl": "http://"
+            },
+            "data": [
+                {
+                    "name": "Banner One",
+                    "iconName": "https://b.wadicdn.com/cms/phoenix/janhome/oneplus5launch_en.jpg"
+                },
+                {
+                    "name": "Banner Two",
+                    "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+                },
+                {
+                    "name": "Banner Three",
+                    "iconName": "https://tilemill-project.github.io/tilemill/assets/pages/comp-op/ex_1_1.png"
+                },
+                {
+                    "name": "Banner Four",
+                    "iconName": "https://www.noupe.com/wp-content/uploads/2011/12/seamlesspattern52.jpg"
+                }
+            ],
+            "headerTitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "headerSubtitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            },
+            "Footertitle": {
+                "title": "",
+                "alignment": "",
+                "fontSize": "",
+                "color": ""
+            }
+        }
+    ]
+}

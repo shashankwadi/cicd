@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html class="ios">
+  <head>
+    <title>Wadi.com</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <!-- <meta name="viewport" content="initial-scale=1, width=device-width, height=device-height, viewport-fit=cover"> -->
+    <meta name="google-site-verification" content="CgmAf2IIyDYgdQXl9MfXP9dA92KjCwVe07ZdmnvJ10k" />
+    <meta name="keywords" content="mobiles, electronics, clothes online, shoes online, online fashion shopping, online fashion, Shoes, Men Shoes, Women Shoes, Footwear, Clothes, Apparel, Clothing, Fashion, Sports, Top Brands, accessories, gift" />
+    <meta name="description" content="Online shopping in Saudi Arabia - Shop online for Mobile Phones, Laptops, Digital Cameras &amp; more at Wadi" />
+    <meta name="google-signin-client_id" content="1034143548269-us4drm7upkqgsdpe3835n63k77ick6vl.apps.googleusercontent.com" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <meta name="theme-color" content="#0FB0AA">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0FB0AA">
+    <meta name="apple-mobile-web-app-title" content="Wadi">
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *"> -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <link rel="preconnect" href="">
+    <link rel="dns-prefetch" href="">
+    <!-- <link rel="apple-touch-icon" href="favicon.ico"> -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- Favicon -->
+    <!-- <link type="image/x-icon" href="favicon.ico" rel="shortcut icon"> -->
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="styles/site.css">
+    <link rel="stylesheet" href="styles/lib/wadicons.css">
+    <link rel="stylesheet" href="styles/ext/framework7-icons.css">
+
+    <style>
+        .splash img {
+            max-width: 100%;
+        }
+
+        .ios-nav .toolbar {
+            background: #FFFFFF;
+        }
+
+        .ios-nav .toolbar .toolbar-inner {
+            bottom: constant(safe-area-inset-bottom); /* iOS 11.0 */
+            bottom: env(safe-area-inset-bottom); /* iOS 11.2 */
+        }
+
+        /* #wadi {
+            position: fixed;
+            overflow-y: scroll;
+        } */
+    </style>
+
+    <!-- Script Libraries -->
+    <script>
+        window.dataLayer=[];
+        window.dataLayer.push({ 'version': 'checkout-v2', 'platform': 'ios' });
+        window.config = {
+            device: 'mobile',
+            lang: 'en',
+            country: 'sa',
+            platform: 'ios',
+            isApp: true
+        };
+        window.Polymer = { dom: 'shady', lazyRegister: true, passiveTouchGestures: true };
+        window.translate = function (value) { return value; };
+    </script>
+    <script src="ext/onDeviceReady.js"></script>
+    <script>
+      document.addEventListener('deviceready', XD.init, false);
+    </script>
+    <script src="app-launch-v3.js"></script>
+    <script src="ext/swiper.min.js"></script>
+    <!-- Test FastClick -->
+    <script src="ext/fastclick.js"></script>
+
+    <link rel="import" href="components/elements.html">
+  </head>
+  <body aurelia-app="main">
+    This is Dummy text
+    <div id="wadi">
+        <div class="splash">
+            <!-- <img src="images/splash.png" alt="Loading..." /> -->
+            <img src="images/launch-screens/Default-2436h.png" alt="Loading..." />
+        </div>
+        <script src="cordova.js"></script>
+        <script src="wadi.bundle.js"></script>
+        <script>
+            document.addEventListener('load', function() {
+                // FastClick.attach('.ios-nav');
+                // FastClick.attach('.ios-nav toolbar');
+                // FastClick.attach('.search-element-class');
+                new FastClick(document.body);
+                new FastClick('.ios-nav toolbar');
+                new FastClick('.search-element-class');
+            }, false);
+        </script>
+    </div>
+    <!-- <script>
+        window.myScroll = new IScroll('#wrapper', {
+            freeScroll: true,
+            HWCompositing: false,
+            scrollbars: true
+        });
+    </script> -->
+
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WVN4ZWN');</script>
+  </body>
+</html>

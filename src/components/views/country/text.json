@@ -1,0 +1,21 @@
+{
+  "en":{
+    "choose_your_country": "Select your country",
+    "choose_your_language": "Select your language",
+    "apply_btn": "Apply",
+    "arabic": "العربية",
+    "english": "English",
+    "coming_soon": "Coming Soon",
+    "country_language":"Country & Language"
+  },
+  "ar":{
+    "choose_your_country": "١. اختر البلد",
+    "choose_your_language": "٢. اختر اللغة",
+    "apply_btn": "اختر",
+    "arabic": "العربية",
+    "english": "English",
+    "coming_soon":"قريباً",
+    "country_language":"الدولة واللغة"
+
+  }
+}

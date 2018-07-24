@@ -1,0 +1,25 @@
+export const WidgetActions = {
+    'banner_widget': 'banner_widget_tap',
+    'tabs_text_widget': 'tabs_text_widget_tap',
+    'horizontal_mix_widget': 'horizontal_mix_widget_tap',
+    'vertical_mix_widget': 'vertical_mix_widget_tap',
+    'track_order_widget': 'track_order_widget_tap',
+    'product_carousel_widget': 'product_carousel_widget_tap',
+    'product_grid_widget': 'product_grid_widget_tap',
+    'product_list_widget': 'product_list_widget_tap',
+    'offers_grid': 'offers_grid_tap',
+    'cart_widget': 'cart_widget_tap',
+    'wishlist_widget': 'wishlist_widget_tap',
+    'text_widget': 'text_widget_tap',
+    'super_smashing_product': 'super_smashing_product_tap',
+    'banner_with_grid' : 'banner_with_grid_tap',
+    'video_banner': 'video_banner_tap',
+    'flash_sale_widget': 'flash_sale_widget_tap',
+
+    //for doodle based homepage
+    'carousel-element':'carousel-element_tap',
+    'category-links-element':'category-links-element_tap',
+    'products-carousel-element':'products-carousel-element_tap',
+    'banner-element':'banner-element_tap',
+    'info-element':'info-element_tap',
+  };

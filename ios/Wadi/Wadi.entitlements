@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>aps-environment</key>
+	<string>development</string>
+	<key>com.apple.developer.associated-domains</key>
+	<array>
+		<string>applinks:en-sa.wadi.com</string>
+		<string>applinks:ar-sa.wadi.com</string>
+		<string>applinks:en-ae.wadi.com</string>
+		<string>applinks:ar-ae.wadi.com</string>
+		<string>applinks:wadi.com</string>
+		<string>applinks:www.wadi.com</string>
+		<string>applinks:track.wadi.com</string>
+		<string>applinks:*.wadi.com</string>
+	</array>
+</dict>
+</plist>

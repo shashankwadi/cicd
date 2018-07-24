@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="ios">
+  <head>
+    <title>Wadi.com</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="google-site-verification" content="CgmAf2IIyDYgdQXl9MfXP9dA92KjCwVe07ZdmnvJ10k" />
+    <meta name="keywords" content="mobiles, electronics, clothes online, shoes online, online fashion shopping, online fashion, Shoes, Men Shoes, Women Shoes, Footwear, Clothes, Apparel, Clothing, Fashion, Sports, Top Brands, accessories, gift" />
+    <meta name="description" content="Online shopping in Saudi Arabia - Shop online for Mobile Phones, Laptops, Digital Cameras &amp; more at Wadi" />
+    <meta name="google-signin-client_id" content="1034143548269-us4drm7upkqgsdpe3835n63k77ick6vl.apps.googleusercontent.com" />
+    <meta http-equiv="x-dns-prefetch-control" content="on" />
+    <meta name="theme-color" content="#0FB0AA">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#0FB0AA">
+    <meta name="apple-mobile-web-app-title" content="Wadi">
+
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <base href="/doodle/">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="styles/lib/wadicons.css">
+    <link rel="stylesheet" href="styles/ext/framework7-icons.css">
+
+    <style>
+        .splash img {
+            max-width: 100%;
+        }
+
+        .ios-nav .toolbar {
+            background: #FFFFFF;
+        }
+
+        .ios-nav .toolbar .toolbar-inner {
+            bottom: constant(safe-area-inset-bottom);
+            bottom: env(safe-area-inset-bottom);
+        }
+    </style>
+
+    <!-- Script Libraries -->
+    <script>
+        function getQueryStringValue (key) {
+            return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));  
+        };
+        window.appDirectory = '/doodle/';
+        window.appConfig = {
+            lang: getQueryStringValue('lang'),
+            country: getQueryStringValue('country'),
+            identity: getQueryStringValue('cookie'),
+            latitude: getQueryStringValue('latitude'),
+            longitude: getQueryStringValue('longitude'),
+            subLocality: getQueryStringValue('subLocality'),
+            city: getQueryStringValue('city'),
+            userLocation: getQueryStringValue('userLocation'),
+            deviceID: getQueryStringValue('unique_id'),
+            appVersion: getQueryStringValue('appVersion')
+        };
+        window.dataLayer=[];
+        window.dataLayer.push({ platform: 'ios_grocery_doodle', WadiLanguage: window.appConfig.lang, WadiCountry: window.appConfig.country, appVersion: window.appConfig.appVersion });
+        window.config = {
+            device: 'mobile',
+            platform: 'ios',
+            isApp: true,
+            appName: 'wadi_grocery'
+        };
+        window.Polymer = { dom: 'shady', lazyRegister: true };
+        window.translate = function (value) { return value; };
+
+        document.documentElement.style.webkitUserSelect = 'none';
+        document.documentElement.style.webkitTouchCallout ='none';
+
+        var iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        // Get the device pixel ratio
+        var ratio = window.devicePixelRatio || 1;
+        // Define the users device screen dimensions
+        var screen = {
+            width : window.screen.width * ratio,
+            height : window.screen.height * ratio
+        };
+        // iPhone X Detection
+        if (iOS && screen.width == 1125 && screen.height === 2436) {
+            document.querySelector('html').classList.add('device-iphone-x');
+        }
+    </script>
+    <script src="ext/onDeviceReady.js"></script>
+    <script src="app-launch-v3.js"></script>
+    <script src="ext/swiper.min.js"></script>
+
+    <link rel="import" href="components/elements.html">
+    <script>
+        var wadiCSS = document.createElement('link');
+        wadiCSS.rel = 'stylesheet';
+        wadiCSS.href = 'styles/site' + ((window.appConfig.lang === 'ar') ? '_ar' : '') + '.css';
+        document.head.appendChild(wadiCSS);
+    </script>
+  </head>
+  <body aurelia-app="main">
+    <div id="wadi">
+        <div class="splash">
+            <!-- <img src="images/launch-screens/Default-2436h.png" alt="Loading..." /> -->
+        </div>
+        <script src="wadi.bundle.js"></script>
+    </div>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WVN4ZWN');</script>
+    <!-- Sentry Script -->
+    <script src="ext/raven.min.3_26_2.js" nonce></script>
+    <script>
+      var ravenOptions = {
+        // See: https://github.com/getsentry/raven-js/issues/73
+        ignoreErrors: [ 'canvas.contentDocument', 'fb_xd_fragment', '__show__deepen', 'vid_mate_check', 'jQueryAppsee' ],
+        ignoreUrls: [ /graph\.facebook\.com/i, /connect\.facebook\.net\/en_US\/all\.js/i, /extensions\//i, /^chrome:\/\//i, /metrics\.itunes\.apple\.com\.edgesuite\.net\//i ]
+      };
+      window.Raven.config('https://986b6ec5210f4cc2adee3a8e8a85c676@sentry.io/1227529', ravenOptions).install();
+      window.addEventListener('unhandledrejection', function (e) { window.Raven.captureException(e.reason); });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,273 @@
+
+<template>
+  <div id="wrapper" dir="${config.direction}" class="${config.locale.lang} ${common.bodyClass} ${ moduleId }">
+
+    <notifications-element message.two-way="notifier.message"></notifications-element>
+    <div class="loading-screen" if.bind="common.appLoading"><i class="wadicon-spinner wadicon-spin"></i></div>
+    <paper-drawer-panel ref="navigation" force-narrow drawer-focus-selector disable-swipe drawer-width="80%">
+
+      <div drawer>
+        <signup-element user.two-way="user.info" options='{ "title": "My Account" }'
+          logout.trigger="user.logout()"
+          login.trigger="loginUser($event)"
+          guest-login.trigger="guestLogin($event)"
+          password-reset-request.trigger="passwordResetRequest($event)"
+          password-reset.trigger="setPassword($event)"
+          otp-verify.trigger="otpVerify($event)"
+          otp-request.trigger="otpRequest($event)"
+          phone-config.one-way="config.countries[config.locale.country].phone"
+          primary-phone.two-way="user.primaryPhone"
+          customer-exist.trigger="checkUserExistence($event)"
+          social-login.trigger="socialLogin($event)"
+          skip-phone-verification.trigger="skipPhoneVerification($event)"
+          ctx.bind="common.ctx">
+        </signup-element>
+        <ul class="level-01 home-link" if.bind="user.info.isLoggedIn">
+          <li><a click.trigger="openURL('https://my.wadi.com/wallet', 'My Account')" target="_blank"><i class="wadicon-tablets-accessories"></i> ${ 'My Wallet' | t }</a></li>
+        </ul>
+
+        <small-nav-element nav.bind="nav" options='{ "mainNav": true }' ctx.bind="common.ctx"></small-nav-element>
+      </div>
+
+      <div main>
+        <header id="site-header">
+          <div class="primary-row">
+            <i paper-drawer-toggle class="main-nav-trigger" if.bind="common.state !== 'checkout'"><span></span><span></span><span></span></i>
+            <!-- <i paper-drawer-toggle class="main-nav-trigger" if.bind="common.state !== 'checkout'">
+              <i class="wadicon-menu-active"></i>
+            </i> -->
+
+            <a href="/" class="site-logo ${ config.locale.lang }" itemprop="url" alt="Wadi" rel="Home">
+              <img src.bind="logoPath" alt="Wadi" />
+            </a>  
+            <a href="/cart" id="cart" if.bind="common.state !== 'checkout'">
+              <i class="wadicon-cart-inactive" if.bind="moduleId !== 'cart' && common.cartCount === 0"></i>
+              <i class="wadicon-cartadded" if.bind="common.cartCount > 0"></i>
+              <span class="badge ${cartCounterClass}" if.bind="common.cartCount > 0">${ common.cartCount }</span>
+            </a>
+            <div class="header-title">
+              <!-- Logo -->
+              <!-- <a href="/" class="site-logo ${ config.locale.lang }" itemprop="url" alt="Wadi" rel="Home">
+                <img src.bind="logoPath" alt="Wadi" />
+              </a> -->
+              <!-- Location Bar -->
+              <div click.trigger='getLocation($event)' class="header-location">
+                <span class="text_hold">${ 'Delivering to' | t }</span>
+                <button class="core-block-cta cta-full-width core-block-cta-secondary wadicon-location">
+                  <span if.bind="!user.info.location.city">${ 'Detect Location' | t }</span>
+                  <span if.bind="user.info.location.city">${ user.info.displayAddress }</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Page Title -->
+          <div class="page-title">
+            <div class="search">
+              <a click.trigger="goBack()" class="back-button" if.bind="moduleId !== 'home' && moduleId !== 'success'">
+                <!-- <i class="f7-icons">arrow_left</i> -->
+                <i class="wadicon-back-active"></i>
+              </a>
+              <a class="header" href="/search" if.bind="moduleId === 'home' || common.pageType === 'static'">
+                <div class="search-element-class">
+                  <div class="input-container">
+                    <input is="iron-input" type="search" autocomplete="off" placeholder="${ 'What are you searching for?' | t }">
+                    <span class="search-icon style-scope search-element"></span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <search-element
+              if.bind="moduleId === 'search' && common.state !== 'checkout'"
+              ctx.bind='common.ctx'
+              direct-search.trigger='directSearch($event)'
+              search-suggest.trigger='search($event)'
+              options='{ "cdnURL": "${ config.CDNUrl }" }'
+              search-term.bind="plpModel.search.q"
+            ></search-element>
+
+            <div class="sub-title" if.bind="common.pageType === 'list'">
+              ${ plpModel.plpTitle }
+              <span>(${ plpModel.totalCount } ${ 'Items' | t })&#8206;</span>
+            </div>
+            <div class="sub-title" if.bind="common.pageType === 'detail'">
+              <span class="text">
+                ${ pdpModel.shortName }
+              </span>
+            </div>
+            <div class="sub-title" if.bind="moduleId === 'cart'">
+              ${ 'My Cart' | t }
+            </div>
+            <div class="sub-title" if.bind="moduleId === 'settings'">
+              ${ 'My Wadi' | t }
+            </div>
+            <div if.bind="common.state === 'checkout'" class="sub-title">
+              ${ 'Checkout' | t }
+            </div>
+            <div class="delay-message">
+              <span>${ 'Its taking longer than expected, please bear with us' }</span>
+              <!-- <timer-element duration="10" options='{ "hideIfZero": true, "hideProgressBar": true }'></timer-element> -->
+              <div class="loading-bar"></div>
+            </div>
+          </div>
+        </header>
+        <div id="page-container">
+          <div class="loading-view">
+            <!-- <span><img src.bind="window.appDirectory + 'dist/images/loading-icon.gif'" alt="loading..." /></span> -->
+            <section class="home-loader">
+              <div class="section-area">
+                <div class="image-content-area"></div>
+              </div>
+              <div class="section-area">
+                <div class="banner-content-area"></div>
+              </div>
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="product-description"></div>
+                </div>
+              </div>
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="category-box"></div>
+                  <div class="category-box"></div>
+                  <div class="category-box"></div>
+                </div>
+              </div>
+              <div class="section-area">
+                <div class="banner-content-area"></div>
+              </div>
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="category-box"></div>
+                  <div class="category-box"></div>
+                  <div class="category-box"></div>
+                </div>
+              </div>
+            </section>
+            <section class="pdp-loader">
+              <div class="section-area">
+                <div class="image-content-area"></div>
+              </div>
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="brand"></div>
+                  <div class="name"></div>
+                  <div class="special-price"></div>
+                  <div class="price"></div>
+                </div>
+              </div>
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="product-info"></div>
+                  <div class="product-description"></div>
+                  <div class="price"></div>
+                  <div class="special-price"></div>
+                </div>
+              </div>
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="product-info"></div>
+                  <div class="price"></div>
+                  <div class="name"></div>
+                  <div class="product-description"></div>
+                  <div class="special-price"></div>
+                </div>
+              </div>
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="category-box"></div>
+                  <div class="category-box"></div>
+                  <div class="category-box"></div>
+                </div>
+              </div>
+            </section>
+            <section class="plp-loader">
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="image-content-area"></div>
+                  <div class="details-area">
+                    <div class="name"></div>
+                    <div class="price"></div>
+                    <div class="button"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="image-content-area"></div>
+                  <div class="details-area">
+                    <div class="name"></div>
+                    <div class="price"></div>
+                    <div class="button"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="image-content-area"></div>
+                  <div class="details-area">
+                    <div class="name"></div>
+                    <div class="price"></div>
+                    <div class="button"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-area">
+                <div class="content-area">
+                  <div class="image-content-area"></div>
+                  <div class="details-area">
+                    <div class="name"></div>
+                    <div class="price"></div>
+                    <div class="button"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+          <!-- <div class="loading-view-right">
+            <span><img src.bind="window.appDirectory + 'dist/images/loading-icon.gif'" alt="loading..." /></span>
+          </div> -->
+          <router-view swap-order="with"></router-view>
+          <compose view-model="../../shared/source/modules/super-view" model.one-way="tsaheyluModel.model" view.one-way="tsaheyluModel.view" containerless ></compose>
+        </div>
+
+        <div class="views ios-nav" if.bind="common.pageType !== 'detail' && common.pageType !== 'cart' && common.state !== 'checkout'">
+          <div class="toolbar tabbar-labels toolbar-bottom-md">
+            <div class="next-slot" if.bind="cartModel.nextAvailableSlot">
+              ${ 'Next available slot' | t }: ${ cartModel.nextAvailableSlot }
+            </div>
+            <div class="toolbar-inner">
+              <a href="/" class="tab-link tab-link-active">
+                <i class="wadicon-home-inactive" if.bind="moduleId !== 'home'"></i>
+                <i class="wadicon-home-active" if.bind="moduleId === 'home'"></i>
+                <span class="tabbar-label">${ 'Home' | t }</span>
+              </a>
+              <a href="javascript:void(0)" class="tab-link" click.trigger="showNav()">
+                <i class="wadicon-categories-inactive" if.bind="!isNavOpen"></i>
+                <i class="wadicon-categories-active" if.bind="isNavOpen"></i>
+                <span class="tabbar-label">${ 'Categories' | t }</span>
+              </a>
+              <a href="/search" class="tab-link">
+                <i class="wadicon-search-inactive" if.bind="currentFragment.indexOf('/s/') !== 0 && currentFragment.indexOf('/search') !== 0"></i>
+                <i class="wadicon-search-active" if.bind="currentFragment.indexOf('/s/') === 0 || currentFragment.indexOf('/search') === 0"></i>
+                <span class="tabbar-label">${ 'Search' | t }</span>
+              </a>
+              <a href="/cart" class="tab-link">
+                <i class="wadicon-cart-inactive" if.bind="moduleId !== 'cart' && common.cartCount === 0"></i>
+                <i class="wadicon-cartadded" if.bind="common.cartCount > 0"></i>
+                <span class="badge ${cartCounterClass}" if.bind="common.cartCount > 0">${ common.cartCount }</span>
+                <span class="tabbar-label">${ 'Cart' | t }</span>
+              </a>
+              <a href="/settings" class="tab-link">
+                <i class="wadicon-account-inactive" if.bind="currentFragment !== '/settings'"></i>
+                <i class="wadicon-account-active" if.bind="currentFragment === '/settings'"></i>
+                <span class="tabbar-label">${ 'Settings' | t }</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </paper-drawer-panel>
+  </div>
+</template>

@@ -1,0 +1,68 @@
+
+<template>
+  <section class="au-animate" id="page-search">
+
+    <div class="search-cover" on-tap="_clearSearch"></div>
+    <div class="search-toolbar" if.bind="searchHistory.length > 0">
+      <span>${ 'Search History' | t }</span>
+      <ul class="clear-history">
+        <li click.trigger="clearSearchHistory()">
+          <i>x</i>
+          ${ 'Clear' | t }
+        </li>
+      </ul>
+    </div>
+    <div class="search-suggestions-container historical">
+      <ul class="suggest-list-container" if.bind="searchHistory.length > 0">
+        <li repeat.for="text of searchHistory">
+          <a href="/s/${ text }">
+            <!-- <i class="f7-icons">arrow_right</i> -->
+            <i class="wadicon-chevron-right"></i>
+            <span class="term">${ text }</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- <ul class="suggest-list-container">
+        <li class="suggest-list">
+          <li repeat.for="suggestions of suggest.data.popular">
+            <ul>
+              <li class="category-suggestion suggest-list">
+                <a href="/s/${ suggestions.keyword }">
+                  <span class="term">${ suggestions.keyword } </span>
+                </a>
+              </li>
+          </ul>
+        </li>
+        <li repeat.for="product of suggest.data.suggest" class="product-suggestion suggest-list">
+          <a href="/{{ product.link }}">
+            // <div class="image-container">
+            //  <img src="https://{{ options.cdnURL }}/product/{{ product.imageKey }}/1-cart.jpg" alt="{{ product.name }}" />
+            // </div>
+            <div class="details-container">
+              <p class="name">${ product.name }</p>
+              // PRICE
+              // SALE PRICE
+                <template is="dom-if" if="${ product.specialPrice }" restamp="true">
+                <p class="core-product-price search-suggest-price">
+                  <span class="pre-reduction">${ product.price } ${ ctx.currency }</span>
+                  <span class="selling-price">${ product.specialPrice } ${ ctx.currency }</span>
+                  <span class="discount"> ${ 'Save' | t } [[_minus(product.price, product.specialPrice)]] ${ ctx.currency } ([[_discountPercentage(product.price, product.specialPrice)]]%)</span>
+                </p>
+              </template>
+              // NORMAL PRICE
+              <template is="dom-if" if="{{ !product.specialPrice }}" restamp="true">
+                <p class="core-product-price search-suggest-price">
+                  <span class="selling-price">${ product.price } ${ ctx.currency }</span>
+                </p>
+              </template>
+            </div>
+          </a>
+        </li>
+      </ul> -->
+    </div>
+
+    <!-- <button type="button" click.trigger="focusInput()">Test</button> -->
+
+  </section> 
+</template>

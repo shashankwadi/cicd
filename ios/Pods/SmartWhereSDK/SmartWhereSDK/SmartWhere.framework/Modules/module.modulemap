@@ -1,0 +1,6 @@
+framework module SmartWhere {
+    umbrella header "SmartWhere.h"
+    
+    export *
+    module * { export * }
+}

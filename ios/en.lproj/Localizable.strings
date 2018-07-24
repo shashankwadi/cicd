@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  Wadi
+
+  Created by Wadi on 12/04/18.
+  Copyright © 2018 Facebook. All rights reserved.
+*/
+
+"location_permission" = "Please grant location permission from settings.";
+"ok" = "Ok";
+"settings" = "Settings";
