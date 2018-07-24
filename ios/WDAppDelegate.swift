@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   var gcdPort : UInt = 0
   
   
+  
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
     //print("\(kEnvironment)")
@@ -74,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     self.window?.backgroundColor =  UIColor.white;
     RCCManager.sharedIntance().initBridge(withBundleURL: jsCodeLocation, launchOptions: launchOptions)
     
-    //SplashScreen.show()
+    SplashScreen.show()
     return WDExternalFrameworkManager.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
     
   }
