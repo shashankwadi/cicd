@@ -1,0 +1,159 @@
+# Customise this file, documentation can be found here:
+# https://github.com/fastlane/fastlane/tree/master/fastlane/docs
+# All available actions: https://docs.fastlane.tools/actions
+# can also be listed using the `fastlane actions` command
+
+# Change the syntax highlighting to Ruby
+# All lines starting with a # are ignored when running `fastlane`
+
+# If you want to automatically update fastlane if a new version is available:
+# update_fastlane
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.23.0"
+
+default_platform :ios
+
+platform :ios do
+  before_all do
+    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
+    #cocoapods
+    #update_fastlane
+
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    scan
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
+    # match(type: "appstore") # more information: https://codesigning.guide
+    gym # Build your app - more options available
+    pilot
+    # sh "your_script.sh"
+    # You can also use other beta testing services here (run `fastlane actions`)
+  end
+
+  lane :shashankdebug do
+    cert(development:true)
+    sigh(development:true,
+    cert_id:"3K8E554QF7")
+     gym(workspace: "Wadi.xcworkspace",
+      scheme: "Wadi",
+      configuration:"Debug",
+      export_method:"development",
+      clean:true,
+      output_directory:"./build",    # store the ipa in this folder
+      output_name:"ShashankApp",
+      export_options: {
+        method:"development",
+        provisioningProfiles: {
+       "com.wadi.fmcg" => "dev_grocery_july2018_provisioning",
+       "com.wadi.fmcg.NotificationService" => "fmcg_app_dev_july_notification_provisioning"
+     }
+   }
+      )
+      hockey(
+        api_token: "e5027b00d992437bbefe1c3d43cb583b",
+        public_identifier: "60fa6bfc0ef44bd4aaf726c8aff819b0",
+        ipa: "./build/ShashankApp.ipa",
+        notify: "1"
+      )
+
+
+  end
+
+  lane :shashankdebugtest do
+    cert(development:true)
+    sigh(development:true, force: true)
+     gym(workspace: "Wadi.xcworkspace",
+      scheme: "Wadi",
+      configuration:"Debug",
+      export_method:"development",
+      clean:true,
+      output_directory:"./build",    # store the ipa in this folder
+      output_name:"WadidebugApp",
+      )
+      hockey(
+        api_token: "e5027b00d992437bbefe1c3d43cb583b",
+        public_identifier: "60fa6bfc0ef44bd4aaf726c8aff819b0",
+        ipa: "./build/WadidebugApp.ipa",
+        notify: "1"
+      )
+
+
+  end
+
+  lane :shashankrelease do
+    cert
+    sigh
+     gym(workspace: "Wadi.xcworkspace",
+      scheme: "Wadi",
+      configuration:"Release",
+      clean:true,
+      output_directory:"./build",    # store the ipa in this folder
+      output_name:"WadiReleaseApp",
+      export_options: {
+        provisioningProfiles: {
+       "com.wadi.fmcg" => "release_grocery_mar16_provisioning",
+       "com.wadi.fmcg.NotificationService" => "Wadi_fmcg_prod_notification_service"
+     }
+   }
+      )
+      hockey(
+        api_token: "f94206b61f38498cb4bbf435e5767447",
+        public_identifier: "6dc0a2bcd4844674a012f9bfdd1d1a01",
+        ipa: "./build/WadiReleaseApp.ipa",
+        notify: "1"
+      )
+
+
+  end
+
+
+lane :shashankupload do
+  pilot(
+  ipa:"./build/ShashankApp.ipa",
+  apple_id:"com.wadi.fmcg",
+  changelog:"automated build by shashank"
+  )
+end
+
+
+  desc "Deploy a new version to the App Store"
+  lane :release do
+    # match(type: "appstore")
+    # snapshot
+    gym # Build your app - more options available
+    deliver(force: true)
+    # frameit
+  end
+
+  # You can define as many lanes as you want
+
+  after_all do |lane|
+    # This block is called, only if the executed lane was successful
+
+    # slack(
+    #   message: "Successfully deployed new App Update."
+    # )
+  end
+
+  error do |lane, exception|
+    # slack(
+    #   message: exception.message,
+    #   success: false
+    # )
+  end
+end
+
+
+# More information about multiple platforms in fastlane: https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Platforms.md
+# All available actions: https://docs.fastlane.tools/actions
+
+# fastlane reports which actions are used
+# No personal data is recorded. Learn more at https://github.com/fastlane/enhancer
